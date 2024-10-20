@@ -1,3 +1,5 @@
+(Forked from https://github.com/mmozeiko/c_d2d_dwrite)
+
 # Direct2D and DirectWrite Odin bindings
 
 Bindings are generated from [Win32 Metadata][] .winmd file (included in repo).
