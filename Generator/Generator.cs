@@ -314,7 +314,7 @@ IPrintDocumentPackageTarget :: struct { #subtype parent: win32.IUnknown }");
 
             foreach (var _enum in enums.OrderBy(x => x.Name)) {
                 file.WriteLine();
-                file.WriteLine($"{_enum.Name} :: enum {{");
+                file.WriteLine($"{_enum.Name} :: enum i32 {{");
                 foreach (var field in _enum.Fields.Where(field => !field.IsSpecialName)) {
                     var fieldName = field.Name;
                     if (fieldName.StartsWith(_enum.Name + "_")) {
