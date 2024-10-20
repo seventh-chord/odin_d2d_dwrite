@@ -3081,7 +3081,7 @@ ID2D1AnalysisTransform :: struct #raw_union {
 }
 ID2D1AnalysisTransform_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	ProcessAnalysisResults: proc "system" (this: ^ID2D1AnalysisTransform, analysisData: ^u8, analysisDataCount: u32, _return: ^win32.HRESULT),
+	ProcessAnalysisResults: proc "system" (this: ^ID2D1AnalysisTransform, analysisData: ^u8, analysisDataCount: u32) -> win32.HRESULT,
 }
 
 ID2D1Bitmap_UUID := &win32.IID{0xa2296057, 0xea42, 0x4099, {0x98, 0x3b, 0x53, 0x9f, 0xb6, 0x50, 0x54, 0x26}}
@@ -3095,9 +3095,9 @@ ID2D1Bitmap_VTable :: struct {
 	GetPixelSize: proc "system" (this: ^ID2D1Bitmap, _return: ^D2D_SIZE_U),
 	GetPixelFormat: proc "system" (this: ^ID2D1Bitmap, _return: ^D2D1_PIXEL_FORMAT),
 	GetDpi: proc "system" (this: ^ID2D1Bitmap, dpiX: ^f32, dpiY: ^f32),
-	CopyFromBitmap: proc "system" (this: ^ID2D1Bitmap, destPoint: ^D2D_POINT_2U, bitmap: ^ID2D1Bitmap, srcRect: ^D2D_RECT_U, _return: ^win32.HRESULT),
-	CopyFromRenderTarget: proc "system" (this: ^ID2D1Bitmap, destPoint: ^D2D_POINT_2U, renderTarget: ^ID2D1RenderTarget, srcRect: ^D2D_RECT_U, _return: ^win32.HRESULT),
-	CopyFromMemory: proc "system" (this: ^ID2D1Bitmap, dstRect: ^D2D_RECT_U, srcData: rawptr, pitch: u32, _return: ^win32.HRESULT),
+	CopyFromBitmap: proc "system" (this: ^ID2D1Bitmap, destPoint: ^D2D_POINT_2U, bitmap: ^ID2D1Bitmap, srcRect: ^D2D_RECT_U) -> win32.HRESULT,
+	CopyFromRenderTarget: proc "system" (this: ^ID2D1Bitmap, destPoint: ^D2D_POINT_2U, renderTarget: ^ID2D1RenderTarget, srcRect: ^D2D_RECT_U) -> win32.HRESULT,
+	CopyFromMemory: proc "system" (this: ^ID2D1Bitmap, dstRect: ^D2D_RECT_U, srcData: rawptr, pitch: u32) -> win32.HRESULT,
 }
 
 ID2D1Bitmap1_UUID := &win32.IID{0xa898a84c, 0x3873, 0x4588, {0xb0, 0x8b, 0xeb, 0xbf, 0x97, 0x8d, 0xf0, 0x41}}
@@ -3109,9 +3109,9 @@ ID2D1Bitmap1_VTable :: struct {
 	using id2d1bitmap_vtable: ID2D1Bitmap_VTable,
 	GetColorContext: proc "system" (this: ^ID2D1Bitmap1, colorContext: ^^ID2D1ColorContext),
 	GetOptions: proc "system" (this: ^ID2D1Bitmap1) -> D2D1_BITMAP_OPTIONS,
-	GetSurface: proc "system" (this: ^ID2D1Bitmap1, dxgiSurface: ^^dxgi.ISurface, _return: ^win32.HRESULT),
-	Map: proc "system" (this: ^ID2D1Bitmap1, options: D2D1_MAP_OPTIONS, mappedRect: ^D2D1_MAPPED_RECT, _return: ^win32.HRESULT),
-	Unmap: proc "system" (this: ^ID2D1Bitmap1, _return: ^win32.HRESULT),
+	GetSurface: proc "system" (this: ^ID2D1Bitmap1, dxgiSurface: ^^dxgi.ISurface) -> win32.HRESULT,
+	Map: proc "system" (this: ^ID2D1Bitmap1, options: D2D1_MAP_OPTIONS, mappedRect: ^D2D1_MAPPED_RECT) -> win32.HRESULT,
+	Unmap: proc "system" (this: ^ID2D1Bitmap1) -> win32.HRESULT,
 }
 
 ID2D1BitmapBrush_UUID := &win32.IID{0x2cd906aa, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -3149,7 +3149,7 @@ ID2D1BitmapRenderTarget :: struct #raw_union {
 }
 ID2D1BitmapRenderTarget_VTable :: struct {
 	using id2d1rendertarget_vtable: ID2D1RenderTarget_VTable,
-	GetBitmap: proc "system" (this: ^ID2D1BitmapRenderTarget, bitmap: ^^ID2D1Bitmap, _return: ^win32.HRESULT),
+	GetBitmap: proc "system" (this: ^ID2D1BitmapRenderTarget, bitmap: ^^ID2D1Bitmap) -> win32.HRESULT,
 }
 
 ID2D1BlendTransform_UUID := &win32.IID{0x63ac0b32, 0xba44, 0x450f, {0x88, 0x06, 0x7f, 0x4c, 0xa1, 0xff, 0x2f, 0x1b}}
@@ -3209,7 +3209,7 @@ ID2D1ColorContext_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
 	GetColorSpace: proc "system" (this: ^ID2D1ColorContext) -> D2D1_COLOR_SPACE,
 	GetProfileSize: proc "system" (this: ^ID2D1ColorContext) -> u32,
-	GetProfile: proc "system" (this: ^ID2D1ColorContext, profile: ^u8, profileSize: u32, _return: ^win32.HRESULT),
+	GetProfile: proc "system" (this: ^ID2D1ColorContext, profile: ^u8, profileSize: u32) -> win32.HRESULT,
 }
 
 ID2D1ColorContext1_UUID := &win32.IID{0x1ab42875, 0xc57f, 0x4be9, {0xbd, 0x85, 0x9c, 0xd7, 0x8d, 0x6f, 0x55, 0xee}}
@@ -3221,7 +3221,7 @@ ID2D1ColorContext1_VTable :: struct {
 	using id2d1colorcontext_vtable: ID2D1ColorContext_VTable,
 	GetColorContextType: proc "system" (this: ^ID2D1ColorContext1) -> D2D1_COLOR_CONTEXT_TYPE,
 	GetDXGIColorSpace: proc "system" (this: ^ID2D1ColorContext1) -> dxgi.COLOR_SPACE_TYPE,
-	GetSimpleColorProfile: proc "system" (this: ^ID2D1ColorContext1, simpleProfile: ^D2D1_SIMPLE_COLOR_PROFILE, _return: ^win32.HRESULT),
+	GetSimpleColorProfile: proc "system" (this: ^ID2D1ColorContext1, simpleProfile: ^D2D1_SIMPLE_COLOR_PROFILE) -> win32.HRESULT,
 }
 
 ID2D1CommandList_UUID := &win32.IID{0xb4f34a19, 0x2383, 0x4d76, {0x94, 0xf6, 0xec, 0x34, 0x36, 0x57, 0xc3, 0xdc}}
@@ -3231,8 +3231,8 @@ ID2D1CommandList :: struct #raw_union {
 }
 ID2D1CommandList_VTable :: struct {
 	using id2d1image_vtable: ID2D1Image_VTable,
-	Stream: proc "system" (this: ^ID2D1CommandList, sink: ^ID2D1CommandSink, _return: ^win32.HRESULT),
-	Close: proc "system" (this: ^ID2D1CommandList, _return: ^win32.HRESULT),
+	Stream: proc "system" (this: ^ID2D1CommandList, sink: ^ID2D1CommandSink) -> win32.HRESULT,
+	Close: proc "system" (this: ^ID2D1CommandList) -> win32.HRESULT,
 }
 
 ID2D1CommandSink_UUID := &win32.IID{0x54d7898a, 0xa061, 0x40a7, {0xbe, 0xc7, 0xe4, 0x65, 0xbc, 0xba, 0x2c, 0x4f}}
@@ -3242,31 +3242,31 @@ ID2D1CommandSink :: struct #raw_union {
 }
 ID2D1CommandSink_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	BeginDraw: proc "system" (this: ^ID2D1CommandSink, _return: ^win32.HRESULT),
-	EndDraw: proc "system" (this: ^ID2D1CommandSink, _return: ^win32.HRESULT),
-	SetAntialiasMode: proc "system" (this: ^ID2D1CommandSink, antialiasMode: D2D1_ANTIALIAS_MODE, _return: ^win32.HRESULT),
-	SetTags: proc "system" (this: ^ID2D1CommandSink, tag1: u64, tag2: u64, _return: ^win32.HRESULT),
-	SetTextAntialiasMode: proc "system" (this: ^ID2D1CommandSink, textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE, _return: ^win32.HRESULT),
-	SetTextRenderingParams: proc "system" (this: ^ID2D1CommandSink, textRenderingParams: ^IDWriteRenderingParams, _return: ^win32.HRESULT),
-	SetTransform: proc "system" (this: ^ID2D1CommandSink, transform: ^D2D_MATRIX_3X2_F, _return: ^win32.HRESULT),
-	SetPrimitiveBlend: proc "system" (this: ^ID2D1CommandSink, primitiveBlend: D2D1_PRIMITIVE_BLEND, _return: ^win32.HRESULT),
-	SetUnitMode: proc "system" (this: ^ID2D1CommandSink, unitMode: D2D1_UNIT_MODE, _return: ^win32.HRESULT),
-	Clear: proc "system" (this: ^ID2D1CommandSink, color: ^D2D1_COLOR_F, _return: ^win32.HRESULT),
-	DrawGlyphRun: proc "system" (this: ^ID2D1CommandSink, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ^ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE, _return: ^win32.HRESULT),
-	DrawLine: proc "system" (this: ^ID2D1CommandSink, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, _return: ^win32.HRESULT),
-	DrawGeometry: proc "system" (this: ^ID2D1CommandSink, geometry: ^ID2D1Geometry, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, _return: ^win32.HRESULT),
-	DrawRectangle: proc "system" (this: ^ID2D1CommandSink, rect: ^D2D_RECT_F, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, _return: ^win32.HRESULT),
-	DrawBitmap: proc "system" (this: ^ID2D1CommandSink, bitmap: ^ID2D1Bitmap, destinationRectangle: ^D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ^D2D_RECT_F, perspectiveTransform: ^D2D_MATRIX_4X4_F, _return: ^win32.HRESULT),
-	DrawImage: proc "system" (this: ^ID2D1CommandSink, image: ^ID2D1Image, targetOffset: ^D2D_POINT_2F, imageRectangle: ^D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE, _return: ^win32.HRESULT),
-	DrawGdiMetafile: proc "system" (this: ^ID2D1CommandSink, gdiMetafile: ^ID2D1GdiMetafile, targetOffset: ^D2D_POINT_2F, _return: ^win32.HRESULT),
-	FillMesh: proc "system" (this: ^ID2D1CommandSink, mesh: ^ID2D1Mesh, brush: ^ID2D1Brush, _return: ^win32.HRESULT),
-	FillOpacityMask: proc "system" (this: ^ID2D1CommandSink, opacityMask: ^ID2D1Bitmap, brush: ^ID2D1Brush, destinationRectangle: ^D2D_RECT_F, sourceRectangle: ^D2D_RECT_F, _return: ^win32.HRESULT),
-	FillGeometry: proc "system" (this: ^ID2D1CommandSink, geometry: ^ID2D1Geometry, brush: ^ID2D1Brush, opacityBrush: ^ID2D1Brush, _return: ^win32.HRESULT),
-	FillRectangle: proc "system" (this: ^ID2D1CommandSink, rect: ^D2D_RECT_F, brush: ^ID2D1Brush, _return: ^win32.HRESULT),
-	PushAxisAlignedClip: proc "system" (this: ^ID2D1CommandSink, clipRect: ^D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE, _return: ^win32.HRESULT),
-	PushLayer: proc "system" (this: ^ID2D1CommandSink, layerParameters1: ^D2D1_LAYER_PARAMETERS1, layer: ^ID2D1Layer, _return: ^win32.HRESULT),
-	PopAxisAlignedClip: proc "system" (this: ^ID2D1CommandSink, _return: ^win32.HRESULT),
-	PopLayer: proc "system" (this: ^ID2D1CommandSink, _return: ^win32.HRESULT),
+	BeginDraw: proc "system" (this: ^ID2D1CommandSink) -> win32.HRESULT,
+	EndDraw: proc "system" (this: ^ID2D1CommandSink) -> win32.HRESULT,
+	SetAntialiasMode: proc "system" (this: ^ID2D1CommandSink, antialiasMode: D2D1_ANTIALIAS_MODE) -> win32.HRESULT,
+	SetTags: proc "system" (this: ^ID2D1CommandSink, tag1: u64, tag2: u64) -> win32.HRESULT,
+	SetTextAntialiasMode: proc "system" (this: ^ID2D1CommandSink, textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE) -> win32.HRESULT,
+	SetTextRenderingParams: proc "system" (this: ^ID2D1CommandSink, textRenderingParams: ^IDWriteRenderingParams) -> win32.HRESULT,
+	SetTransform: proc "system" (this: ^ID2D1CommandSink, transform: ^D2D_MATRIX_3X2_F) -> win32.HRESULT,
+	SetPrimitiveBlend: proc "system" (this: ^ID2D1CommandSink, primitiveBlend: D2D1_PRIMITIVE_BLEND) -> win32.HRESULT,
+	SetUnitMode: proc "system" (this: ^ID2D1CommandSink, unitMode: D2D1_UNIT_MODE) -> win32.HRESULT,
+	Clear: proc "system" (this: ^ID2D1CommandSink, color: ^D2D1_COLOR_F) -> win32.HRESULT,
+	DrawGlyphRun: proc "system" (this: ^ID2D1CommandSink, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ^ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) -> win32.HRESULT,
+	DrawLine: proc "system" (this: ^ID2D1CommandSink, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle) -> win32.HRESULT,
+	DrawGeometry: proc "system" (this: ^ID2D1CommandSink, geometry: ^ID2D1Geometry, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle) -> win32.HRESULT,
+	DrawRectangle: proc "system" (this: ^ID2D1CommandSink, rect: ^D2D_RECT_F, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle) -> win32.HRESULT,
+	DrawBitmap: proc "system" (this: ^ID2D1CommandSink, bitmap: ^ID2D1Bitmap, destinationRectangle: ^D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ^D2D_RECT_F, perspectiveTransform: ^D2D_MATRIX_4X4_F) -> win32.HRESULT,
+	DrawImage: proc "system" (this: ^ID2D1CommandSink, image: ^ID2D1Image, targetOffset: ^D2D_POINT_2F, imageRectangle: ^D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) -> win32.HRESULT,
+	DrawGdiMetafile: proc "system" (this: ^ID2D1CommandSink, gdiMetafile: ^ID2D1GdiMetafile, targetOffset: ^D2D_POINT_2F) -> win32.HRESULT,
+	FillMesh: proc "system" (this: ^ID2D1CommandSink, mesh: ^ID2D1Mesh, brush: ^ID2D1Brush) -> win32.HRESULT,
+	FillOpacityMask: proc "system" (this: ^ID2D1CommandSink, opacityMask: ^ID2D1Bitmap, brush: ^ID2D1Brush, destinationRectangle: ^D2D_RECT_F, sourceRectangle: ^D2D_RECT_F) -> win32.HRESULT,
+	FillGeometry: proc "system" (this: ^ID2D1CommandSink, geometry: ^ID2D1Geometry, brush: ^ID2D1Brush, opacityBrush: ^ID2D1Brush) -> win32.HRESULT,
+	FillRectangle: proc "system" (this: ^ID2D1CommandSink, rect: ^D2D_RECT_F, brush: ^ID2D1Brush) -> win32.HRESULT,
+	PushAxisAlignedClip: proc "system" (this: ^ID2D1CommandSink, clipRect: ^D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) -> win32.HRESULT,
+	PushLayer: proc "system" (this: ^ID2D1CommandSink, layerParameters1: ^D2D1_LAYER_PARAMETERS1, layer: ^ID2D1Layer) -> win32.HRESULT,
+	PopAxisAlignedClip: proc "system" (this: ^ID2D1CommandSink) -> win32.HRESULT,
+	PopLayer: proc "system" (this: ^ID2D1CommandSink) -> win32.HRESULT,
 }
 
 ID2D1CommandSink1_UUID := &win32.IID{0x9eb767fd, 0x4269, 0x4467, {0xb8, 0xc2, 0xeb, 0x30, 0xcb, 0x30, 0x57, 0x43}}
@@ -3276,7 +3276,7 @@ ID2D1CommandSink1 :: struct #raw_union {
 }
 ID2D1CommandSink1_VTable :: struct {
 	using id2d1commandsink_vtable: ID2D1CommandSink_VTable,
-	SetPrimitiveBlend1: proc "system" (this: ^ID2D1CommandSink1, primitiveBlend: D2D1_PRIMITIVE_BLEND, _return: ^win32.HRESULT),
+	SetPrimitiveBlend1: proc "system" (this: ^ID2D1CommandSink1, primitiveBlend: D2D1_PRIMITIVE_BLEND) -> win32.HRESULT,
 }
 
 ID2D1CommandSink2_UUID := &win32.IID{0x3bab440e, 0x417e, 0x47df, {0xa2, 0xe2, 0xbc, 0x0b, 0xe6, 0xa0, 0x09, 0x16}}
@@ -3286,9 +3286,9 @@ ID2D1CommandSink2 :: struct #raw_union {
 }
 ID2D1CommandSink2_VTable :: struct {
 	using id2d1commandsink1_vtable: ID2D1CommandSink1_VTable,
-	DrawInk: proc "system" (this: ^ID2D1CommandSink2, ink: ^ID2D1Ink, brush: ^ID2D1Brush, inkStyle: ^ID2D1InkStyle, _return: ^win32.HRESULT),
-	DrawGradientMesh: proc "system" (this: ^ID2D1CommandSink2, gradientMesh: ^ID2D1GradientMesh, _return: ^win32.HRESULT),
-	DrawGdiMetafile1: proc "system" (this: ^ID2D1CommandSink2, gdiMetafile: ^ID2D1GdiMetafile, destinationRectangle: ^D2D_RECT_F, sourceRectangle: ^D2D_RECT_F, _return: ^win32.HRESULT),
+	DrawInk: proc "system" (this: ^ID2D1CommandSink2, ink: ^ID2D1Ink, brush: ^ID2D1Brush, inkStyle: ^ID2D1InkStyle) -> win32.HRESULT,
+	DrawGradientMesh: proc "system" (this: ^ID2D1CommandSink2, gradientMesh: ^ID2D1GradientMesh) -> win32.HRESULT,
+	DrawGdiMetafile1: proc "system" (this: ^ID2D1CommandSink2, gdiMetafile: ^ID2D1GdiMetafile, destinationRectangle: ^D2D_RECT_F, sourceRectangle: ^D2D_RECT_F) -> win32.HRESULT,
 }
 
 ID2D1CommandSink3_UUID := &win32.IID{0x18079135, 0x4cf3, 0x4868, {0xbc, 0x8e, 0x06, 0x06, 0x7e, 0x6d, 0x24, 0x2d}}
@@ -3298,7 +3298,7 @@ ID2D1CommandSink3 :: struct #raw_union {
 }
 ID2D1CommandSink3_VTable :: struct {
 	using id2d1commandsink2_vtable: ID2D1CommandSink2_VTable,
-	DrawSpriteBatch: proc "system" (this: ^ID2D1CommandSink3, spriteBatch: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ^ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS, _return: ^win32.HRESULT),
+	DrawSpriteBatch: proc "system" (this: ^ID2D1CommandSink3, spriteBatch: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ^ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) -> win32.HRESULT,
 }
 
 ID2D1CommandSink4_UUID := &win32.IID{0xc78a6519, 0x40d6, 0x4218, {0xb2, 0xde, 0xbe, 0xee, 0xb7, 0x44, 0xbb, 0x3e}}
@@ -3308,7 +3308,7 @@ ID2D1CommandSink4 :: struct #raw_union {
 }
 ID2D1CommandSink4_VTable :: struct {
 	using id2d1commandsink3_vtable: ID2D1CommandSink3_VTable,
-	SetPrimitiveBlend2: proc "system" (this: ^ID2D1CommandSink4, primitiveBlend: D2D1_PRIMITIVE_BLEND, _return: ^win32.HRESULT),
+	SetPrimitiveBlend2: proc "system" (this: ^ID2D1CommandSink4, primitiveBlend: D2D1_PRIMITIVE_BLEND) -> win32.HRESULT,
 }
 
 ID2D1CommandSink5_UUID := &win32.IID{0x7047dd26, 0xb1e7, 0x44a7, {0x95, 0x9a, 0x83, 0x49, 0xe2, 0x14, 0x4f, 0xa8}}
@@ -3318,7 +3318,7 @@ ID2D1CommandSink5 :: struct #raw_union {
 }
 ID2D1CommandSink5_VTable :: struct {
 	using id2d1commandsink4_vtable: ID2D1CommandSink4_VTable,
-	BlendImage: proc "system" (this: ^ID2D1CommandSink5, image: ^ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ^D2D_POINT_2F, imageRectangle: ^D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, _return: ^win32.HRESULT),
+	BlendImage: proc "system" (this: ^ID2D1CommandSink5, image: ^ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ^D2D_POINT_2F, imageRectangle: ^D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) -> win32.HRESULT,
 }
 
 ID2D1ComputeInfo_UUID := &win32.IID{0x5598b14b, 0x9fd7, 0x48b7, {0x9b, 0xdb, 0x8f, 0x09, 0x64, 0xeb, 0x38, 0xbc}}
@@ -3328,9 +3328,9 @@ ID2D1ComputeInfo :: struct #raw_union {
 }
 ID2D1ComputeInfo_VTable :: struct {
 	using id2d1renderinfo_vtable: ID2D1RenderInfo_VTable,
-	SetComputeShaderConstantBuffer: proc "system" (this: ^ID2D1ComputeInfo, buffer: ^u8, bufferCount: u32, _return: ^win32.HRESULT),
-	SetComputeShader: proc "system" (this: ^ID2D1ComputeInfo, shaderId: ^win32.GUID, _return: ^win32.HRESULT),
-	SetResourceTexture: proc "system" (this: ^ID2D1ComputeInfo, textureIndex: u32, resourceTexture: ^ID2D1ResourceTexture, _return: ^win32.HRESULT),
+	SetComputeShaderConstantBuffer: proc "system" (this: ^ID2D1ComputeInfo, buffer: ^u8, bufferCount: u32) -> win32.HRESULT,
+	SetComputeShader: proc "system" (this: ^ID2D1ComputeInfo, shaderId: ^win32.GUID) -> win32.HRESULT,
+	SetResourceTexture: proc "system" (this: ^ID2D1ComputeInfo, textureIndex: u32, resourceTexture: ^ID2D1ResourceTexture) -> win32.HRESULT,
 }
 
 ID2D1ComputeTransform_UUID := &win32.IID{0x0d85573c, 0x01e3, 0x4f7d, {0xbf, 0xd9, 0x0d, 0x60, 0x60, 0x8b, 0xf3, 0xc3}}
@@ -3340,8 +3340,8 @@ ID2D1ComputeTransform :: struct #raw_union {
 }
 ID2D1ComputeTransform_VTable :: struct {
 	using id2d1transform_vtable: ID2D1Transform_VTable,
-	SetComputeInfo: proc "system" (this: ^ID2D1ComputeTransform, computeInfo: ^ID2D1ComputeInfo, _return: ^win32.HRESULT),
-	CalculateThreadgroups: proc "system" (this: ^ID2D1ComputeTransform, outputRect: ^win32.RECT, dimensionX: ^u32, dimensionY: ^u32, dimensionZ: ^u32, _return: ^win32.HRESULT),
+	SetComputeInfo: proc "system" (this: ^ID2D1ComputeTransform, computeInfo: ^ID2D1ComputeInfo) -> win32.HRESULT,
+	CalculateThreadgroups: proc "system" (this: ^ID2D1ComputeTransform, outputRect: ^win32.RECT, dimensionX: ^u32, dimensionY: ^u32, dimensionZ: ^u32) -> win32.HRESULT,
 }
 
 ID2D1ConcreteTransform_UUID := &win32.IID{0x1a799d8a, 0x69f7, 0x4e4c, {0x9f, 0xed, 0x43, 0x7c, 0xcc, 0x66, 0x84, 0xcc}}
@@ -3351,7 +3351,7 @@ ID2D1ConcreteTransform :: struct #raw_union {
 }
 ID2D1ConcreteTransform_VTable :: struct {
 	using id2d1transformnode_vtable: ID2D1TransformNode_VTable,
-	SetOutputBuffer: proc "system" (this: ^ID2D1ConcreteTransform, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH, _return: ^win32.HRESULT),
+	SetOutputBuffer: proc "system" (this: ^ID2D1ConcreteTransform, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH) -> win32.HRESULT,
 	SetCached: proc "system" (this: ^ID2D1ConcreteTransform, isCached: win32.BOOL),
 }
 
@@ -3362,7 +3362,7 @@ ID2D1DCRenderTarget :: struct #raw_union {
 }
 ID2D1DCRenderTarget_VTable :: struct {
 	using id2d1rendertarget_vtable: ID2D1RenderTarget_VTable,
-	BindDC: proc "system" (this: ^ID2D1DCRenderTarget, hDC: win32.HDC, pSubRect: ^win32.RECT, _return: ^win32.HRESULT),
+	BindDC: proc "system" (this: ^ID2D1DCRenderTarget, hDC: win32.HDC, pSubRect: ^win32.RECT) -> win32.HRESULT,
 }
 
 ID2D1Device_UUID := &win32.IID{0x47dd575d, 0xac05, 0x4cdd, {0x80, 0x49, 0x9b, 0x02, 0xcd, 0x16, 0xf4, 0x4c}}
@@ -3372,8 +3372,8 @@ ID2D1Device :: struct #raw_union {
 }
 ID2D1Device_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	CreateDeviceContext: proc "system" (this: ^ID2D1Device, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext: ^^ID2D1DeviceContext, _return: ^win32.HRESULT),
-	CreatePrintControl: proc "system" (this: ^ID2D1Device, wicFactory: ^IWICImagingFactory, documentTarget: ^IPrintDocumentPackageTarget, printControlProperties: ^D2D1_PRINT_CONTROL_PROPERTIES, printControl: ^^ID2D1PrintControl, _return: ^win32.HRESULT),
+	CreateDeviceContext: proc "system" (this: ^ID2D1Device, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext: ^^ID2D1DeviceContext) -> win32.HRESULT,
+	CreatePrintControl: proc "system" (this: ^ID2D1Device, wicFactory: ^IWICImagingFactory, documentTarget: ^IPrintDocumentPackageTarget, printControlProperties: ^D2D1_PRINT_CONTROL_PROPERTIES, printControl: ^^ID2D1PrintControl) -> win32.HRESULT,
 	SetMaximumTextureMemory: proc "system" (this: ^ID2D1Device, maximumInBytes: u64),
 	GetMaximumTextureMemory: proc "system" (this: ^ID2D1Device) -> u64,
 	ClearResources: proc "system" (this: ^ID2D1Device, millisecondsSinceUse: u32),
@@ -3388,7 +3388,7 @@ ID2D1Device1_VTable :: struct {
 	using id2d1device_vtable: ID2D1Device_VTable,
 	GetRenderingPriority: proc "system" (this: ^ID2D1Device1) -> D2D1_RENDERING_PRIORITY,
 	SetRenderingPriority: proc "system" (this: ^ID2D1Device1, renderingPriority: D2D1_RENDERING_PRIORITY),
-	CreateDeviceContext1: proc "system" (this: ^ID2D1Device1, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext1: ^^ID2D1DeviceContext1, _return: ^win32.HRESULT),
+	CreateDeviceContext1: proc "system" (this: ^ID2D1Device1, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext1: ^^ID2D1DeviceContext1) -> win32.HRESULT,
 }
 
 ID2D1Device2_UUID := &win32.IID{0xa44472e1, 0x8dfb, 0x4e60, {0x84, 0x92, 0x6e, 0x28, 0x61, 0xc9, 0xca, 0x8b}}
@@ -3398,9 +3398,9 @@ ID2D1Device2 :: struct #raw_union {
 }
 ID2D1Device2_VTable :: struct {
 	using id2d1device1_vtable: ID2D1Device1_VTable,
-	CreateDeviceContext2: proc "system" (this: ^ID2D1Device2, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext2: ^^ID2D1DeviceContext2, _return: ^win32.HRESULT),
+	CreateDeviceContext2: proc "system" (this: ^ID2D1Device2, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext2: ^^ID2D1DeviceContext2) -> win32.HRESULT,
 	FlushDeviceContexts: proc "system" (this: ^ID2D1Device2, bitmap: ^ID2D1Bitmap),
-	GetDxgiDevice: proc "system" (this: ^ID2D1Device2, dxgiDevice: ^^dxgi.IDevice, _return: ^win32.HRESULT),
+	GetDxgiDevice: proc "system" (this: ^ID2D1Device2, dxgiDevice: ^^dxgi.IDevice) -> win32.HRESULT,
 }
 
 ID2D1Device3_UUID := &win32.IID{0x852f2087, 0x802c, 0x4037, {0xab, 0x60, 0xff, 0x2e, 0x7e, 0xe6, 0xfc, 0x01}}
@@ -3410,7 +3410,7 @@ ID2D1Device3 :: struct #raw_union {
 }
 ID2D1Device3_VTable :: struct {
 	using id2d1device2_vtable: ID2D1Device2_VTable,
-	CreateDeviceContext3: proc "system" (this: ^ID2D1Device3, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext3: ^^ID2D1DeviceContext3, _return: ^win32.HRESULT),
+	CreateDeviceContext3: proc "system" (this: ^ID2D1Device3, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext3: ^^ID2D1DeviceContext3) -> win32.HRESULT,
 }
 
 ID2D1Device4_UUID := &win32.IID{0xd7bdb159, 0x5683, 0x4a46, {0xbc, 0x9c, 0x72, 0xdc, 0x72, 0x0b, 0x85, 0x8b}}
@@ -3420,7 +3420,7 @@ ID2D1Device4 :: struct #raw_union {
 }
 ID2D1Device4_VTable :: struct {
 	using id2d1device3_vtable: ID2D1Device3_VTable,
-	CreateDeviceContext4: proc "system" (this: ^ID2D1Device4, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext4: ^^ID2D1DeviceContext4, _return: ^win32.HRESULT),
+	CreateDeviceContext4: proc "system" (this: ^ID2D1Device4, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext4: ^^ID2D1DeviceContext4) -> win32.HRESULT,
 	SetMaximumColorGlyphCacheMemory: proc "system" (this: ^ID2D1Device4, maximumInBytes: u64),
 	GetMaximumColorGlyphCacheMemory: proc "system" (this: ^ID2D1Device4) -> u64,
 }
@@ -3432,7 +3432,7 @@ ID2D1Device5 :: struct #raw_union {
 }
 ID2D1Device5_VTable :: struct {
 	using id2d1device4_vtable: ID2D1Device4_VTable,
-	CreateDeviceContext5: proc "system" (this: ^ID2D1Device5, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext5: ^^ID2D1DeviceContext5, _return: ^win32.HRESULT),
+	CreateDeviceContext5: proc "system" (this: ^ID2D1Device5, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext5: ^^ID2D1DeviceContext5) -> win32.HRESULT,
 }
 
 ID2D1Device6_UUID := &win32.IID{0x7bfef914, 0x2d75, 0x4bad, {0xbe, 0x87, 0xe1, 0x8d, 0xdb, 0x07, 0x7b, 0x6d}}
@@ -3442,7 +3442,7 @@ ID2D1Device6 :: struct #raw_union {
 }
 ID2D1Device6_VTable :: struct {
 	using id2d1device5_vtable: ID2D1Device5_VTable,
-	CreateDeviceContext6: proc "system" (this: ^ID2D1Device6, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext6: ^^ID2D1DeviceContext6, _return: ^win32.HRESULT),
+	CreateDeviceContext6: proc "system" (this: ^ID2D1Device6, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext6: ^^ID2D1DeviceContext6) -> win32.HRESULT,
 }
 
 ID2D1DeviceContext_UUID := &win32.IID{0xe8f7fe7a, 0x191c, 0x466d, {0xad, 0x95, 0x97, 0x56, 0x78, 0xbd, 0xa9, 0x98}}
@@ -3452,22 +3452,22 @@ ID2D1DeviceContext :: struct #raw_union {
 }
 ID2D1DeviceContext_VTable :: struct {
 	using id2d1rendertarget_vtable: ID2D1RenderTarget_VTable,
-	CreateBitmap1: proc "system" (this: ^ID2D1DeviceContext, size: D2D_SIZE_U, sourceData: rawptr, pitch: u32, bitmapProperties: ^D2D1_BITMAP_PROPERTIES1, bitmap: ^^ID2D1Bitmap1, _return: ^win32.HRESULT),
-	CreateBitmapFromWicBitmap1: proc "system" (this: ^ID2D1DeviceContext, wicBitmapSource: ^IWICBitmapSource, bitmapProperties: ^D2D1_BITMAP_PROPERTIES1, bitmap: ^^ID2D1Bitmap1, _return: ^win32.HRESULT),
-	CreateColorContext: proc "system" (this: ^ID2D1DeviceContext, space: D2D1_COLOR_SPACE, profile: ^u8, profileSize: u32, colorContext: ^^ID2D1ColorContext, _return: ^win32.HRESULT),
-	CreateColorContextFromFilename: proc "system" (this: ^ID2D1DeviceContext, filename: ^win32.WCHAR, colorContext: ^^ID2D1ColorContext, _return: ^win32.HRESULT),
-	CreateColorContextFromWicColorContext: proc "system" (this: ^ID2D1DeviceContext, wicColorContext: ^IWICColorContext, colorContext: ^^ID2D1ColorContext, _return: ^win32.HRESULT),
-	CreateBitmapFromDxgiSurface: proc "system" (this: ^ID2D1DeviceContext, surface: ^dxgi.ISurface, bitmapProperties: ^D2D1_BITMAP_PROPERTIES1, bitmap: ^^ID2D1Bitmap1, _return: ^win32.HRESULT),
-	CreateEffect: proc "system" (this: ^ID2D1DeviceContext, effectId: ^win32.GUID, effect: ^^ID2D1Effect, _return: ^win32.HRESULT),
-	CreateGradientStopCollection1: proc "system" (this: ^ID2D1DeviceContext, straightAlphaGradientStops: ^D2D1_GRADIENT_STOP, straightAlphaGradientStopsCount: u32, preInterpolationSpace: D2D1_COLOR_SPACE, postInterpolationSpace: D2D1_COLOR_SPACE, bufferPrecision: D2D1_BUFFER_PRECISION, extendMode: D2D1_EXTEND_MODE, colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE, gradientStopCollection1: ^^ID2D1GradientStopCollection1, _return: ^win32.HRESULT),
-	CreateImageBrush: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image, imageBrushProperties: ^D2D1_IMAGE_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, imageBrush: ^^ID2D1ImageBrush, _return: ^win32.HRESULT),
-	CreateBitmapBrush1: proc "system" (this: ^ID2D1DeviceContext, bitmap: ^ID2D1Bitmap, bitmapBrushProperties: ^D2D1_BITMAP_BRUSH_PROPERTIES1, brushProperties: ^D2D1_BRUSH_PROPERTIES, bitmapBrush: ^^ID2D1BitmapBrush1, _return: ^win32.HRESULT),
-	CreateCommandList: proc "system" (this: ^ID2D1DeviceContext, commandList: ^^ID2D1CommandList, _return: ^win32.HRESULT),
-	IsDxgiFormatSupported: proc "system" (this: ^ID2D1DeviceContext, format: dxgi.FORMAT, _return: ^win32.BOOL),
-	IsBufferPrecisionSupported: proc "system" (this: ^ID2D1DeviceContext, bufferPrecision: D2D1_BUFFER_PRECISION, _return: ^win32.BOOL),
-	GetImageLocalBounds: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image, localBounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
-	GetImageWorldBounds: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image, worldBounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
-	GetGlyphRunWorldBounds: proc "system" (this: ^ID2D1DeviceContext, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
+	CreateBitmap1: proc "system" (this: ^ID2D1DeviceContext, size: D2D_SIZE_U, sourceData: rawptr, pitch: u32, bitmapProperties: ^D2D1_BITMAP_PROPERTIES1, bitmap: ^^ID2D1Bitmap1) -> win32.HRESULT,
+	CreateBitmapFromWicBitmap1: proc "system" (this: ^ID2D1DeviceContext, wicBitmapSource: ^IWICBitmapSource, bitmapProperties: ^D2D1_BITMAP_PROPERTIES1, bitmap: ^^ID2D1Bitmap1) -> win32.HRESULT,
+	CreateColorContext: proc "system" (this: ^ID2D1DeviceContext, space: D2D1_COLOR_SPACE, profile: ^u8, profileSize: u32, colorContext: ^^ID2D1ColorContext) -> win32.HRESULT,
+	CreateColorContextFromFilename: proc "system" (this: ^ID2D1DeviceContext, filename: ^win32.WCHAR, colorContext: ^^ID2D1ColorContext) -> win32.HRESULT,
+	CreateColorContextFromWicColorContext: proc "system" (this: ^ID2D1DeviceContext, wicColorContext: ^IWICColorContext, colorContext: ^^ID2D1ColorContext) -> win32.HRESULT,
+	CreateBitmapFromDxgiSurface: proc "system" (this: ^ID2D1DeviceContext, surface: ^dxgi.ISurface, bitmapProperties: ^D2D1_BITMAP_PROPERTIES1, bitmap: ^^ID2D1Bitmap1) -> win32.HRESULT,
+	CreateEffect: proc "system" (this: ^ID2D1DeviceContext, effectId: ^win32.GUID, effect: ^^ID2D1Effect) -> win32.HRESULT,
+	CreateGradientStopCollection1: proc "system" (this: ^ID2D1DeviceContext, straightAlphaGradientStops: ^D2D1_GRADIENT_STOP, straightAlphaGradientStopsCount: u32, preInterpolationSpace: D2D1_COLOR_SPACE, postInterpolationSpace: D2D1_COLOR_SPACE, bufferPrecision: D2D1_BUFFER_PRECISION, extendMode: D2D1_EXTEND_MODE, colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE, gradientStopCollection1: ^^ID2D1GradientStopCollection1) -> win32.HRESULT,
+	CreateImageBrush: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image, imageBrushProperties: ^D2D1_IMAGE_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, imageBrush: ^^ID2D1ImageBrush) -> win32.HRESULT,
+	CreateBitmapBrush1: proc "system" (this: ^ID2D1DeviceContext, bitmap: ^ID2D1Bitmap, bitmapBrushProperties: ^D2D1_BITMAP_BRUSH_PROPERTIES1, brushProperties: ^D2D1_BRUSH_PROPERTIES, bitmapBrush: ^^ID2D1BitmapBrush1) -> win32.HRESULT,
+	CreateCommandList: proc "system" (this: ^ID2D1DeviceContext, commandList: ^^ID2D1CommandList) -> win32.HRESULT,
+	IsDxgiFormatSupported: proc "system" (this: ^ID2D1DeviceContext, format: dxgi.FORMAT) -> win32.BOOL,
+	IsBufferPrecisionSupported: proc "system" (this: ^ID2D1DeviceContext, bufferPrecision: D2D1_BUFFER_PRECISION) -> win32.BOOL,
+	GetImageLocalBounds: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image, localBounds: ^D2D_RECT_F) -> win32.HRESULT,
+	GetImageWorldBounds: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image, worldBounds: ^D2D_RECT_F) -> win32.HRESULT,
+	GetGlyphRunWorldBounds: proc "system" (this: ^ID2D1DeviceContext, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bounds: ^D2D_RECT_F) -> win32.HRESULT,
 	GetDevice: proc "system" (this: ^ID2D1DeviceContext, device: ^^ID2D1Device),
 	SetTarget: proc "system" (this: ^ID2D1DeviceContext, image: ^ID2D1Image),
 	GetTarget: proc "system" (this: ^ID2D1DeviceContext, image: ^^ID2D1Image),
@@ -3482,10 +3482,10 @@ ID2D1DeviceContext_VTable :: struct {
 	DrawGdiMetafile: proc "system" (this: ^ID2D1DeviceContext, gdiMetafile: ^ID2D1GdiMetafile, targetOffset: ^D2D_POINT_2F),
 	DrawBitmap1: proc "system" (this: ^ID2D1DeviceContext, bitmap: ^ID2D1Bitmap, destinationRectangle: ^D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ^D2D_RECT_F, perspectiveTransform: ^D2D_MATRIX_4X4_F),
 	PushLayer1: proc "system" (this: ^ID2D1DeviceContext, layerParameters: ^D2D1_LAYER_PARAMETERS1, layer: ^ID2D1Layer),
-	InvalidateEffectInputRectangle: proc "system" (this: ^ID2D1DeviceContext, effect: ^ID2D1Effect, input: u32, inputRectangle: ^D2D_RECT_F, _return: ^win32.HRESULT),
-	GetEffectInvalidRectangleCount: proc "system" (this: ^ID2D1DeviceContext, effect: ^ID2D1Effect, rectangleCount: ^u32, _return: ^win32.HRESULT),
-	GetEffectInvalidRectangles: proc "system" (this: ^ID2D1DeviceContext, effect: ^ID2D1Effect, rectangles: ^D2D_RECT_F, rectanglesCount: u32, _return: ^win32.HRESULT),
-	GetEffectRequiredInputRectangles: proc "system" (this: ^ID2D1DeviceContext, renderEffect: ^ID2D1Effect, renderImageRectangle: ^D2D_RECT_F, inputDescriptions: ^D2D1_EFFECT_INPUT_DESCRIPTION, requiredInputRects: ^D2D_RECT_F, inputCount: u32, _return: ^win32.HRESULT),
+	InvalidateEffectInputRectangle: proc "system" (this: ^ID2D1DeviceContext, effect: ^ID2D1Effect, input: u32, inputRectangle: ^D2D_RECT_F) -> win32.HRESULT,
+	GetEffectInvalidRectangleCount: proc "system" (this: ^ID2D1DeviceContext, effect: ^ID2D1Effect, rectangleCount: ^u32) -> win32.HRESULT,
+	GetEffectInvalidRectangles: proc "system" (this: ^ID2D1DeviceContext, effect: ^ID2D1Effect, rectangles: ^D2D_RECT_F, rectanglesCount: u32) -> win32.HRESULT,
+	GetEffectRequiredInputRectangles: proc "system" (this: ^ID2D1DeviceContext, renderEffect: ^ID2D1Effect, renderImageRectangle: ^D2D_RECT_F, inputDescriptions: ^D2D1_EFFECT_INPUT_DESCRIPTION, requiredInputRects: ^D2D_RECT_F, inputCount: u32) -> win32.HRESULT,
 	FillOpacityMask1: proc "system" (this: ^ID2D1DeviceContext, opacityMask: ^ID2D1Bitmap, brush: ^ID2D1Brush, destinationRectangle: ^D2D_RECT_F, sourceRectangle: ^D2D_RECT_F),
 }
 
@@ -3496,8 +3496,8 @@ ID2D1DeviceContext1 :: struct #raw_union {
 }
 ID2D1DeviceContext1_VTable :: struct {
 	using id2d1devicecontext_vtable: ID2D1DeviceContext_VTable,
-	CreateFilledGeometryRealization: proc "system" (this: ^ID2D1DeviceContext1, geometry: ^ID2D1Geometry, flatteningTolerance: f32, geometryRealization: ^^ID2D1GeometryRealization, _return: ^win32.HRESULT),
-	CreateStrokedGeometryRealization: proc "system" (this: ^ID2D1DeviceContext1, geometry: ^ID2D1Geometry, flatteningTolerance: f32, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, geometryRealization: ^^ID2D1GeometryRealization, _return: ^win32.HRESULT),
+	CreateFilledGeometryRealization: proc "system" (this: ^ID2D1DeviceContext1, geometry: ^ID2D1Geometry, flatteningTolerance: f32, geometryRealization: ^^ID2D1GeometryRealization) -> win32.HRESULT,
+	CreateStrokedGeometryRealization: proc "system" (this: ^ID2D1DeviceContext1, geometry: ^ID2D1Geometry, flatteningTolerance: f32, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, geometryRealization: ^^ID2D1GeometryRealization) -> win32.HRESULT,
 	DrawGeometryRealization: proc "system" (this: ^ID2D1DeviceContext1, geometryRealization: ^ID2D1GeometryRealization, brush: ^ID2D1Brush),
 }
 
@@ -3508,17 +3508,17 @@ ID2D1DeviceContext2 :: struct #raw_union {
 }
 ID2D1DeviceContext2_VTable :: struct {
 	using id2d1devicecontext1_vtable: ID2D1DeviceContext1_VTable,
-	CreateInk: proc "system" (this: ^ID2D1DeviceContext2, startPoint: ^D2D1_INK_POINT, ink: ^^ID2D1Ink, _return: ^win32.HRESULT),
-	CreateInkStyle: proc "system" (this: ^ID2D1DeviceContext2, inkStyleProperties: ^D2D1_INK_STYLE_PROPERTIES, inkStyle: ^^ID2D1InkStyle, _return: ^win32.HRESULT),
-	CreateGradientMesh: proc "system" (this: ^ID2D1DeviceContext2, patches: ^D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, gradientMesh: ^^ID2D1GradientMesh, _return: ^win32.HRESULT),
-	CreateImageSourceFromWic: proc "system" (this: ^ID2D1DeviceContext2, wicBitmapSource: ^IWICBitmapSource, loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphaMode: D2D1_ALPHA_MODE, imageSource: ^^ID2D1ImageSourceFromWic, _return: ^win32.HRESULT),
-	CreateLookupTable3D: proc "system" (this: ^ID2D1DeviceContext2, precision: D2D1_BUFFER_PRECISION, extents: ^u32, data: ^u8, dataCount: u32, strides: ^u32, lookupTable: ^^ID2D1LookupTable3D, _return: ^win32.HRESULT),
-	CreateImageSourceFromDxgi: proc "system" (this: ^ID2D1DeviceContext2, surfaces: ^^dxgi.ISurface, surfaceCount: u32, colorSpace: dxgi.COLOR_SPACE_TYPE, options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, imageSource: ^^ID2D1ImageSource, _return: ^win32.HRESULT),
-	GetGradientMeshWorldBounds: proc "system" (this: ^ID2D1DeviceContext2, gradientMesh: ^ID2D1GradientMesh, pBounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
+	CreateInk: proc "system" (this: ^ID2D1DeviceContext2, startPoint: ^D2D1_INK_POINT, ink: ^^ID2D1Ink) -> win32.HRESULT,
+	CreateInkStyle: proc "system" (this: ^ID2D1DeviceContext2, inkStyleProperties: ^D2D1_INK_STYLE_PROPERTIES, inkStyle: ^^ID2D1InkStyle) -> win32.HRESULT,
+	CreateGradientMesh: proc "system" (this: ^ID2D1DeviceContext2, patches: ^D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, gradientMesh: ^^ID2D1GradientMesh) -> win32.HRESULT,
+	CreateImageSourceFromWic: proc "system" (this: ^ID2D1DeviceContext2, wicBitmapSource: ^IWICBitmapSource, loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphaMode: D2D1_ALPHA_MODE, imageSource: ^^ID2D1ImageSourceFromWic) -> win32.HRESULT,
+	CreateLookupTable3D: proc "system" (this: ^ID2D1DeviceContext2, precision: D2D1_BUFFER_PRECISION, extents: ^u32, data: ^u8, dataCount: u32, strides: ^u32, lookupTable: ^^ID2D1LookupTable3D) -> win32.HRESULT,
+	CreateImageSourceFromDxgi: proc "system" (this: ^ID2D1DeviceContext2, surfaces: ^^dxgi.ISurface, surfaceCount: u32, colorSpace: dxgi.COLOR_SPACE_TYPE, options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, imageSource: ^^ID2D1ImageSource) -> win32.HRESULT,
+	GetGradientMeshWorldBounds: proc "system" (this: ^ID2D1DeviceContext2, gradientMesh: ^ID2D1GradientMesh, pBounds: ^D2D_RECT_F) -> win32.HRESULT,
 	DrawInk: proc "system" (this: ^ID2D1DeviceContext2, ink: ^ID2D1Ink, brush: ^ID2D1Brush, inkStyle: ^ID2D1InkStyle),
 	DrawGradientMesh: proc "system" (this: ^ID2D1DeviceContext2, gradientMesh: ^ID2D1GradientMesh),
 	DrawGdiMetafile1: proc "system" (this: ^ID2D1DeviceContext2, gdiMetafile: ^ID2D1GdiMetafile, destinationRectangle: ^D2D_RECT_F, sourceRectangle: ^D2D_RECT_F),
-	CreateTransformedImageSource: proc "system" (this: ^ID2D1DeviceContext2, imageSource: ^ID2D1ImageSource, properties: ^D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES, transformedImageSource: ^^ID2D1TransformedImageSource, _return: ^win32.HRESULT),
+	CreateTransformedImageSource: proc "system" (this: ^ID2D1DeviceContext2, imageSource: ^ID2D1ImageSource, properties: ^D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES, transformedImageSource: ^^ID2D1TransformedImageSource) -> win32.HRESULT,
 }
 
 ID2D1DeviceContext3_UUID := &win32.IID{0x235a7496, 0x8351, 0x414c, {0xbc, 0xd4, 0x66, 0x72, 0xab, 0x2d, 0x8e, 0x00}}
@@ -3528,7 +3528,7 @@ ID2D1DeviceContext3 :: struct #raw_union {
 }
 ID2D1DeviceContext3_VTable :: struct {
 	using id2d1devicecontext2_vtable: ID2D1DeviceContext2_VTable,
-	CreateSpriteBatch: proc "system" (this: ^ID2D1DeviceContext3, spriteBatch: ^^ID2D1SpriteBatch, _return: ^win32.HRESULT),
+	CreateSpriteBatch: proc "system" (this: ^ID2D1DeviceContext3, spriteBatch: ^^ID2D1SpriteBatch) -> win32.HRESULT,
 	DrawSpriteBatch: proc "system" (this: ^ID2D1DeviceContext3, spriteBatch: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ^ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS),
 }
 
@@ -3539,13 +3539,13 @@ ID2D1DeviceContext4 :: struct #raw_union {
 }
 ID2D1DeviceContext4_VTable :: struct {
 	using id2d1devicecontext3_vtable: ID2D1DeviceContext3_VTable,
-	CreateSvgGlyphStyle: proc "system" (this: ^ID2D1DeviceContext4, svgGlyphStyle: ^^ID2D1SvgGlyphStyle, _return: ^win32.HRESULT),
+	CreateSvgGlyphStyle: proc "system" (this: ^ID2D1DeviceContext4, svgGlyphStyle: ^^ID2D1SvgGlyphStyle) -> win32.HRESULT,
 	DrawText1: proc "system" (this: ^ID2D1DeviceContext4, _string: ^win32.WCHAR, stringLength: u32, textFormat: ^IDWriteTextFormat, layoutRect: ^D2D_RECT_F, defaultFillBrush: ^ID2D1Brush, svgGlyphStyle: ^ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE),
 	DrawTextLayout1: proc "system" (this: ^ID2D1DeviceContext4, origin: D2D_POINT_2F, textLayout: ^IDWriteTextLayout, defaultFillBrush: ^ID2D1Brush, svgGlyphStyle: ^ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS),
 	DrawColorBitmapGlyphRun: proc "system" (this: ^ID2D1DeviceContext4, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION),
 	DrawSvgGlyphRun: proc "system" (this: ^ID2D1DeviceContext4, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, defaultFillBrush: ^ID2D1Brush, svgGlyphStyle: ^ID2D1SvgGlyphStyle, colorPaletteIndex: u32, measuringMode: DWRITE_MEASURING_MODE),
-	GetColorBitmapGlyphImage: proc "system" (this: ^ID2D1DeviceContext4, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphOrigin: D2D_POINT_2F, fontFace: ^IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: win32.BOOL, worldTransform: ^D2D_MATRIX_3X2_F, dpiX: f32, dpiY: f32, glyphTransform: ^D2D_MATRIX_3X2_F, glyphImage: ^^ID2D1Image, _return: ^win32.HRESULT),
-	GetSvgGlyphImage: proc "system" (this: ^ID2D1DeviceContext4, glyphOrigin: D2D_POINT_2F, fontFace: ^IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: win32.BOOL, worldTransform: ^D2D_MATRIX_3X2_F, defaultFillBrush: ^ID2D1Brush, svgGlyphStyle: ^ID2D1SvgGlyphStyle, colorPaletteIndex: u32, glyphTransform: ^D2D_MATRIX_3X2_F, glyphImage: ^^ID2D1CommandList, _return: ^win32.HRESULT),
+	GetColorBitmapGlyphImage: proc "system" (this: ^ID2D1DeviceContext4, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphOrigin: D2D_POINT_2F, fontFace: ^IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: win32.BOOL, worldTransform: ^D2D_MATRIX_3X2_F, dpiX: f32, dpiY: f32, glyphTransform: ^D2D_MATRIX_3X2_F, glyphImage: ^^ID2D1Image) -> win32.HRESULT,
+	GetSvgGlyphImage: proc "system" (this: ^ID2D1DeviceContext4, glyphOrigin: D2D_POINT_2F, fontFace: ^IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: win32.BOOL, worldTransform: ^D2D_MATRIX_3X2_F, defaultFillBrush: ^ID2D1Brush, svgGlyphStyle: ^ID2D1SvgGlyphStyle, colorPaletteIndex: u32, glyphTransform: ^D2D_MATRIX_3X2_F, glyphImage: ^^ID2D1CommandList) -> win32.HRESULT,
 }
 
 ID2D1DeviceContext5_UUID := &win32.IID{0x7836d248, 0x68cc, 0x4df6, {0xb9, 0xe8, 0xde, 0x99, 0x1b, 0xf6, 0x2e, 0xb7}}
@@ -3555,10 +3555,10 @@ ID2D1DeviceContext5 :: struct #raw_union {
 }
 ID2D1DeviceContext5_VTable :: struct {
 	using id2d1devicecontext4_vtable: ID2D1DeviceContext4_VTable,
-	CreateSvgDocument: proc "system" (this: ^ID2D1DeviceContext5, inputXmlStream: ^win32.IStream, viewportSize: D2D_SIZE_F, svgDocument: ^^ID2D1SvgDocument, _return: ^win32.HRESULT),
+	CreateSvgDocument: proc "system" (this: ^ID2D1DeviceContext5, inputXmlStream: ^win32.IStream, viewportSize: D2D_SIZE_F, svgDocument: ^^ID2D1SvgDocument) -> win32.HRESULT,
 	DrawSvgDocument: proc "system" (this: ^ID2D1DeviceContext5, svgDocument: ^ID2D1SvgDocument),
-	CreateColorContextFromDxgiColorSpace: proc "system" (this: ^ID2D1DeviceContext5, colorSpace: dxgi.COLOR_SPACE_TYPE, colorContext: ^^ID2D1ColorContext1, _return: ^win32.HRESULT),
-	CreateColorContextFromSimpleColorProfile: proc "system" (this: ^ID2D1DeviceContext5, simpleProfile: ^D2D1_SIMPLE_COLOR_PROFILE, colorContext: ^^ID2D1ColorContext1, _return: ^win32.HRESULT),
+	CreateColorContextFromDxgiColorSpace: proc "system" (this: ^ID2D1DeviceContext5, colorSpace: dxgi.COLOR_SPACE_TYPE, colorContext: ^^ID2D1ColorContext1) -> win32.HRESULT,
+	CreateColorContextFromSimpleColorProfile: proc "system" (this: ^ID2D1DeviceContext5, simpleProfile: ^D2D1_SIMPLE_COLOR_PROFILE, colorContext: ^^ID2D1ColorContext1) -> win32.HRESULT,
 }
 
 ID2D1DeviceContext6_UUID := &win32.IID{0x985f7e37, 0x4ed0, 0x4a19, {0x98, 0xa3, 0x15, 0xb0, 0xed, 0xfd, 0xe3, 0x06}}
@@ -3578,11 +3578,11 @@ ID2D1DrawInfo :: struct #raw_union {
 }
 ID2D1DrawInfo_VTable :: struct {
 	using id2d1renderinfo_vtable: ID2D1RenderInfo_VTable,
-	SetPixelShaderConstantBuffer: proc "system" (this: ^ID2D1DrawInfo, buffer: ^u8, bufferCount: u32, _return: ^win32.HRESULT),
-	SetResourceTexture: proc "system" (this: ^ID2D1DrawInfo, textureIndex: u32, resourceTexture: ^ID2D1ResourceTexture, _return: ^win32.HRESULT),
-	SetVertexShaderConstantBuffer: proc "system" (this: ^ID2D1DrawInfo, buffer: ^u8, bufferCount: u32, _return: ^win32.HRESULT),
-	SetPixelShader: proc "system" (this: ^ID2D1DrawInfo, shaderId: ^win32.GUID, pixelOptions: D2D1_PIXEL_OPTIONS, _return: ^win32.HRESULT),
-	SetVertexProcessing: proc "system" (this: ^ID2D1DrawInfo, vertexBuffer: ^ID2D1VertexBuffer, vertexOptions: D2D1_VERTEX_OPTIONS, blendDescription: ^D2D1_BLEND_DESCRIPTION, vertexRange: ^D2D1_VERTEX_RANGE, vertexShader: ^win32.GUID, _return: ^win32.HRESULT),
+	SetPixelShaderConstantBuffer: proc "system" (this: ^ID2D1DrawInfo, buffer: ^u8, bufferCount: u32) -> win32.HRESULT,
+	SetResourceTexture: proc "system" (this: ^ID2D1DrawInfo, textureIndex: u32, resourceTexture: ^ID2D1ResourceTexture) -> win32.HRESULT,
+	SetVertexShaderConstantBuffer: proc "system" (this: ^ID2D1DrawInfo, buffer: ^u8, bufferCount: u32) -> win32.HRESULT,
+	SetPixelShader: proc "system" (this: ^ID2D1DrawInfo, shaderId: ^win32.GUID, pixelOptions: D2D1_PIXEL_OPTIONS) -> win32.HRESULT,
+	SetVertexProcessing: proc "system" (this: ^ID2D1DrawInfo, vertexBuffer: ^ID2D1VertexBuffer, vertexOptions: D2D1_VERTEX_OPTIONS, blendDescription: ^D2D1_BLEND_DESCRIPTION, vertexRange: ^D2D1_VERTEX_RANGE, vertexShader: ^win32.GUID) -> win32.HRESULT,
 }
 
 ID2D1DrawingStateBlock_UUID := &win32.IID{0x28506e39, 0xebf6, 0x46a1, {0xbb, 0x47, 0xfd, 0x85, 0x56, 0x5a, 0xb9, 0x57}}
@@ -3616,7 +3616,7 @@ ID2D1DrawTransform :: struct #raw_union {
 }
 ID2D1DrawTransform_VTable :: struct {
 	using id2d1transform_vtable: ID2D1Transform_VTable,
-	SetDrawInfo: proc "system" (this: ^ID2D1DrawTransform, drawInfo: ^ID2D1DrawInfo, _return: ^win32.HRESULT),
+	SetDrawInfo: proc "system" (this: ^ID2D1DrawTransform, drawInfo: ^ID2D1DrawInfo) -> win32.HRESULT,
 }
 
 ID2D1Effect_UUID := &win32.IID{0x28211a43, 0x7d89, 0x476f, {0x81, 0x81, 0x2d, 0x61, 0x59, 0xb2, 0x20, 0xad}}
@@ -3627,7 +3627,7 @@ ID2D1Effect :: struct #raw_union {
 ID2D1Effect_VTable :: struct {
 	using id2d1properties_vtable: ID2D1Properties_VTable,
 	SetInput: proc "system" (this: ^ID2D1Effect, index: u32, input: ^ID2D1Image, invalidate: win32.BOOL),
-	SetInputCount: proc "system" (this: ^ID2D1Effect, inputCount: u32, _return: ^win32.HRESULT),
+	SetInputCount: proc "system" (this: ^ID2D1Effect, inputCount: u32) -> win32.HRESULT,
 	GetInput: proc "system" (this: ^ID2D1Effect, index: u32, input: ^^ID2D1Image),
 	GetInputCount: proc "system" (this: ^ID2D1Effect) -> u32,
 	GetOutput: proc "system" (this: ^ID2D1Effect, outputImage: ^^ID2D1Image),
@@ -3641,26 +3641,26 @@ ID2D1EffectContext :: struct #raw_union {
 ID2D1EffectContext_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetDpi: proc "system" (this: ^ID2D1EffectContext, dpiX: ^f32, dpiY: ^f32),
-	CreateEffect: proc "system" (this: ^ID2D1EffectContext, effectId: ^win32.GUID, effect: ^^ID2D1Effect, _return: ^win32.HRESULT),
-	GetMaximumSupportedFeatureLevel: proc "system" (this: ^ID2D1EffectContext, featureLevels: ^d3d11.FEATURE_LEVEL, featureLevelsCount: u32, maximumSupportedFeatureLevel: ^d3d11.FEATURE_LEVEL, _return: ^win32.HRESULT),
-	CreateTransformNodeFromEffect: proc "system" (this: ^ID2D1EffectContext, effect: ^ID2D1Effect, transformNode: ^^ID2D1TransformNode, _return: ^win32.HRESULT),
-	CreateBlendTransform: proc "system" (this: ^ID2D1EffectContext, numInputs: u32, blendDescription: ^D2D1_BLEND_DESCRIPTION, transform: ^^ID2D1BlendTransform, _return: ^win32.HRESULT),
-	CreateBorderTransform: proc "system" (this: ^ID2D1EffectContext, extendModeX: D2D1_EXTEND_MODE, extendModeY: D2D1_EXTEND_MODE, transform: ^^ID2D1BorderTransform, _return: ^win32.HRESULT),
-	CreateOffsetTransform: proc "system" (this: ^ID2D1EffectContext, offset: win32.POINT, transform: ^^ID2D1OffsetTransform, _return: ^win32.HRESULT),
-	CreateBoundsAdjustmentTransform: proc "system" (this: ^ID2D1EffectContext, outputRectangle: ^win32.RECT, transform: ^^ID2D1BoundsAdjustmentTransform, _return: ^win32.HRESULT),
-	LoadPixelShader: proc "system" (this: ^ID2D1EffectContext, shaderId: ^win32.GUID, shaderBuffer: ^u8, shaderBufferCount: u32, _return: ^win32.HRESULT),
-	LoadVertexShader: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, shaderBuffer: ^u8, shaderBufferCount: u32, _return: ^win32.HRESULT),
-	LoadComputeShader: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, shaderBuffer: ^u8, shaderBufferCount: u32, _return: ^win32.HRESULT),
-	IsShaderLoaded: proc "system" (this: ^ID2D1EffectContext, shaderId: ^win32.GUID, _return: ^win32.BOOL),
-	CreateResourceTexture: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, resourceTextureProperties: ^D2D1_RESOURCE_TEXTURE_PROPERTIES, data: ^u8, strides: ^u32, dataSize: u32, resourceTexture: ^^ID2D1ResourceTexture, _return: ^win32.HRESULT),
-	FindResourceTexture: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, resourceTexture: ^^ID2D1ResourceTexture, _return: ^win32.HRESULT),
-	CreateVertexBuffer: proc "system" (this: ^ID2D1EffectContext, vertexBufferProperties: ^D2D1_VERTEX_BUFFER_PROPERTIES, resourceId: ^win32.GUID, customVertexBufferProperties: ^D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES, buffer: ^^ID2D1VertexBuffer, _return: ^win32.HRESULT),
-	FindVertexBuffer: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, buffer: ^^ID2D1VertexBuffer, _return: ^win32.HRESULT),
-	CreateColorContext: proc "system" (this: ^ID2D1EffectContext, space: D2D1_COLOR_SPACE, profile: ^u8, profileSize: u32, colorContext: ^^ID2D1ColorContext, _return: ^win32.HRESULT),
-	CreateColorContextFromFilename: proc "system" (this: ^ID2D1EffectContext, filename: ^win32.WCHAR, colorContext: ^^ID2D1ColorContext, _return: ^win32.HRESULT),
-	CreateColorContextFromWicColorContext: proc "system" (this: ^ID2D1EffectContext, wicColorContext: ^IWICColorContext, colorContext: ^^ID2D1ColorContext, _return: ^win32.HRESULT),
-	CheckFeatureSupport: proc "system" (this: ^ID2D1EffectContext, feature: D2D1_FEATURE, featureSupportData: rawptr, featureSupportDataSize: u32, _return: ^win32.HRESULT),
-	IsBufferPrecisionSupported: proc "system" (this: ^ID2D1EffectContext, bufferPrecision: D2D1_BUFFER_PRECISION, _return: ^win32.BOOL),
+	CreateEffect: proc "system" (this: ^ID2D1EffectContext, effectId: ^win32.GUID, effect: ^^ID2D1Effect) -> win32.HRESULT,
+	GetMaximumSupportedFeatureLevel: proc "system" (this: ^ID2D1EffectContext, featureLevels: ^d3d11.FEATURE_LEVEL, featureLevelsCount: u32, maximumSupportedFeatureLevel: ^d3d11.FEATURE_LEVEL) -> win32.HRESULT,
+	CreateTransformNodeFromEffect: proc "system" (this: ^ID2D1EffectContext, effect: ^ID2D1Effect, transformNode: ^^ID2D1TransformNode) -> win32.HRESULT,
+	CreateBlendTransform: proc "system" (this: ^ID2D1EffectContext, numInputs: u32, blendDescription: ^D2D1_BLEND_DESCRIPTION, transform: ^^ID2D1BlendTransform) -> win32.HRESULT,
+	CreateBorderTransform: proc "system" (this: ^ID2D1EffectContext, extendModeX: D2D1_EXTEND_MODE, extendModeY: D2D1_EXTEND_MODE, transform: ^^ID2D1BorderTransform) -> win32.HRESULT,
+	CreateOffsetTransform: proc "system" (this: ^ID2D1EffectContext, offset: win32.POINT, transform: ^^ID2D1OffsetTransform) -> win32.HRESULT,
+	CreateBoundsAdjustmentTransform: proc "system" (this: ^ID2D1EffectContext, outputRectangle: ^win32.RECT, transform: ^^ID2D1BoundsAdjustmentTransform) -> win32.HRESULT,
+	LoadPixelShader: proc "system" (this: ^ID2D1EffectContext, shaderId: ^win32.GUID, shaderBuffer: ^u8, shaderBufferCount: u32) -> win32.HRESULT,
+	LoadVertexShader: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, shaderBuffer: ^u8, shaderBufferCount: u32) -> win32.HRESULT,
+	LoadComputeShader: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, shaderBuffer: ^u8, shaderBufferCount: u32) -> win32.HRESULT,
+	IsShaderLoaded: proc "system" (this: ^ID2D1EffectContext, shaderId: ^win32.GUID) -> win32.BOOL,
+	CreateResourceTexture: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, resourceTextureProperties: ^D2D1_RESOURCE_TEXTURE_PROPERTIES, data: ^u8, strides: ^u32, dataSize: u32, resourceTexture: ^^ID2D1ResourceTexture) -> win32.HRESULT,
+	FindResourceTexture: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, resourceTexture: ^^ID2D1ResourceTexture) -> win32.HRESULT,
+	CreateVertexBuffer: proc "system" (this: ^ID2D1EffectContext, vertexBufferProperties: ^D2D1_VERTEX_BUFFER_PROPERTIES, resourceId: ^win32.GUID, customVertexBufferProperties: ^D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES, buffer: ^^ID2D1VertexBuffer) -> win32.HRESULT,
+	FindVertexBuffer: proc "system" (this: ^ID2D1EffectContext, resourceId: ^win32.GUID, buffer: ^^ID2D1VertexBuffer) -> win32.HRESULT,
+	CreateColorContext: proc "system" (this: ^ID2D1EffectContext, space: D2D1_COLOR_SPACE, profile: ^u8, profileSize: u32, colorContext: ^^ID2D1ColorContext) -> win32.HRESULT,
+	CreateColorContextFromFilename: proc "system" (this: ^ID2D1EffectContext, filename: ^win32.WCHAR, colorContext: ^^ID2D1ColorContext) -> win32.HRESULT,
+	CreateColorContextFromWicColorContext: proc "system" (this: ^ID2D1EffectContext, wicColorContext: ^IWICColorContext, colorContext: ^^ID2D1ColorContext) -> win32.HRESULT,
+	CheckFeatureSupport: proc "system" (this: ^ID2D1EffectContext, feature: D2D1_FEATURE, featureSupportData: rawptr, featureSupportDataSize: u32) -> win32.HRESULT,
+	IsBufferPrecisionSupported: proc "system" (this: ^ID2D1EffectContext, bufferPrecision: D2D1_BUFFER_PRECISION) -> win32.BOOL,
 }
 
 ID2D1EffectContext1_UUID := &win32.IID{0x84ab595a, 0xfc81, 0x4546, {0xba, 0xcd, 0xe8, 0xef, 0x4d, 0x8a, 0xbe, 0x7a}}
@@ -3670,7 +3670,7 @@ ID2D1EffectContext1 :: struct #raw_union {
 }
 ID2D1EffectContext1_VTable :: struct {
 	using id2d1effectcontext_vtable: ID2D1EffectContext_VTable,
-	CreateLookupTable3D: proc "system" (this: ^ID2D1EffectContext1, precision: D2D1_BUFFER_PRECISION, extents: ^u32, data: ^u8, dataCount: u32, strides: ^u32, lookupTable: ^^ID2D1LookupTable3D, _return: ^win32.HRESULT),
+	CreateLookupTable3D: proc "system" (this: ^ID2D1EffectContext1, precision: D2D1_BUFFER_PRECISION, extents: ^u32, data: ^u8, dataCount: u32, strides: ^u32, lookupTable: ^^ID2D1LookupTable3D) -> win32.HRESULT,
 }
 
 ID2D1EffectContext2_UUID := &win32.IID{0x577ad2a0, 0x9fc7, 0x4dda, {0x8b, 0x18, 0xda, 0xb8, 0x10, 0x14, 0x00, 0x52}}
@@ -3680,8 +3680,8 @@ ID2D1EffectContext2 :: struct #raw_union {
 }
 ID2D1EffectContext2_VTable :: struct {
 	using id2d1effectcontext1_vtable: ID2D1EffectContext1_VTable,
-	CreateColorContextFromDxgiColorSpace: proc "system" (this: ^ID2D1EffectContext2, colorSpace: dxgi.COLOR_SPACE_TYPE, colorContext: ^^ID2D1ColorContext1, _return: ^win32.HRESULT),
-	CreateColorContextFromSimpleColorProfile: proc "system" (this: ^ID2D1EffectContext2, simpleProfile: ^D2D1_SIMPLE_COLOR_PROFILE, colorContext: ^^ID2D1ColorContext1, _return: ^win32.HRESULT),
+	CreateColorContextFromDxgiColorSpace: proc "system" (this: ^ID2D1EffectContext2, colorSpace: dxgi.COLOR_SPACE_TYPE, colorContext: ^^ID2D1ColorContext1) -> win32.HRESULT,
+	CreateColorContextFromSimpleColorProfile: proc "system" (this: ^ID2D1EffectContext2, simpleProfile: ^D2D1_SIMPLE_COLOR_PROFILE, colorContext: ^^ID2D1ColorContext1) -> win32.HRESULT,
 }
 
 ID2D1EffectImpl_UUID := &win32.IID{0xa248fd3f, 0x3e6c, 0x4e63, {0x9f, 0x03, 0x7f, 0x68, 0xec, 0xc9, 0x1d, 0xb9}}
@@ -3691,9 +3691,9 @@ ID2D1EffectImpl :: struct #raw_union {
 }
 ID2D1EffectImpl_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	Initialize: proc "system" (this: ^ID2D1EffectImpl, effectContext: ^ID2D1EffectContext, transformGraph: ^ID2D1TransformGraph, _return: ^win32.HRESULT),
-	PrepareForRender: proc "system" (this: ^ID2D1EffectImpl, changeType: D2D1_CHANGE_TYPE, _return: ^win32.HRESULT),
-	SetGraph: proc "system" (this: ^ID2D1EffectImpl, transformGraph: ^ID2D1TransformGraph, _return: ^win32.HRESULT),
+	Initialize: proc "system" (this: ^ID2D1EffectImpl, effectContext: ^ID2D1EffectContext, transformGraph: ^ID2D1TransformGraph) -> win32.HRESULT,
+	PrepareForRender: proc "system" (this: ^ID2D1EffectImpl, changeType: D2D1_CHANGE_TYPE) -> win32.HRESULT,
+	SetGraph: proc "system" (this: ^ID2D1EffectImpl, transformGraph: ^ID2D1TransformGraph) -> win32.HRESULT,
 }
 
 ID2D1EllipseGeometry_UUID := &win32.IID{0x2cd906a4, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -3713,20 +3713,20 @@ ID2D1Factory :: struct #raw_union {
 }
 ID2D1Factory_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	ReloadSystemMetrics: proc "system" (this: ^ID2D1Factory, _return: ^win32.HRESULT),
+	ReloadSystemMetrics: proc "system" (this: ^ID2D1Factory) -> win32.HRESULT,
 	GetDesktopDpi: proc "system" (this: ^ID2D1Factory, dpiX: ^f32, dpiY: ^f32),
-	CreateRectangleGeometry: proc "system" (this: ^ID2D1Factory, rectangle: ^D2D_RECT_F, rectangleGeometry: ^^ID2D1RectangleGeometry, _return: ^win32.HRESULT),
-	CreateRoundedRectangleGeometry: proc "system" (this: ^ID2D1Factory, roundedRectangle: ^D2D1_ROUNDED_RECT, roundedRectangleGeometry: ^^ID2D1RoundedRectangleGeometry, _return: ^win32.HRESULT),
-	CreateEllipseGeometry: proc "system" (this: ^ID2D1Factory, ellipse: ^D2D1_ELLIPSE, ellipseGeometry: ^^ID2D1EllipseGeometry, _return: ^win32.HRESULT),
-	CreateGeometryGroup: proc "system" (this: ^ID2D1Factory, fillMode: D2D1_FILL_MODE, geometries: ^^ID2D1Geometry, geometriesCount: u32, geometryGroup: ^^ID2D1GeometryGroup, _return: ^win32.HRESULT),
-	CreateTransformedGeometry: proc "system" (this: ^ID2D1Factory, sourceGeometry: ^ID2D1Geometry, transform: ^D2D_MATRIX_3X2_F, transformedGeometry: ^^ID2D1TransformedGeometry, _return: ^win32.HRESULT),
-	CreatePathGeometry: proc "system" (this: ^ID2D1Factory, pathGeometry: ^^ID2D1PathGeometry, _return: ^win32.HRESULT),
-	CreateStrokeStyle: proc "system" (this: ^ID2D1Factory, strokeStyleProperties: ^D2D1_STROKE_STYLE_PROPERTIES, dashes: ^f32, dashesCount: u32, strokeStyle: ^^ID2D1StrokeStyle, _return: ^win32.HRESULT),
-	CreateDrawingStateBlock: proc "system" (this: ^ID2D1Factory, drawingStateDescription: ^D2D1_DRAWING_STATE_DESCRIPTION, textRenderingParams: ^IDWriteRenderingParams, drawingStateBlock: ^^ID2D1DrawingStateBlock, _return: ^win32.HRESULT),
-	CreateWicBitmapRenderTarget: proc "system" (this: ^ID2D1Factory, target: ^IWICBitmap, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ^^ID2D1RenderTarget, _return: ^win32.HRESULT),
-	CreateHwndRenderTarget: proc "system" (this: ^ID2D1Factory, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, hwndRenderTargetProperties: ^D2D1_HWND_RENDER_TARGET_PROPERTIES, hwndRenderTarget: ^^ID2D1HwndRenderTarget, _return: ^win32.HRESULT),
-	CreateDxgiSurfaceRenderTarget: proc "system" (this: ^ID2D1Factory, dxgiSurface: ^dxgi.ISurface, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ^^ID2D1RenderTarget, _return: ^win32.HRESULT),
-	CreateDCRenderTarget: proc "system" (this: ^ID2D1Factory, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, dcRenderTarget: ^^ID2D1DCRenderTarget, _return: ^win32.HRESULT),
+	CreateRectangleGeometry: proc "system" (this: ^ID2D1Factory, rectangle: ^D2D_RECT_F, rectangleGeometry: ^^ID2D1RectangleGeometry) -> win32.HRESULT,
+	CreateRoundedRectangleGeometry: proc "system" (this: ^ID2D1Factory, roundedRectangle: ^D2D1_ROUNDED_RECT, roundedRectangleGeometry: ^^ID2D1RoundedRectangleGeometry) -> win32.HRESULT,
+	CreateEllipseGeometry: proc "system" (this: ^ID2D1Factory, ellipse: ^D2D1_ELLIPSE, ellipseGeometry: ^^ID2D1EllipseGeometry) -> win32.HRESULT,
+	CreateGeometryGroup: proc "system" (this: ^ID2D1Factory, fillMode: D2D1_FILL_MODE, geometries: ^^ID2D1Geometry, geometriesCount: u32, geometryGroup: ^^ID2D1GeometryGroup) -> win32.HRESULT,
+	CreateTransformedGeometry: proc "system" (this: ^ID2D1Factory, sourceGeometry: ^ID2D1Geometry, transform: ^D2D_MATRIX_3X2_F, transformedGeometry: ^^ID2D1TransformedGeometry) -> win32.HRESULT,
+	CreatePathGeometry: proc "system" (this: ^ID2D1Factory, pathGeometry: ^^ID2D1PathGeometry) -> win32.HRESULT,
+	CreateStrokeStyle: proc "system" (this: ^ID2D1Factory, strokeStyleProperties: ^D2D1_STROKE_STYLE_PROPERTIES, dashes: ^f32, dashesCount: u32, strokeStyle: ^^ID2D1StrokeStyle) -> win32.HRESULT,
+	CreateDrawingStateBlock: proc "system" (this: ^ID2D1Factory, drawingStateDescription: ^D2D1_DRAWING_STATE_DESCRIPTION, textRenderingParams: ^IDWriteRenderingParams, drawingStateBlock: ^^ID2D1DrawingStateBlock) -> win32.HRESULT,
+	CreateWicBitmapRenderTarget: proc "system" (this: ^ID2D1Factory, target: ^IWICBitmap, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ^^ID2D1RenderTarget) -> win32.HRESULT,
+	CreateHwndRenderTarget: proc "system" (this: ^ID2D1Factory, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, hwndRenderTargetProperties: ^D2D1_HWND_RENDER_TARGET_PROPERTIES, hwndRenderTarget: ^^ID2D1HwndRenderTarget) -> win32.HRESULT,
+	CreateDxgiSurfaceRenderTarget: proc "system" (this: ^ID2D1Factory, dxgiSurface: ^dxgi.ISurface, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ^^ID2D1RenderTarget) -> win32.HRESULT,
+	CreateDCRenderTarget: proc "system" (this: ^ID2D1Factory, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, dcRenderTarget: ^^ID2D1DCRenderTarget) -> win32.HRESULT,
 }
 
 ID2D1Factory1_UUID := &win32.IID{0xbb12d362, 0xdaee, 0x4b9a, {0xaa, 0x1d, 0x14, 0xba, 0x40, 0x1c, 0xfa, 0x1f}}
@@ -3736,16 +3736,16 @@ ID2D1Factory1 :: struct #raw_union {
 }
 ID2D1Factory1_VTable :: struct {
 	using id2d1factory_vtable: ID2D1Factory_VTable,
-	CreateDevice: proc "system" (this: ^ID2D1Factory1, dxgiDevice: ^dxgi.IDevice, d2dDevice: ^^ID2D1Device, _return: ^win32.HRESULT),
-	CreateStrokeStyle1: proc "system" (this: ^ID2D1Factory1, strokeStyleProperties: ^D2D1_STROKE_STYLE_PROPERTIES1, dashes: ^f32, dashesCount: u32, strokeStyle: ^^ID2D1StrokeStyle1, _return: ^win32.HRESULT),
-	CreatePathGeometry1: proc "system" (this: ^ID2D1Factory1, pathGeometry: ^^ID2D1PathGeometry1, _return: ^win32.HRESULT),
-	CreateDrawingStateBlock1: proc "system" (this: ^ID2D1Factory1, drawingStateDescription: ^D2D1_DRAWING_STATE_DESCRIPTION1, textRenderingParams: ^IDWriteRenderingParams, drawingStateBlock: ^^ID2D1DrawingStateBlock1, _return: ^win32.HRESULT),
-	CreateGdiMetafile: proc "system" (this: ^ID2D1Factory1, metafileStream: ^win32.IStream, metafile: ^^ID2D1GdiMetafile, _return: ^win32.HRESULT),
-	RegisterEffectFromStream: proc "system" (this: ^ID2D1Factory1, classId: ^win32.GUID, propertyXml: ^win32.IStream, bindings: ^D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: PD2D1_EFFECT_FACTORY, _return: ^win32.HRESULT),
-	RegisterEffectFromString: proc "system" (this: ^ID2D1Factory1, classId: ^win32.GUID, propertyXml: ^win32.WCHAR, bindings: ^D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: PD2D1_EFFECT_FACTORY, _return: ^win32.HRESULT),
-	UnregisterEffect: proc "system" (this: ^ID2D1Factory1, classId: ^win32.GUID, _return: ^win32.HRESULT),
-	GetRegisteredEffects: proc "system" (this: ^ID2D1Factory1, effects: ^win32.GUID, effectsCount: u32, effectsReturned: ^u32, effectsRegistered: ^u32, _return: ^win32.HRESULT),
-	GetEffectProperties: proc "system" (this: ^ID2D1Factory1, effectId: ^win32.GUID, properties: ^^ID2D1Properties, _return: ^win32.HRESULT),
+	CreateDevice: proc "system" (this: ^ID2D1Factory1, dxgiDevice: ^dxgi.IDevice, d2dDevice: ^^ID2D1Device) -> win32.HRESULT,
+	CreateStrokeStyle1: proc "system" (this: ^ID2D1Factory1, strokeStyleProperties: ^D2D1_STROKE_STYLE_PROPERTIES1, dashes: ^f32, dashesCount: u32, strokeStyle: ^^ID2D1StrokeStyle1) -> win32.HRESULT,
+	CreatePathGeometry1: proc "system" (this: ^ID2D1Factory1, pathGeometry: ^^ID2D1PathGeometry1) -> win32.HRESULT,
+	CreateDrawingStateBlock1: proc "system" (this: ^ID2D1Factory1, drawingStateDescription: ^D2D1_DRAWING_STATE_DESCRIPTION1, textRenderingParams: ^IDWriteRenderingParams, drawingStateBlock: ^^ID2D1DrawingStateBlock1) -> win32.HRESULT,
+	CreateGdiMetafile: proc "system" (this: ^ID2D1Factory1, metafileStream: ^win32.IStream, metafile: ^^ID2D1GdiMetafile) -> win32.HRESULT,
+	RegisterEffectFromStream: proc "system" (this: ^ID2D1Factory1, classId: ^win32.GUID, propertyXml: ^win32.IStream, bindings: ^D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: PD2D1_EFFECT_FACTORY) -> win32.HRESULT,
+	RegisterEffectFromString: proc "system" (this: ^ID2D1Factory1, classId: ^win32.GUID, propertyXml: ^win32.WCHAR, bindings: ^D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: PD2D1_EFFECT_FACTORY) -> win32.HRESULT,
+	UnregisterEffect: proc "system" (this: ^ID2D1Factory1, classId: ^win32.GUID) -> win32.HRESULT,
+	GetRegisteredEffects: proc "system" (this: ^ID2D1Factory1, effects: ^win32.GUID, effectsCount: u32, effectsReturned: ^u32, effectsRegistered: ^u32) -> win32.HRESULT,
+	GetEffectProperties: proc "system" (this: ^ID2D1Factory1, effectId: ^win32.GUID, properties: ^^ID2D1Properties) -> win32.HRESULT,
 }
 
 ID2D1Factory2_UUID := &win32.IID{0x94f81a73, 0x9212, 0x4376, {0x9c, 0x58, 0xb1, 0x6a, 0x3a, 0x0d, 0x39, 0x92}}
@@ -3755,7 +3755,7 @@ ID2D1Factory2 :: struct #raw_union {
 }
 ID2D1Factory2_VTable :: struct {
 	using id2d1factory1_vtable: ID2D1Factory1_VTable,
-	CreateDevice1: proc "system" (this: ^ID2D1Factory2, dxgiDevice: ^dxgi.IDevice, d2dDevice1: ^^ID2D1Device1, _return: ^win32.HRESULT),
+	CreateDevice1: proc "system" (this: ^ID2D1Factory2, dxgiDevice: ^dxgi.IDevice, d2dDevice1: ^^ID2D1Device1) -> win32.HRESULT,
 }
 
 ID2D1Factory3_UUID := &win32.IID{0x0869759f, 0x4f00, 0x413f, {0xb0, 0x3e, 0x2b, 0xda, 0x45, 0x40, 0x4d, 0x0f}}
@@ -3765,7 +3765,7 @@ ID2D1Factory3 :: struct #raw_union {
 }
 ID2D1Factory3_VTable :: struct {
 	using id2d1factory2_vtable: ID2D1Factory2_VTable,
-	CreateDevice2: proc "system" (this: ^ID2D1Factory3, dxgiDevice: ^dxgi.IDevice, d2dDevice2: ^^ID2D1Device2, _return: ^win32.HRESULT),
+	CreateDevice2: proc "system" (this: ^ID2D1Factory3, dxgiDevice: ^dxgi.IDevice, d2dDevice2: ^^ID2D1Device2) -> win32.HRESULT,
 }
 
 ID2D1Factory4_UUID := &win32.IID{0xbd4ec2d2, 0x0662, 0x4bee, {0xba, 0x8e, 0x6f, 0x29, 0xf0, 0x32, 0xe0, 0x96}}
@@ -3775,7 +3775,7 @@ ID2D1Factory4 :: struct #raw_union {
 }
 ID2D1Factory4_VTable :: struct {
 	using id2d1factory3_vtable: ID2D1Factory3_VTable,
-	CreateDevice3: proc "system" (this: ^ID2D1Factory4, dxgiDevice: ^dxgi.IDevice, d2dDevice3: ^^ID2D1Device3, _return: ^win32.HRESULT),
+	CreateDevice3: proc "system" (this: ^ID2D1Factory4, dxgiDevice: ^dxgi.IDevice, d2dDevice3: ^^ID2D1Device3) -> win32.HRESULT,
 }
 
 ID2D1Factory5_UUID := &win32.IID{0xc4349994, 0x838e, 0x4b0f, {0x8c, 0xab, 0x44, 0x99, 0x7d, 0x9e, 0xea, 0xcc}}
@@ -3785,7 +3785,7 @@ ID2D1Factory5 :: struct #raw_union {
 }
 ID2D1Factory5_VTable :: struct {
 	using id2d1factory4_vtable: ID2D1Factory4_VTable,
-	CreateDevice4: proc "system" (this: ^ID2D1Factory5, dxgiDevice: ^dxgi.IDevice, d2dDevice4: ^^ID2D1Device4, _return: ^win32.HRESULT),
+	CreateDevice4: proc "system" (this: ^ID2D1Factory5, dxgiDevice: ^dxgi.IDevice, d2dDevice4: ^^ID2D1Device4) -> win32.HRESULT,
 }
 
 ID2D1Factory6_UUID := &win32.IID{0xf9976f46, 0xf642, 0x44c1, {0x97, 0xca, 0xda, 0x32, 0xea, 0x2a, 0x26, 0x35}}
@@ -3795,7 +3795,7 @@ ID2D1Factory6 :: struct #raw_union {
 }
 ID2D1Factory6_VTable :: struct {
 	using id2d1factory5_vtable: ID2D1Factory5_VTable,
-	CreateDevice5: proc "system" (this: ^ID2D1Factory6, dxgiDevice: ^dxgi.IDevice, d2dDevice5: ^^ID2D1Device5, _return: ^win32.HRESULT),
+	CreateDevice5: proc "system" (this: ^ID2D1Factory6, dxgiDevice: ^dxgi.IDevice, d2dDevice5: ^^ID2D1Device5) -> win32.HRESULT,
 }
 
 ID2D1Factory7_UUID := &win32.IID{0xbdc2bdd3, 0xb96c, 0x4de6, {0xbd, 0xf7, 0x99, 0xd4, 0x74, 0x54, 0x54, 0xde}}
@@ -3805,7 +3805,7 @@ ID2D1Factory7 :: struct #raw_union {
 }
 ID2D1Factory7_VTable :: struct {
 	using id2d1factory6_vtable: ID2D1Factory6_VTable,
-	CreateDevice6: proc "system" (this: ^ID2D1Factory7, dxgiDevice: ^dxgi.IDevice, d2dDevice6: ^^ID2D1Device6, _return: ^win32.HRESULT),
+	CreateDevice6: proc "system" (this: ^ID2D1Factory7, dxgiDevice: ^dxgi.IDevice, d2dDevice6: ^^ID2D1Device6) -> win32.HRESULT,
 }
 
 ID2D1GdiInteropRenderTarget_UUID := &win32.IID{0xe0db51c3, 0x6f77, 0x4bae, {0xb3, 0xd5, 0xe4, 0x75, 0x09, 0xb3, 0x58, 0x38}}
@@ -3815,8 +3815,8 @@ ID2D1GdiInteropRenderTarget :: struct #raw_union {
 }
 ID2D1GdiInteropRenderTarget_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetDC: proc "system" (this: ^ID2D1GdiInteropRenderTarget, mode: D2D1_DC_INITIALIZE_MODE, hdc: ^win32.HDC, _return: ^win32.HRESULT),
-	ReleaseDC: proc "system" (this: ^ID2D1GdiInteropRenderTarget, update: ^win32.RECT, _return: ^win32.HRESULT),
+	GetDC: proc "system" (this: ^ID2D1GdiInteropRenderTarget, mode: D2D1_DC_INITIALIZE_MODE, hdc: ^win32.HDC) -> win32.HRESULT,
+	ReleaseDC: proc "system" (this: ^ID2D1GdiInteropRenderTarget, update: ^win32.RECT) -> win32.HRESULT,
 }
 
 ID2D1GdiMetafile_UUID := &win32.IID{0x2f543dc3, 0xcfc1, 0x4211, {0x86, 0x4f, 0xcf, 0xd9, 0x1c, 0x6f, 0x33, 0x95}}
@@ -3826,8 +3826,8 @@ ID2D1GdiMetafile :: struct #raw_union {
 }
 ID2D1GdiMetafile_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	Stream: proc "system" (this: ^ID2D1GdiMetafile, sink: ^ID2D1GdiMetafileSink, _return: ^win32.HRESULT),
-	GetBounds: proc "system" (this: ^ID2D1GdiMetafile, bounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
+	Stream: proc "system" (this: ^ID2D1GdiMetafile, sink: ^ID2D1GdiMetafileSink) -> win32.HRESULT,
+	GetBounds: proc "system" (this: ^ID2D1GdiMetafile, bounds: ^D2D_RECT_F) -> win32.HRESULT,
 }
 
 ID2D1GdiMetafile1_UUID := &win32.IID{0x2e69f9e8, 0xdd3f, 0x4bf9, {0x95, 0xba, 0xc0, 0x4f, 0x49, 0xd7, 0x88, 0xdf}}
@@ -3837,8 +3837,8 @@ ID2D1GdiMetafile1 :: struct #raw_union {
 }
 ID2D1GdiMetafile1_VTable :: struct {
 	using id2d1gdimetafile_vtable: ID2D1GdiMetafile_VTable,
-	GetDpi: proc "system" (this: ^ID2D1GdiMetafile1, dpiX: ^f32, dpiY: ^f32, _return: ^win32.HRESULT),
-	GetSourceBounds: proc "system" (this: ^ID2D1GdiMetafile1, bounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
+	GetDpi: proc "system" (this: ^ID2D1GdiMetafile1, dpiX: ^f32, dpiY: ^f32) -> win32.HRESULT,
+	GetSourceBounds: proc "system" (this: ^ID2D1GdiMetafile1, bounds: ^D2D_RECT_F) -> win32.HRESULT,
 }
 
 ID2D1GdiMetafileSink_UUID := &win32.IID{0x82237326, 0x8111, 0x4f7c, {0xbc, 0xf4, 0xb5, 0xc1, 0x17, 0x55, 0x64, 0xfe}}
@@ -3848,7 +3848,7 @@ ID2D1GdiMetafileSink :: struct #raw_union {
 }
 ID2D1GdiMetafileSink_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	ProcessRecord: proc "system" (this: ^ID2D1GdiMetafileSink, recordType: u32, recordData: rawptr, recordDataSize: u32, _return: ^win32.HRESULT),
+	ProcessRecord: proc "system" (this: ^ID2D1GdiMetafileSink, recordType: u32, recordData: rawptr, recordDataSize: u32) -> win32.HRESULT,
 }
 
 ID2D1GdiMetafileSink1_UUID := &win32.IID{0xfd0ecb6b, 0x91e6, 0x411e, {0x86, 0x55, 0x39, 0x5e, 0x76, 0x0f, 0x91, 0xb4}}
@@ -3858,7 +3858,7 @@ ID2D1GdiMetafileSink1 :: struct #raw_union {
 }
 ID2D1GdiMetafileSink1_VTable :: struct {
 	using id2d1gdimetafilesink_vtable: ID2D1GdiMetafileSink_VTable,
-	ProcessRecord1: proc "system" (this: ^ID2D1GdiMetafileSink1, recordType: u32, recordData: rawptr, recordDataSize: u32, flags: u32, _return: ^win32.HRESULT),
+	ProcessRecord1: proc "system" (this: ^ID2D1GdiMetafileSink1, recordType: u32, recordData: rawptr, recordDataSize: u32, flags: u32) -> win32.HRESULT,
 }
 
 ID2D1Geometry_UUID := &win32.IID{0x2cd906a1, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -3868,19 +3868,19 @@ ID2D1Geometry :: struct #raw_union {
 }
 ID2D1Geometry_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	GetBounds: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, bounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
-	GetWidenedBounds: proc "system" (this: ^ID2D1Geometry, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, bounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
-	StrokeContainsPoint: proc "system" (this: ^ID2D1Geometry, point: D2D_POINT_2F, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ^win32.BOOL, _return: ^win32.HRESULT),
-	FillContainsPoint: proc "system" (this: ^ID2D1Geometry, point: D2D_POINT_2F, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ^win32.BOOL, _return: ^win32.HRESULT),
-	CompareWithGeometry: proc "system" (this: ^ID2D1Geometry, inputGeometry: ^ID2D1Geometry, inputGeometryTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, relation: ^D2D1_GEOMETRY_RELATION, _return: ^win32.HRESULT),
-	Simplify: proc "system" (this: ^ID2D1Geometry, simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
-	Tessellate: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, tessellationSink: ^ID2D1TessellationSink, _return: ^win32.HRESULT),
-	CombineWithGeometry: proc "system" (this: ^ID2D1Geometry, inputGeometry: ^ID2D1Geometry, combineMode: D2D1_COMBINE_MODE, inputGeometryTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
-	Outline: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
-	ComputeArea: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, area: ^f32, _return: ^win32.HRESULT),
-	ComputeLength: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, length: ^f32, _return: ^win32.HRESULT),
-	ComputePointAtLength: proc "system" (this: ^ID2D1Geometry, length: f32, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, point: ^D2D_POINT_2F, unitTangentVector: ^D2D_POINT_2F, _return: ^win32.HRESULT),
-	Widen: proc "system" (this: ^ID2D1Geometry, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
+	GetBounds: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, bounds: ^D2D_RECT_F) -> win32.HRESULT,
+	GetWidenedBounds: proc "system" (this: ^ID2D1Geometry, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, bounds: ^D2D_RECT_F) -> win32.HRESULT,
+	StrokeContainsPoint: proc "system" (this: ^ID2D1Geometry, point: D2D_POINT_2F, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ^win32.BOOL) -> win32.HRESULT,
+	FillContainsPoint: proc "system" (this: ^ID2D1Geometry, point: D2D_POINT_2F, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ^win32.BOOL) -> win32.HRESULT,
+	CompareWithGeometry: proc "system" (this: ^ID2D1Geometry, inputGeometry: ^ID2D1Geometry, inputGeometryTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, relation: ^D2D1_GEOMETRY_RELATION) -> win32.HRESULT,
+	Simplify: proc "system" (this: ^ID2D1Geometry, simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
+	Tessellate: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, tessellationSink: ^ID2D1TessellationSink) -> win32.HRESULT,
+	CombineWithGeometry: proc "system" (this: ^ID2D1Geometry, inputGeometry: ^ID2D1Geometry, combineMode: D2D1_COMBINE_MODE, inputGeometryTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
+	Outline: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
+	ComputeArea: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, area: ^f32) -> win32.HRESULT,
+	ComputeLength: proc "system" (this: ^ID2D1Geometry, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, length: ^f32) -> win32.HRESULT,
+	ComputePointAtLength: proc "system" (this: ^ID2D1Geometry, length: f32, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, point: ^D2D_POINT_2F, unitTangentVector: ^D2D_POINT_2F) -> win32.HRESULT,
+	Widen: proc "system" (this: ^ID2D1Geometry, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
 }
 
 ID2D1GeometryGroup_UUID := &win32.IID{0x2cd906a6, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -3926,7 +3926,7 @@ ID2D1GradientMesh :: struct #raw_union {
 ID2D1GradientMesh_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
 	GetPatchCount: proc "system" (this: ^ID2D1GradientMesh) -> u32,
-	GetPatches: proc "system" (this: ^ID2D1GradientMesh, startIndex: u32, patches: ^D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, _return: ^win32.HRESULT),
+	GetPatches: proc "system" (this: ^ID2D1GradientMesh, startIndex: u32, patches: ^D2D1_GRADIENT_MESH_PATCH, patchesCount: u32) -> win32.HRESULT,
 }
 
 ID2D1GradientStopCollection_UUID := &win32.IID{0x2cd906a7, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -3964,8 +3964,8 @@ ID2D1HwndRenderTarget :: struct #raw_union {
 ID2D1HwndRenderTarget_VTable :: struct {
 	using id2d1rendertarget_vtable: ID2D1RenderTarget_VTable,
 	CheckWindowState: proc "system" (this: ^ID2D1HwndRenderTarget) -> D2D1_WINDOW_STATE,
-	Resize: proc "system" (this: ^ID2D1HwndRenderTarget, pixelSize: ^D2D_SIZE_U, _return: ^win32.HRESULT),
-	GetHwnd: proc "system" (this: ^ID2D1HwndRenderTarget, _return: ^win32.HWND),
+	Resize: proc "system" (this: ^ID2D1HwndRenderTarget, pixelSize: ^D2D_SIZE_U) -> win32.HRESULT,
+	GetHwnd: proc "system" (this: ^ID2D1HwndRenderTarget) -> win32.HWND,
 }
 
 ID2D1Image_UUID := &win32.IID{0x65019f75, 0x8da2, 0x497c, {0xb3, 0x2c, 0xdf, 0xa3, 0x4e, 0x48, 0xed, 0xe6}}
@@ -4003,8 +4003,8 @@ ID2D1ImageSource :: struct #raw_union {
 }
 ID2D1ImageSource_VTable :: struct {
 	using id2d1image_vtable: ID2D1Image_VTable,
-	OfferResources: proc "system" (this: ^ID2D1ImageSource, _return: ^win32.HRESULT),
-	TryReclaimResources: proc "system" (this: ^ID2D1ImageSource, resourcesDiscarded: ^win32.BOOL, _return: ^win32.HRESULT),
+	OfferResources: proc "system" (this: ^ID2D1ImageSource) -> win32.HRESULT,
+	TryReclaimResources: proc "system" (this: ^ID2D1ImageSource, resourcesDiscarded: ^win32.BOOL) -> win32.HRESULT,
 }
 
 ID2D1ImageSourceFromWic_UUID := &win32.IID{0x77395441, 0x1c8f, 0x4555, {0x86, 0x83, 0xf5, 0x0d, 0xab, 0x0f, 0xe7, 0x92}}
@@ -4014,8 +4014,8 @@ ID2D1ImageSourceFromWic :: struct #raw_union {
 }
 ID2D1ImageSourceFromWic_VTable :: struct {
 	using id2d1imagesource_vtable: ID2D1ImageSource_VTable,
-	EnsureCached: proc "system" (this: ^ID2D1ImageSourceFromWic, rectangleToFill: ^D2D_RECT_U, _return: ^win32.HRESULT),
-	TrimCache: proc "system" (this: ^ID2D1ImageSourceFromWic, rectangleToPreserve: ^D2D_RECT_U, _return: ^win32.HRESULT),
+	EnsureCached: proc "system" (this: ^ID2D1ImageSourceFromWic, rectangleToFill: ^D2D_RECT_U) -> win32.HRESULT,
+	TrimCache: proc "system" (this: ^ID2D1ImageSourceFromWic, rectangleToPreserve: ^D2D_RECT_U) -> win32.HRESULT,
 	GetSource: proc "system" (this: ^ID2D1ImageSourceFromWic, wicBitmapSource: ^^IWICBitmapSource),
 }
 
@@ -4028,14 +4028,14 @@ ID2D1Ink_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
 	SetStartPoint: proc "system" (this: ^ID2D1Ink, startPoint: ^D2D1_INK_POINT),
 	GetStartPoint: proc "system" (this: ^ID2D1Ink, _return: ^D2D1_INK_POINT),
-	AddSegments: proc "system" (this: ^ID2D1Ink, segments: ^D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32, _return: ^win32.HRESULT),
-	RemoveSegmentsAtEnd: proc "system" (this: ^ID2D1Ink, segmentsCount: u32, _return: ^win32.HRESULT),
-	SetSegments: proc "system" (this: ^ID2D1Ink, startSegment: u32, segments: ^D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32, _return: ^win32.HRESULT),
-	SetSegmentAtEnd: proc "system" (this: ^ID2D1Ink, segment: ^D2D1_INK_BEZIER_SEGMENT, _return: ^win32.HRESULT),
+	AddSegments: proc "system" (this: ^ID2D1Ink, segments: ^D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) -> win32.HRESULT,
+	RemoveSegmentsAtEnd: proc "system" (this: ^ID2D1Ink, segmentsCount: u32) -> win32.HRESULT,
+	SetSegments: proc "system" (this: ^ID2D1Ink, startSegment: u32, segments: ^D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) -> win32.HRESULT,
+	SetSegmentAtEnd: proc "system" (this: ^ID2D1Ink, segment: ^D2D1_INK_BEZIER_SEGMENT) -> win32.HRESULT,
 	GetSegmentCount: proc "system" (this: ^ID2D1Ink) -> u32,
-	GetSegments: proc "system" (this: ^ID2D1Ink, startSegment: u32, segments: ^D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32, _return: ^win32.HRESULT),
-	StreamAsGeometry: proc "system" (this: ^ID2D1Ink, inkStyle: ^ID2D1InkStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
-	GetBounds: proc "system" (this: ^ID2D1Ink, inkStyle: ^ID2D1InkStyle, worldTransform: ^D2D_MATRIX_3X2_F, bounds: ^D2D_RECT_F, _return: ^win32.HRESULT),
+	GetSegments: proc "system" (this: ^ID2D1Ink, startSegment: u32, segments: ^D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) -> win32.HRESULT,
+	StreamAsGeometry: proc "system" (this: ^ID2D1Ink, inkStyle: ^ID2D1InkStyle, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
+	GetBounds: proc "system" (this: ^ID2D1Ink, inkStyle: ^ID2D1InkStyle, worldTransform: ^D2D_MATRIX_3X2_F, bounds: ^D2D_RECT_F) -> win32.HRESULT,
 }
 
 ID2D1InkStyle_UUID := &win32.IID{0xbae8b344, 0x23fc, 0x4071, {0x8c, 0xb5, 0xd0, 0x5d, 0x6f, 0x07, 0x38, 0x48}}
@@ -4091,7 +4091,7 @@ ID2D1Mesh :: struct #raw_union {
 }
 ID2D1Mesh_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	Open: proc "system" (this: ^ID2D1Mesh, tessellationSink: ^^ID2D1TessellationSink, _return: ^win32.HRESULT),
+	Open: proc "system" (this: ^ID2D1Mesh, tessellationSink: ^^ID2D1TessellationSink) -> win32.HRESULT,
 }
 
 ID2D1Multithread_UUID := &win32.IID{0x31e6e7bc, 0xe0ff, 0x4d46, {0x8c, 0x64, 0xa0, 0xa8, 0xc4, 0x1c, 0x15, 0xd3}}
@@ -4101,7 +4101,7 @@ ID2D1Multithread :: struct #raw_union {
 }
 ID2D1Multithread_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetMultithreadProtected: proc "system" (this: ^ID2D1Multithread, _return: ^win32.BOOL),
+	GetMultithreadProtected: proc "system" (this: ^ID2D1Multithread) -> win32.BOOL,
 	Enter: proc "system" (this: ^ID2D1Multithread),
 	Leave: proc "system" (this: ^ID2D1Multithread),
 }
@@ -4124,10 +4124,10 @@ ID2D1PathGeometry :: struct #raw_union {
 }
 ID2D1PathGeometry_VTable :: struct {
 	using id2d1geometry_vtable: ID2D1Geometry_VTable,
-	Open: proc "system" (this: ^ID2D1PathGeometry, geometrySink: ^^ID2D1GeometrySink, _return: ^win32.HRESULT),
-	Stream: proc "system" (this: ^ID2D1PathGeometry, geometrySink: ^ID2D1GeometrySink, _return: ^win32.HRESULT),
-	GetSegmentCount: proc "system" (this: ^ID2D1PathGeometry, count: ^u32, _return: ^win32.HRESULT),
-	GetFigureCount: proc "system" (this: ^ID2D1PathGeometry, count: ^u32, _return: ^win32.HRESULT),
+	Open: proc "system" (this: ^ID2D1PathGeometry, geometrySink: ^^ID2D1GeometrySink) -> win32.HRESULT,
+	Stream: proc "system" (this: ^ID2D1PathGeometry, geometrySink: ^ID2D1GeometrySink) -> win32.HRESULT,
+	GetSegmentCount: proc "system" (this: ^ID2D1PathGeometry, count: ^u32) -> win32.HRESULT,
+	GetFigureCount: proc "system" (this: ^ID2D1PathGeometry, count: ^u32) -> win32.HRESULT,
 }
 
 ID2D1PathGeometry1_UUID := &win32.IID{0x62baa2d2, 0xab54, 0x41b7, {0xb8, 0x72, 0x78, 0x7e, 0x01, 0x06, 0xa4, 0x21}}
@@ -4137,7 +4137,7 @@ ID2D1PathGeometry1 :: struct #raw_union {
 }
 ID2D1PathGeometry1_VTable :: struct {
 	using id2d1pathgeometry_vtable: ID2D1PathGeometry_VTable,
-	ComputePointAndSegmentAtLength: proc "system" (this: ^ID2D1PathGeometry1, length: f32, startSegment: u32, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, pointDescription: ^D2D1_POINT_DESCRIPTION, _return: ^win32.HRESULT),
+	ComputePointAndSegmentAtLength: proc "system" (this: ^ID2D1PathGeometry1, length: f32, startSegment: u32, worldTransform: ^D2D_MATRIX_3X2_F, flatteningTolerance: f32, pointDescription: ^D2D1_POINT_DESCRIPTION) -> win32.HRESULT,
 }
 
 ID2D1PrintControl_UUID := &win32.IID{0x2c1d867d, 0xc290, 0x41c8, {0xae, 0x7e, 0x34, 0xa9, 0x87, 0x02, 0xe9, 0xa5}}
@@ -4147,8 +4147,8 @@ ID2D1PrintControl :: struct #raw_union {
 }
 ID2D1PrintControl_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	AddPage: proc "system" (this: ^ID2D1PrintControl, commandList: ^ID2D1CommandList, pageSize: D2D_SIZE_F, pagePrintTicketStream: ^win32.IStream, tag1: ^u64, tag2: ^u64, _return: ^win32.HRESULT),
-	Close: proc "system" (this: ^ID2D1PrintControl, _return: ^win32.HRESULT),
+	AddPage: proc "system" (this: ^ID2D1PrintControl, commandList: ^ID2D1CommandList, pageSize: D2D_SIZE_F, pagePrintTicketStream: ^win32.IStream, tag1: ^u64, tag2: ^u64) -> win32.HRESULT,
+	Close: proc "system" (this: ^ID2D1PrintControl) -> win32.HRESULT,
 }
 
 ID2D1Properties_UUID := &win32.IID{0x483473d7, 0xcd46, 0x4f9d, {0x9d, 0x3a, 0x31, 0x12, 0xaa, 0x80, 0x15, 0x9d}}
@@ -4159,16 +4159,16 @@ ID2D1Properties :: struct #raw_union {
 ID2D1Properties_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetPropertyCount: proc "system" (this: ^ID2D1Properties) -> u32,
-	GetPropertyName: proc "system" (this: ^ID2D1Properties, index: u32, name: ^win32.WCHAR, nameCount: u32, _return: ^win32.HRESULT),
+	GetPropertyName: proc "system" (this: ^ID2D1Properties, index: u32, name: ^win32.WCHAR, nameCount: u32) -> win32.HRESULT,
 	GetPropertyNameLength: proc "system" (this: ^ID2D1Properties, index: u32) -> u32,
 	GetType: proc "system" (this: ^ID2D1Properties, index: u32) -> D2D1_PROPERTY_TYPE,
 	GetPropertyIndex: proc "system" (this: ^ID2D1Properties, name: ^win32.WCHAR) -> u32,
-	SetValueByName: proc "system" (this: ^ID2D1Properties, name: ^win32.WCHAR, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32, _return: ^win32.HRESULT),
-	SetValue: proc "system" (this: ^ID2D1Properties, index: u32, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32, _return: ^win32.HRESULT),
-	GetValueByName: proc "system" (this: ^ID2D1Properties, name: ^win32.WCHAR, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32, _return: ^win32.HRESULT),
-	GetValue: proc "system" (this: ^ID2D1Properties, index: u32, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32, _return: ^win32.HRESULT),
+	SetValueByName: proc "system" (this: ^ID2D1Properties, name: ^win32.WCHAR, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32) -> win32.HRESULT,
+	SetValue: proc "system" (this: ^ID2D1Properties, index: u32, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32) -> win32.HRESULT,
+	GetValueByName: proc "system" (this: ^ID2D1Properties, name: ^win32.WCHAR, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32) -> win32.HRESULT,
+	GetValue: proc "system" (this: ^ID2D1Properties, index: u32, type: D2D1_PROPERTY_TYPE, data: ^u8, dataSize: u32) -> win32.HRESULT,
 	GetValueSize: proc "system" (this: ^ID2D1Properties, index: u32) -> u32,
-	GetSubProperties: proc "system" (this: ^ID2D1Properties, index: u32, subProperties: ^^ID2D1Properties, _return: ^win32.HRESULT),
+	GetSubProperties: proc "system" (this: ^ID2D1Properties, index: u32, subProperties: ^^ID2D1Properties) -> win32.HRESULT,
 }
 
 ID2D1RadialGradientBrush_UUID := &win32.IID{0x2cd906ac, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -4206,8 +4206,8 @@ ID2D1RenderInfo :: struct #raw_union {
 }
 ID2D1RenderInfo_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	SetInputDescription: proc "system" (this: ^ID2D1RenderInfo, inputIndex: u32, inputDescription: D2D1_INPUT_DESCRIPTION, _return: ^win32.HRESULT),
-	SetOutputBuffer: proc "system" (this: ^ID2D1RenderInfo, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH, _return: ^win32.HRESULT),
+	SetInputDescription: proc "system" (this: ^ID2D1RenderInfo, inputIndex: u32, inputDescription: D2D1_INPUT_DESCRIPTION) -> win32.HRESULT,
+	SetOutputBuffer: proc "system" (this: ^ID2D1RenderInfo, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH) -> win32.HRESULT,
 	SetCached: proc "system" (this: ^ID2D1RenderInfo, isCached: win32.BOOL),
 	SetInstructionCountHint: proc "system" (this: ^ID2D1RenderInfo, instructionCount: u32),
 }
@@ -4219,17 +4219,17 @@ ID2D1RenderTarget :: struct #raw_union {
 }
 ID2D1RenderTarget_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	CreateBitmap: proc "system" (this: ^ID2D1RenderTarget, size: D2D_SIZE_U, srcData: rawptr, pitch: u32, bitmapProperties: ^D2D1_BITMAP_PROPERTIES, bitmap: ^^ID2D1Bitmap, _return: ^win32.HRESULT),
-	CreateBitmapFromWicBitmap: proc "system" (this: ^ID2D1RenderTarget, wicBitmapSource: ^IWICBitmapSource, bitmapProperties: ^D2D1_BITMAP_PROPERTIES, bitmap: ^^ID2D1Bitmap, _return: ^win32.HRESULT),
-	CreateSharedBitmap: proc "system" (this: ^ID2D1RenderTarget, riid: ^win32.GUID, data: rawptr, bitmapProperties: ^D2D1_BITMAP_PROPERTIES, bitmap: ^^ID2D1Bitmap, _return: ^win32.HRESULT),
-	CreateBitmapBrush: proc "system" (this: ^ID2D1RenderTarget, bitmap: ^ID2D1Bitmap, bitmapBrushProperties: ^D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, bitmapBrush: ^^ID2D1BitmapBrush, _return: ^win32.HRESULT),
-	CreateSolidColorBrush: proc "system" (this: ^ID2D1RenderTarget, color: ^D2D1_COLOR_F, brushProperties: ^D2D1_BRUSH_PROPERTIES, solidColorBrush: ^^ID2D1SolidColorBrush, _return: ^win32.HRESULT),
-	CreateGradientStopCollection: proc "system" (this: ^ID2D1RenderTarget, gradientStops: ^D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: ^^ID2D1GradientStopCollection, _return: ^win32.HRESULT),
-	CreateLinearGradientBrush: proc "system" (this: ^ID2D1RenderTarget, linearGradientBrushProperties: ^D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, gradientStopCollection: ^ID2D1GradientStopCollection, linearGradientBrush: ^^ID2D1LinearGradientBrush, _return: ^win32.HRESULT),
-	CreateRadialGradientBrush: proc "system" (this: ^ID2D1RenderTarget, radialGradientBrushProperties: ^D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, gradientStopCollection: ^ID2D1GradientStopCollection, radialGradientBrush: ^^ID2D1RadialGradientBrush, _return: ^win32.HRESULT),
-	CreateCompatibleRenderTarget: proc "system" (this: ^ID2D1RenderTarget, desiredSize: ^D2D_SIZE_F, desiredPixelSize: ^D2D_SIZE_U, desiredFormat: ^D2D1_PIXEL_FORMAT, options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, bitmapRenderTarget: ^^ID2D1BitmapRenderTarget, _return: ^win32.HRESULT),
-	CreateLayer: proc "system" (this: ^ID2D1RenderTarget, size: ^D2D_SIZE_F, layer: ^^ID2D1Layer, _return: ^win32.HRESULT),
-	CreateMesh: proc "system" (this: ^ID2D1RenderTarget, mesh: ^^ID2D1Mesh, _return: ^win32.HRESULT),
+	CreateBitmap: proc "system" (this: ^ID2D1RenderTarget, size: D2D_SIZE_U, srcData: rawptr, pitch: u32, bitmapProperties: ^D2D1_BITMAP_PROPERTIES, bitmap: ^^ID2D1Bitmap) -> win32.HRESULT,
+	CreateBitmapFromWicBitmap: proc "system" (this: ^ID2D1RenderTarget, wicBitmapSource: ^IWICBitmapSource, bitmapProperties: ^D2D1_BITMAP_PROPERTIES, bitmap: ^^ID2D1Bitmap) -> win32.HRESULT,
+	CreateSharedBitmap: proc "system" (this: ^ID2D1RenderTarget, riid: ^win32.GUID, data: rawptr, bitmapProperties: ^D2D1_BITMAP_PROPERTIES, bitmap: ^^ID2D1Bitmap) -> win32.HRESULT,
+	CreateBitmapBrush: proc "system" (this: ^ID2D1RenderTarget, bitmap: ^ID2D1Bitmap, bitmapBrushProperties: ^D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, bitmapBrush: ^^ID2D1BitmapBrush) -> win32.HRESULT,
+	CreateSolidColorBrush: proc "system" (this: ^ID2D1RenderTarget, color: ^D2D1_COLOR_F, brushProperties: ^D2D1_BRUSH_PROPERTIES, solidColorBrush: ^^ID2D1SolidColorBrush) -> win32.HRESULT,
+	CreateGradientStopCollection: proc "system" (this: ^ID2D1RenderTarget, gradientStops: ^D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: ^^ID2D1GradientStopCollection) -> win32.HRESULT,
+	CreateLinearGradientBrush: proc "system" (this: ^ID2D1RenderTarget, linearGradientBrushProperties: ^D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, gradientStopCollection: ^ID2D1GradientStopCollection, linearGradientBrush: ^^ID2D1LinearGradientBrush) -> win32.HRESULT,
+	CreateRadialGradientBrush: proc "system" (this: ^ID2D1RenderTarget, radialGradientBrushProperties: ^D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES, brushProperties: ^D2D1_BRUSH_PROPERTIES, gradientStopCollection: ^ID2D1GradientStopCollection, radialGradientBrush: ^^ID2D1RadialGradientBrush) -> win32.HRESULT,
+	CreateCompatibleRenderTarget: proc "system" (this: ^ID2D1RenderTarget, desiredSize: ^D2D_SIZE_F, desiredPixelSize: ^D2D_SIZE_U, desiredFormat: ^D2D1_PIXEL_FORMAT, options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, bitmapRenderTarget: ^^ID2D1BitmapRenderTarget) -> win32.HRESULT,
+	CreateLayer: proc "system" (this: ^ID2D1RenderTarget, size: ^D2D_SIZE_F, layer: ^^ID2D1Layer) -> win32.HRESULT,
+	CreateMesh: proc "system" (this: ^ID2D1RenderTarget, mesh: ^^ID2D1Mesh) -> win32.HRESULT,
 	DrawLine: proc "system" (this: ^ID2D1RenderTarget, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle),
 	DrawRectangle: proc "system" (this: ^ID2D1RenderTarget, rect: ^D2D_RECT_F, brush: ^ID2D1Brush, strokeWidth: f32, strokeStyle: ^ID2D1StrokeStyle),
 	FillRectangle: proc "system" (this: ^ID2D1RenderTarget, rect: ^D2D_RECT_F, brush: ^ID2D1Brush),
@@ -4257,21 +4257,21 @@ ID2D1RenderTarget_VTable :: struct {
 	GetTags: proc "system" (this: ^ID2D1RenderTarget, tag1: ^u64, tag2: ^u64),
 	PushLayer: proc "system" (this: ^ID2D1RenderTarget, layerParameters: ^D2D1_LAYER_PARAMETERS, layer: ^ID2D1Layer),
 	PopLayer: proc "system" (this: ^ID2D1RenderTarget),
-	Flush: proc "system" (this: ^ID2D1RenderTarget, tag1: ^u64, tag2: ^u64, _return: ^win32.HRESULT),
+	Flush: proc "system" (this: ^ID2D1RenderTarget, tag1: ^u64, tag2: ^u64) -> win32.HRESULT,
 	SaveDrawingState: proc "system" (this: ^ID2D1RenderTarget, drawingStateBlock: ^ID2D1DrawingStateBlock),
 	RestoreDrawingState: proc "system" (this: ^ID2D1RenderTarget, drawingStateBlock: ^ID2D1DrawingStateBlock),
 	PushAxisAlignedClip: proc "system" (this: ^ID2D1RenderTarget, clipRect: ^D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE),
 	PopAxisAlignedClip: proc "system" (this: ^ID2D1RenderTarget),
 	Clear: proc "system" (this: ^ID2D1RenderTarget, clearColor: ^D2D1_COLOR_F),
 	BeginDraw: proc "system" (this: ^ID2D1RenderTarget),
-	EndDraw: proc "system" (this: ^ID2D1RenderTarget, tag1: ^u64, tag2: ^u64, _return: ^win32.HRESULT),
+	EndDraw: proc "system" (this: ^ID2D1RenderTarget, tag1: ^u64, tag2: ^u64) -> win32.HRESULT,
 	GetPixelFormat: proc "system" (this: ^ID2D1RenderTarget, _return: ^D2D1_PIXEL_FORMAT),
 	SetDpi: proc "system" (this: ^ID2D1RenderTarget, dpiX: f32, dpiY: f32),
 	GetDpi: proc "system" (this: ^ID2D1RenderTarget, dpiX: ^f32, dpiY: ^f32),
 	GetSize: proc "system" (this: ^ID2D1RenderTarget, _return: ^D2D_SIZE_F),
 	GetPixelSize: proc "system" (this: ^ID2D1RenderTarget, _return: ^D2D_SIZE_U),
 	GetMaximumBitmapSize: proc "system" (this: ^ID2D1RenderTarget) -> u32,
-	IsSupported: proc "system" (this: ^ID2D1RenderTarget, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES, _return: ^win32.BOOL),
+	IsSupported: proc "system" (this: ^ID2D1RenderTarget, renderTargetProperties: ^D2D1_RENDER_TARGET_PROPERTIES) -> win32.BOOL,
 }
 
 ID2D1Resource_UUID := &win32.IID{0x2cd90691, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -4291,7 +4291,7 @@ ID2D1ResourceTexture :: struct #raw_union {
 }
 ID2D1ResourceTexture_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	Update: proc "system" (this: ^ID2D1ResourceTexture, minimumExtents: ^u32, maximimumExtents: ^u32, strides: ^u32, dimensions: u32, data: ^u8, dataCount: u32, _return: ^win32.HRESULT),
+	Update: proc "system" (this: ^ID2D1ResourceTexture, minimumExtents: ^u32, maximimumExtents: ^u32, strides: ^u32, dimensions: u32, data: ^u8, dataCount: u32) -> win32.HRESULT,
 }
 
 ID2D1RoundedRectangleGeometry_UUID := &win32.IID{0x2cd906a3, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -4317,7 +4317,7 @@ ID2D1SimplifiedGeometrySink_VTable :: struct {
 	AddLines: proc "system" (this: ^ID2D1SimplifiedGeometrySink, points: ^D2D_POINT_2F, pointsCount: u32),
 	AddBeziers: proc "system" (this: ^ID2D1SimplifiedGeometrySink, beziers: ^D2D1_BEZIER_SEGMENT, beziersCount: u32),
 	EndFigure: proc "system" (this: ^ID2D1SimplifiedGeometrySink, figureEnd: D2D1_FIGURE_END),
-	Close: proc "system" (this: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
+	Close: proc "system" (this: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
 }
 
 ID2D1SolidColorBrush_UUID := &win32.IID{0x2cd906a9, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -4338,8 +4338,8 @@ ID2D1SourceTransform :: struct #raw_union {
 }
 ID2D1SourceTransform_VTable :: struct {
 	using id2d1transform_vtable: ID2D1Transform_VTable,
-	SetRenderInfo: proc "system" (this: ^ID2D1SourceTransform, renderInfo: ^ID2D1RenderInfo, _return: ^win32.HRESULT),
-	Draw: proc "system" (this: ^ID2D1SourceTransform, target: ^ID2D1Bitmap1, drawRect: ^win32.RECT, targetOrigin: D2D_POINT_2U, _return: ^win32.HRESULT),
+	SetRenderInfo: proc "system" (this: ^ID2D1SourceTransform, renderInfo: ^ID2D1RenderInfo) -> win32.HRESULT,
+	Draw: proc "system" (this: ^ID2D1SourceTransform, target: ^ID2D1Bitmap1, drawRect: ^win32.RECT, targetOrigin: D2D_POINT_2U) -> win32.HRESULT,
 }
 
 ID2D1SpriteBatch_UUID := &win32.IID{0x4dc583bf, 0x3a10, 0x438a, {0x87, 0x22, 0xe9, 0x76, 0x52, 0x24, 0xf1, 0xf1}}
@@ -4349,9 +4349,9 @@ ID2D1SpriteBatch :: struct #raw_union {
 }
 ID2D1SpriteBatch_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	AddSprites: proc "system" (this: ^ID2D1SpriteBatch, spriteCount: u32, destinationRectangles: ^D2D_RECT_F, sourceRectangles: ^D2D_RECT_U, colors: ^D2D1_COLOR_F, transforms: ^D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32, _return: ^win32.HRESULT),
-	SetSprites: proc "system" (this: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ^D2D_RECT_F, sourceRectangles: ^D2D_RECT_U, colors: ^D2D1_COLOR_F, transforms: ^D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32, _return: ^win32.HRESULT),
-	GetSprites: proc "system" (this: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ^D2D_RECT_F, sourceRectangles: ^D2D_RECT_U, colors: ^D2D1_COLOR_F, transforms: ^D2D_MATRIX_3X2_F, _return: ^win32.HRESULT),
+	AddSprites: proc "system" (this: ^ID2D1SpriteBatch, spriteCount: u32, destinationRectangles: ^D2D_RECT_F, sourceRectangles: ^D2D_RECT_U, colors: ^D2D1_COLOR_F, transforms: ^D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) -> win32.HRESULT,
+	SetSprites: proc "system" (this: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ^D2D_RECT_F, sourceRectangles: ^D2D_RECT_U, colors: ^D2D1_COLOR_F, transforms: ^D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) -> win32.HRESULT,
+	GetSprites: proc "system" (this: ^ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, destinationRectangles: ^D2D_RECT_F, sourceRectangles: ^D2D_RECT_U, colors: ^D2D1_COLOR_F, transforms: ^D2D_MATRIX_3X2_F) -> win32.HRESULT,
 	GetSpriteCount: proc "system" (this: ^ID2D1SpriteBatch) -> u32,
 	Clear: proc "system" (this: ^ID2D1SpriteBatch),
 }
@@ -4392,7 +4392,7 @@ ID2D1SvgAttribute :: struct #raw_union {
 ID2D1SvgAttribute_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
 	GetElement: proc "system" (this: ^ID2D1SvgAttribute, element: ^^ID2D1SvgElement),
-	Clone: proc "system" (this: ^ID2D1SvgAttribute, attribute: ^^ID2D1SvgAttribute, _return: ^win32.HRESULT),
+	Clone: proc "system" (this: ^ID2D1SvgAttribute, attribute: ^^ID2D1SvgAttribute) -> win32.HRESULT,
 }
 
 ID2D1SvgDocument_UUID := &win32.IID{0x86b88e4d, 0xafa4, 0x4d7b, {0x88, 0xe4, 0x68, 0xa5, 0x1c, 0x4a, 0x0a, 0xec}}
@@ -4402,17 +4402,17 @@ ID2D1SvgDocument :: struct #raw_union {
 }
 ID2D1SvgDocument_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	SetViewportSize: proc "system" (this: ^ID2D1SvgDocument, viewportSize: D2D_SIZE_F, _return: ^win32.HRESULT),
+	SetViewportSize: proc "system" (this: ^ID2D1SvgDocument, viewportSize: D2D_SIZE_F) -> win32.HRESULT,
 	GetViewportSize: proc "system" (this: ^ID2D1SvgDocument, _return: ^D2D_SIZE_F),
-	SetRoot: proc "system" (this: ^ID2D1SvgDocument, root: ^ID2D1SvgElement, _return: ^win32.HRESULT),
+	SetRoot: proc "system" (this: ^ID2D1SvgDocument, root: ^ID2D1SvgElement) -> win32.HRESULT,
 	GetRoot: proc "system" (this: ^ID2D1SvgDocument, root: ^^ID2D1SvgElement),
-	FindElementById: proc "system" (this: ^ID2D1SvgDocument, id: ^win32.WCHAR, svgElement: ^^ID2D1SvgElement, _return: ^win32.HRESULT),
-	Serialize: proc "system" (this: ^ID2D1SvgDocument, outputXmlStream: ^win32.IStream, subtree: ^ID2D1SvgElement, _return: ^win32.HRESULT),
-	Deserialize: proc "system" (this: ^ID2D1SvgDocument, inputXmlStream: ^win32.IStream, subtree: ^^ID2D1SvgElement, _return: ^win32.HRESULT),
-	CreatePaint: proc "system" (this: ^ID2D1SvgDocument, paintType: D2D1_SVG_PAINT_TYPE, color: ^D2D1_COLOR_F, id: ^win32.WCHAR, paint: ^^ID2D1SvgPaint, _return: ^win32.HRESULT),
-	CreateStrokeDashArray: proc "system" (this: ^ID2D1SvgDocument, dashes: ^D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: ^^ID2D1SvgStrokeDashArray, _return: ^win32.HRESULT),
-	CreatePointCollection: proc "system" (this: ^ID2D1SvgDocument, points: ^D2D_POINT_2F, pointsCount: u32, pointCollection: ^^ID2D1SvgPointCollection, _return: ^win32.HRESULT),
-	CreatePathData: proc "system" (this: ^ID2D1SvgDocument, segmentData: ^f32, segmentDataCount: u32, commands: ^D2D1_SVG_PATH_COMMAND, commandsCount: u32, pathData: ^^ID2D1SvgPathData, _return: ^win32.HRESULT),
+	FindElementById: proc "system" (this: ^ID2D1SvgDocument, id: ^win32.WCHAR, svgElement: ^^ID2D1SvgElement) -> win32.HRESULT,
+	Serialize: proc "system" (this: ^ID2D1SvgDocument, outputXmlStream: ^win32.IStream, subtree: ^ID2D1SvgElement) -> win32.HRESULT,
+	Deserialize: proc "system" (this: ^ID2D1SvgDocument, inputXmlStream: ^win32.IStream, subtree: ^^ID2D1SvgElement) -> win32.HRESULT,
+	CreatePaint: proc "system" (this: ^ID2D1SvgDocument, paintType: D2D1_SVG_PAINT_TYPE, color: ^D2D1_COLOR_F, id: ^win32.WCHAR, paint: ^^ID2D1SvgPaint) -> win32.HRESULT,
+	CreateStrokeDashArray: proc "system" (this: ^ID2D1SvgDocument, dashes: ^D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: ^^ID2D1SvgStrokeDashArray) -> win32.HRESULT,
+	CreatePointCollection: proc "system" (this: ^ID2D1SvgDocument, points: ^D2D_POINT_2F, pointsCount: u32, pointCollection: ^^ID2D1SvgPointCollection) -> win32.HRESULT,
+	CreatePathData: proc "system" (this: ^ID2D1SvgDocument, segmentData: ^f32, segmentDataCount: u32, commands: ^D2D1_SVG_PATH_COMMAND, commandsCount: u32, pathData: ^^ID2D1SvgPathData) -> win32.HRESULT,
 }
 
 ID2D1SvgElement_UUID := &win32.IID{0xac7b67a6, 0x183e, 0x49c1, {0xa8, 0x23, 0x0e, 0xbe, 0x40, 0xb0, 0xdb, 0x29}}
@@ -4423,35 +4423,35 @@ ID2D1SvgElement :: struct #raw_union {
 ID2D1SvgElement_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
 	GetDocument: proc "system" (this: ^ID2D1SvgElement, document: ^^ID2D1SvgDocument),
-	GetTagName: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, nameCount: u32, _return: ^win32.HRESULT),
+	GetTagName: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, nameCount: u32) -> win32.HRESULT,
 	GetTagNameLength: proc "system" (this: ^ID2D1SvgElement) -> u32,
-	IsTextContent: proc "system" (this: ^ID2D1SvgElement, _return: ^win32.BOOL),
+	IsTextContent: proc "system" (this: ^ID2D1SvgElement) -> win32.BOOL,
 	GetParent: proc "system" (this: ^ID2D1SvgElement, parent: ^^ID2D1SvgElement),
-	HasChildren: proc "system" (this: ^ID2D1SvgElement, _return: ^win32.BOOL),
+	HasChildren: proc "system" (this: ^ID2D1SvgElement) -> win32.BOOL,
 	GetFirstChild: proc "system" (this: ^ID2D1SvgElement, child: ^^ID2D1SvgElement),
 	GetLastChild: proc "system" (this: ^ID2D1SvgElement, child: ^^ID2D1SvgElement),
-	GetPreviousChild: proc "system" (this: ^ID2D1SvgElement, referenceChild: ^ID2D1SvgElement, previousChild: ^^ID2D1SvgElement, _return: ^win32.HRESULT),
-	GetNextChild: proc "system" (this: ^ID2D1SvgElement, referenceChild: ^ID2D1SvgElement, nextChild: ^^ID2D1SvgElement, _return: ^win32.HRESULT),
-	InsertChildBefore: proc "system" (this: ^ID2D1SvgElement, newChild: ^ID2D1SvgElement, referenceChild: ^ID2D1SvgElement, _return: ^win32.HRESULT),
-	AppendChild: proc "system" (this: ^ID2D1SvgElement, newChild: ^ID2D1SvgElement, _return: ^win32.HRESULT),
-	ReplaceChild: proc "system" (this: ^ID2D1SvgElement, newChild: ^ID2D1SvgElement, oldChild: ^ID2D1SvgElement, _return: ^win32.HRESULT),
-	RemoveChild: proc "system" (this: ^ID2D1SvgElement, oldChild: ^ID2D1SvgElement, _return: ^win32.HRESULT),
-	CreateChild: proc "system" (this: ^ID2D1SvgElement, tagName: ^win32.WCHAR, newChild: ^^ID2D1SvgElement, _return: ^win32.HRESULT),
-	IsAttributeSpecified: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, inherited: ^win32.BOOL, _return: ^win32.BOOL),
+	GetPreviousChild: proc "system" (this: ^ID2D1SvgElement, referenceChild: ^ID2D1SvgElement, previousChild: ^^ID2D1SvgElement) -> win32.HRESULT,
+	GetNextChild: proc "system" (this: ^ID2D1SvgElement, referenceChild: ^ID2D1SvgElement, nextChild: ^^ID2D1SvgElement) -> win32.HRESULT,
+	InsertChildBefore: proc "system" (this: ^ID2D1SvgElement, newChild: ^ID2D1SvgElement, referenceChild: ^ID2D1SvgElement) -> win32.HRESULT,
+	AppendChild: proc "system" (this: ^ID2D1SvgElement, newChild: ^ID2D1SvgElement) -> win32.HRESULT,
+	ReplaceChild: proc "system" (this: ^ID2D1SvgElement, newChild: ^ID2D1SvgElement, oldChild: ^ID2D1SvgElement) -> win32.HRESULT,
+	RemoveChild: proc "system" (this: ^ID2D1SvgElement, oldChild: ^ID2D1SvgElement) -> win32.HRESULT,
+	CreateChild: proc "system" (this: ^ID2D1SvgElement, tagName: ^win32.WCHAR, newChild: ^^ID2D1SvgElement) -> win32.HRESULT,
+	IsAttributeSpecified: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, inherited: ^win32.BOOL) -> win32.BOOL,
 	GetSpecifiedAttributeCount: proc "system" (this: ^ID2D1SvgElement) -> u32,
-	GetSpecifiedAttributeName: proc "system" (this: ^ID2D1SvgElement, index: u32, name: ^win32.WCHAR, nameCount: u32, inherited: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetSpecifiedAttributeNameLength: proc "system" (this: ^ID2D1SvgElement, index: u32, nameLength: ^u32, inherited: ^win32.BOOL, _return: ^win32.HRESULT),
-	RemoveAttribute: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, _return: ^win32.HRESULT),
-	SetTextValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, nameCount: u32, _return: ^win32.HRESULT),
-	GetTextValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, nameCount: u32, _return: ^win32.HRESULT),
+	GetSpecifiedAttributeName: proc "system" (this: ^ID2D1SvgElement, index: u32, name: ^win32.WCHAR, nameCount: u32, inherited: ^win32.BOOL) -> win32.HRESULT,
+	GetSpecifiedAttributeNameLength: proc "system" (this: ^ID2D1SvgElement, index: u32, nameLength: ^u32, inherited: ^win32.BOOL) -> win32.HRESULT,
+	RemoveAttribute: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR) -> win32.HRESULT,
+	SetTextValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, nameCount: u32) -> win32.HRESULT,
+	GetTextValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, nameCount: u32) -> win32.HRESULT,
 	GetTextValueLength: proc "system" (this: ^ID2D1SvgElement) -> u32,
-	SetAttributeValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, value: ^ID2D1SvgAttribute, _return: ^win32.HRESULT),
-	SetAttributeValue1: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: rawptr, valueSizeInBytes: u32, _return: ^win32.HRESULT),
-	SetAttributeValue2: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ^win32.WCHAR, _return: ^win32.HRESULT),
-	GetAttributeValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, riid: ^win32.GUID, value: ^rawptr, _return: ^win32.HRESULT),
-	GetAttributeValue1: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: rawptr, valueSizeInBytes: u32, _return: ^win32.HRESULT),
-	GetAttributeValue2: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ^win32.WCHAR, valueCount: u32, _return: ^win32.HRESULT),
-	GetAttributeValueLength: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: ^u32, _return: ^win32.HRESULT),
+	SetAttributeValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, value: ^ID2D1SvgAttribute) -> win32.HRESULT,
+	SetAttributeValue1: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: rawptr, valueSizeInBytes: u32) -> win32.HRESULT,
+	SetAttributeValue2: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ^win32.WCHAR) -> win32.HRESULT,
+	GetAttributeValue: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, riid: ^win32.GUID, value: ^rawptr) -> win32.HRESULT,
+	GetAttributeValue1: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: rawptr, valueSizeInBytes: u32) -> win32.HRESULT,
+	GetAttributeValue2: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ^win32.WCHAR, valueCount: u32) -> win32.HRESULT,
+	GetAttributeValueLength: proc "system" (this: ^ID2D1SvgElement, name: ^win32.WCHAR, type: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: ^u32) -> win32.HRESULT,
 }
 
 ID2D1SvgGlyphStyle_UUID := &win32.IID{0xaf671749, 0xd241, 0x4db8, {0x8e, 0x41, 0xdc, 0xc2, 0xe5, 0xc1, 0xa4, 0x38}}
@@ -4461,9 +4461,9 @@ ID2D1SvgGlyphStyle :: struct #raw_union {
 }
 ID2D1SvgGlyphStyle_VTable :: struct {
 	using id2d1resource_vtable: ID2D1Resource_VTable,
-	SetFill: proc "system" (this: ^ID2D1SvgGlyphStyle, brush: ^ID2D1Brush, _return: ^win32.HRESULT),
+	SetFill: proc "system" (this: ^ID2D1SvgGlyphStyle, brush: ^ID2D1Brush) -> win32.HRESULT,
 	GetFill: proc "system" (this: ^ID2D1SvgGlyphStyle, brush: ^^ID2D1Brush),
-	SetStroke: proc "system" (this: ^ID2D1SvgGlyphStyle, brush: ^ID2D1Brush, strokeWidth: f32, dashes: ^f32, dashesCount: u32, dashOffset: f32, _return: ^win32.HRESULT),
+	SetStroke: proc "system" (this: ^ID2D1SvgGlyphStyle, brush: ^ID2D1Brush, strokeWidth: f32, dashes: ^f32, dashesCount: u32, dashOffset: f32) -> win32.HRESULT,
 	GetStrokeDashesCount: proc "system" (this: ^ID2D1SvgGlyphStyle) -> u32,
 	GetStroke: proc "system" (this: ^ID2D1SvgGlyphStyle, brush: ^^ID2D1Brush, strokeWidth: ^f32, dashes: ^f32, dashesCount: u32, dashOffset: ^f32),
 }
@@ -4475,12 +4475,12 @@ ID2D1SvgPaint :: struct #raw_union {
 }
 ID2D1SvgPaint_VTable :: struct {
 	using id2d1svgattribute_vtable: ID2D1SvgAttribute_VTable,
-	SetPaintType: proc "system" (this: ^ID2D1SvgPaint, paintType: D2D1_SVG_PAINT_TYPE, _return: ^win32.HRESULT),
+	SetPaintType: proc "system" (this: ^ID2D1SvgPaint, paintType: D2D1_SVG_PAINT_TYPE) -> win32.HRESULT,
 	GetPaintType: proc "system" (this: ^ID2D1SvgPaint) -> D2D1_SVG_PAINT_TYPE,
-	SetColor: proc "system" (this: ^ID2D1SvgPaint, color: ^D2D1_COLOR_F, _return: ^win32.HRESULT),
+	SetColor: proc "system" (this: ^ID2D1SvgPaint, color: ^D2D1_COLOR_F) -> win32.HRESULT,
 	GetColor: proc "system" (this: ^ID2D1SvgPaint, color: ^D2D1_COLOR_F),
-	SetId: proc "system" (this: ^ID2D1SvgPaint, id: ^win32.WCHAR, _return: ^win32.HRESULT),
-	GetId: proc "system" (this: ^ID2D1SvgPaint, id: ^win32.WCHAR, idCount: u32, _return: ^win32.HRESULT),
+	SetId: proc "system" (this: ^ID2D1SvgPaint, id: ^win32.WCHAR) -> win32.HRESULT,
+	GetId: proc "system" (this: ^ID2D1SvgPaint, id: ^win32.WCHAR, idCount: u32) -> win32.HRESULT,
 	GetIdLength: proc "system" (this: ^ID2D1SvgPaint) -> u32,
 }
 
@@ -4491,15 +4491,15 @@ ID2D1SvgPathData :: struct #raw_union {
 }
 ID2D1SvgPathData_VTable :: struct {
 	using id2d1svgattribute_vtable: ID2D1SvgAttribute_VTable,
-	RemoveSegmentDataAtEnd: proc "system" (this: ^ID2D1SvgPathData, dataCount: u32, _return: ^win32.HRESULT),
-	UpdateSegmentData: proc "system" (this: ^ID2D1SvgPathData, data: ^f32, dataCount: u32, startIndex: u32, _return: ^win32.HRESULT),
-	GetSegmentData: proc "system" (this: ^ID2D1SvgPathData, data: ^f32, dataCount: u32, startIndex: u32, _return: ^win32.HRESULT),
+	RemoveSegmentDataAtEnd: proc "system" (this: ^ID2D1SvgPathData, dataCount: u32) -> win32.HRESULT,
+	UpdateSegmentData: proc "system" (this: ^ID2D1SvgPathData, data: ^f32, dataCount: u32, startIndex: u32) -> win32.HRESULT,
+	GetSegmentData: proc "system" (this: ^ID2D1SvgPathData, data: ^f32, dataCount: u32, startIndex: u32) -> win32.HRESULT,
 	GetSegmentDataCount: proc "system" (this: ^ID2D1SvgPathData) -> u32,
-	RemoveCommandsAtEnd: proc "system" (this: ^ID2D1SvgPathData, commandsCount: u32, _return: ^win32.HRESULT),
-	UpdateCommands: proc "system" (this: ^ID2D1SvgPathData, commands: ^D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32, _return: ^win32.HRESULT),
-	GetCommands: proc "system" (this: ^ID2D1SvgPathData, commands: ^D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32, _return: ^win32.HRESULT),
+	RemoveCommandsAtEnd: proc "system" (this: ^ID2D1SvgPathData, commandsCount: u32) -> win32.HRESULT,
+	UpdateCommands: proc "system" (this: ^ID2D1SvgPathData, commands: ^D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32) -> win32.HRESULT,
+	GetCommands: proc "system" (this: ^ID2D1SvgPathData, commands: ^D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32) -> win32.HRESULT,
 	GetCommandsCount: proc "system" (this: ^ID2D1SvgPathData) -> u32,
-	CreatePathGeometry: proc "system" (this: ^ID2D1SvgPathData, fillMode: D2D1_FILL_MODE, pathGeometry: ^^ID2D1PathGeometry1, _return: ^win32.HRESULT),
+	CreatePathGeometry: proc "system" (this: ^ID2D1SvgPathData, fillMode: D2D1_FILL_MODE, pathGeometry: ^^ID2D1PathGeometry1) -> win32.HRESULT,
 }
 
 ID2D1SvgPointCollection_UUID := &win32.IID{0x9dbe4c0d, 0x3572, 0x4dd9, {0x98, 0x25, 0x55, 0x30, 0x81, 0x3b, 0xb7, 0x12}}
@@ -4509,9 +4509,9 @@ ID2D1SvgPointCollection :: struct #raw_union {
 }
 ID2D1SvgPointCollection_VTable :: struct {
 	using id2d1svgattribute_vtable: ID2D1SvgAttribute_VTable,
-	RemovePointsAtEnd: proc "system" (this: ^ID2D1SvgPointCollection, pointsCount: u32, _return: ^win32.HRESULT),
-	UpdatePoints: proc "system" (this: ^ID2D1SvgPointCollection, points: ^D2D_POINT_2F, pointsCount: u32, startIndex: u32, _return: ^win32.HRESULT),
-	GetPoints: proc "system" (this: ^ID2D1SvgPointCollection, points: ^D2D_POINT_2F, pointsCount: u32, startIndex: u32, _return: ^win32.HRESULT),
+	RemovePointsAtEnd: proc "system" (this: ^ID2D1SvgPointCollection, pointsCount: u32) -> win32.HRESULT,
+	UpdatePoints: proc "system" (this: ^ID2D1SvgPointCollection, points: ^D2D_POINT_2F, pointsCount: u32, startIndex: u32) -> win32.HRESULT,
+	GetPoints: proc "system" (this: ^ID2D1SvgPointCollection, points: ^D2D_POINT_2F, pointsCount: u32, startIndex: u32) -> win32.HRESULT,
 	GetPointsCount: proc "system" (this: ^ID2D1SvgPointCollection) -> u32,
 }
 
@@ -4522,11 +4522,11 @@ ID2D1SvgStrokeDashArray :: struct #raw_union {
 }
 ID2D1SvgStrokeDashArray_VTable :: struct {
 	using id2d1svgattribute_vtable: ID2D1SvgAttribute_VTable,
-	RemoveDashesAtEnd: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashesCount: u32, _return: ^win32.HRESULT),
-	UpdateDashes: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32, _return: ^win32.HRESULT),
-	UpdateDashes1: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^f32, dashesCount: u32, startIndex: u32, _return: ^win32.HRESULT),
-	GetDashes: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32, _return: ^win32.HRESULT),
-	GetDashes1: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^f32, dashesCount: u32, startIndex: u32, _return: ^win32.HRESULT),
+	RemoveDashesAtEnd: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashesCount: u32) -> win32.HRESULT,
+	UpdateDashes: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) -> win32.HRESULT,
+	UpdateDashes1: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^f32, dashesCount: u32, startIndex: u32) -> win32.HRESULT,
+	GetDashes: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) -> win32.HRESULT,
+	GetDashes1: proc "system" (this: ^ID2D1SvgStrokeDashArray, dashes: ^f32, dashesCount: u32, startIndex: u32) -> win32.HRESULT,
 	GetDashesCount: proc "system" (this: ^ID2D1SvgStrokeDashArray) -> u32,
 }
 
@@ -4538,7 +4538,7 @@ ID2D1TessellationSink :: struct #raw_union {
 ID2D1TessellationSink_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	AddTriangles: proc "system" (this: ^ID2D1TessellationSink, triangles: ^D2D1_TRIANGLE, trianglesCount: u32),
-	Close: proc "system" (this: ^ID2D1TessellationSink, _return: ^win32.HRESULT),
+	Close: proc "system" (this: ^ID2D1TessellationSink) -> win32.HRESULT,
 }
 
 ID2D1Transform_UUID := &win32.IID{0xef1a287d, 0x342a, 0x4f76, {0x8f, 0xdb, 0xda, 0x0d, 0x6e, 0xa9, 0xf9, 0x2b}}
@@ -4548,9 +4548,9 @@ ID2D1Transform :: struct #raw_union {
 }
 ID2D1Transform_VTable :: struct {
 	using id2d1transformnode_vtable: ID2D1TransformNode_VTable,
-	MapOutputRectToInputRects: proc "system" (this: ^ID2D1Transform, outputRect: ^win32.RECT, inputRects: ^win32.RECT, inputRectsCount: u32, _return: ^win32.HRESULT),
-	MapInputRectsToOutputRect: proc "system" (this: ^ID2D1Transform, inputRects: ^win32.RECT, inputOpaqueSubRects: ^win32.RECT, inputRectCount: u32, outputRect: ^win32.RECT, outputOpaqueSubRect: ^win32.RECT, _return: ^win32.HRESULT),
-	MapInvalidRect: proc "system" (this: ^ID2D1Transform, inputIndex: u32, invalidInputRect: win32.RECT, invalidOutputRect: ^win32.RECT, _return: ^win32.HRESULT),
+	MapOutputRectToInputRects: proc "system" (this: ^ID2D1Transform, outputRect: ^win32.RECT, inputRects: ^win32.RECT, inputRectsCount: u32) -> win32.HRESULT,
+	MapInputRectsToOutputRect: proc "system" (this: ^ID2D1Transform, inputRects: ^win32.RECT, inputOpaqueSubRects: ^win32.RECT, inputRectCount: u32, outputRect: ^win32.RECT, outputOpaqueSubRect: ^win32.RECT) -> win32.HRESULT,
+	MapInvalidRect: proc "system" (this: ^ID2D1Transform, inputIndex: u32, invalidInputRect: win32.RECT, invalidOutputRect: ^win32.RECT) -> win32.HRESULT,
 }
 
 ID2D1TransformedGeometry_UUID := &win32.IID{0x2cd906bb, 0x12e2, 0x11dc, {0x9f, 0xed, 0x00, 0x11, 0x43, 0xa0, 0x55, 0xf9}}
@@ -4583,14 +4583,14 @@ ID2D1TransformGraph :: struct #raw_union {
 ID2D1TransformGraph_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetInputCount: proc "system" (this: ^ID2D1TransformGraph) -> u32,
-	SetSingleTransformNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode, _return: ^win32.HRESULT),
-	AddNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode, _return: ^win32.HRESULT),
-	RemoveNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode, _return: ^win32.HRESULT),
-	SetOutputNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode, _return: ^win32.HRESULT),
-	ConnectNode: proc "system" (this: ^ID2D1TransformGraph, fromNode: ^ID2D1TransformNode, toNode: ^ID2D1TransformNode, toNodeInputIndex: u32, _return: ^win32.HRESULT),
-	ConnectToEffectInput: proc "system" (this: ^ID2D1TransformGraph, toEffectInputIndex: u32, node: ^ID2D1TransformNode, toNodeInputIndex: u32, _return: ^win32.HRESULT),
+	SetSingleTransformNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode) -> win32.HRESULT,
+	AddNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode) -> win32.HRESULT,
+	RemoveNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode) -> win32.HRESULT,
+	SetOutputNode: proc "system" (this: ^ID2D1TransformGraph, node: ^ID2D1TransformNode) -> win32.HRESULT,
+	ConnectNode: proc "system" (this: ^ID2D1TransformGraph, fromNode: ^ID2D1TransformNode, toNode: ^ID2D1TransformNode, toNodeInputIndex: u32) -> win32.HRESULT,
+	ConnectToEffectInput: proc "system" (this: ^ID2D1TransformGraph, toEffectInputIndex: u32, node: ^ID2D1TransformNode, toNodeInputIndex: u32) -> win32.HRESULT,
 	Clear: proc "system" (this: ^ID2D1TransformGraph),
-	SetPassthroughGraph: proc "system" (this: ^ID2D1TransformGraph, effectInputIndex: u32, _return: ^win32.HRESULT),
+	SetPassthroughGraph: proc "system" (this: ^ID2D1TransformGraph, effectInputIndex: u32) -> win32.HRESULT,
 }
 
 ID2D1TransformNode_UUID := &win32.IID{0xb2efe1e7, 0x729f, 0x4102, {0x94, 0x9f, 0x50, 0x5f, 0xa2, 0x1b, 0xf6, 0x66}}
@@ -4610,8 +4610,8 @@ ID2D1VertexBuffer :: struct #raw_union {
 }
 ID2D1VertexBuffer_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	Map: proc "system" (this: ^ID2D1VertexBuffer, data: ^^u8, bufferSize: u32, _return: ^win32.HRESULT),
-	Unmap: proc "system" (this: ^ID2D1VertexBuffer, _return: ^win32.HRESULT),
+	Map: proc "system" (this: ^ID2D1VertexBuffer, data: ^^u8, bufferSize: u32) -> win32.HRESULT,
+	Unmap: proc "system" (this: ^ID2D1VertexBuffer) -> win32.HRESULT,
 }
 
 IDWriteAsyncResult_UUID := &win32.IID{0xce25f8fd, 0x863b, 0x4d13, {0x96, 0x51, 0xc1, 0xf8, 0x8d, 0xc7, 0x3f, 0xe2}}
@@ -4621,8 +4621,8 @@ IDWriteAsyncResult :: struct #raw_union {
 }
 IDWriteAsyncResult_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetWaitHandle: proc "system" (this: ^IDWriteAsyncResult, _return: ^win32.HANDLE),
-	GetResult: proc "system" (this: ^IDWriteAsyncResult, _return: ^win32.HRESULT),
+	GetWaitHandle: proc "system" (this: ^IDWriteAsyncResult) -> win32.HANDLE,
+	GetResult: proc "system" (this: ^IDWriteAsyncResult) -> win32.HRESULT,
 }
 
 IDWriteBitmapRenderTarget_UUID := &win32.IID{0x5e5a32a3, 0x8dff, 0x4773, {0x9f, 0xf6, 0x06, 0x96, 0xea, 0xb7, 0x72, 0x67}}
@@ -4632,14 +4632,14 @@ IDWriteBitmapRenderTarget :: struct #raw_union {
 }
 IDWriteBitmapRenderTarget_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	DrawGlyphRun: proc "system" (this: ^IDWriteBitmapRenderTarget, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ^DWRITE_GLYPH_RUN, renderingParams: ^IDWriteRenderingParams, textColor: win32.COLORREF, blackBoxRect: ^win32.RECT, _return: ^win32.HRESULT),
-	GetMemoryDC: proc "system" (this: ^IDWriteBitmapRenderTarget, _return: ^win32.HDC),
+	DrawGlyphRun: proc "system" (this: ^IDWriteBitmapRenderTarget, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ^DWRITE_GLYPH_RUN, renderingParams: ^IDWriteRenderingParams, textColor: win32.COLORREF, blackBoxRect: ^win32.RECT) -> win32.HRESULT,
+	GetMemoryDC: proc "system" (this: ^IDWriteBitmapRenderTarget) -> win32.HDC,
 	GetPixelsPerDip: proc "system" (this: ^IDWriteBitmapRenderTarget) -> f32,
-	SetPixelsPerDip: proc "system" (this: ^IDWriteBitmapRenderTarget, pixelsPerDip: f32, _return: ^win32.HRESULT),
-	GetCurrentTransform: proc "system" (this: ^IDWriteBitmapRenderTarget, transform: ^DWRITE_MATRIX, _return: ^win32.HRESULT),
-	SetCurrentTransform: proc "system" (this: ^IDWriteBitmapRenderTarget, transform: ^DWRITE_MATRIX, _return: ^win32.HRESULT),
-	GetSize: proc "system" (this: ^IDWriteBitmapRenderTarget, size: ^win32.SIZE, _return: ^win32.HRESULT),
-	Resize: proc "system" (this: ^IDWriteBitmapRenderTarget, width: u32, height: u32, _return: ^win32.HRESULT),
+	SetPixelsPerDip: proc "system" (this: ^IDWriteBitmapRenderTarget, pixelsPerDip: f32) -> win32.HRESULT,
+	GetCurrentTransform: proc "system" (this: ^IDWriteBitmapRenderTarget, transform: ^DWRITE_MATRIX) -> win32.HRESULT,
+	SetCurrentTransform: proc "system" (this: ^IDWriteBitmapRenderTarget, transform: ^DWRITE_MATRIX) -> win32.HRESULT,
+	GetSize: proc "system" (this: ^IDWriteBitmapRenderTarget, size: ^win32.SIZE) -> win32.HRESULT,
+	Resize: proc "system" (this: ^IDWriteBitmapRenderTarget, width: u32, height: u32) -> win32.HRESULT,
 }
 
 IDWriteBitmapRenderTarget1_UUID := &win32.IID{0x791e8298, 0x3ef3, 0x4230, {0x98, 0x80, 0xc9, 0xbd, 0xec, 0xc4, 0x20, 0x64}}
@@ -4650,7 +4650,7 @@ IDWriteBitmapRenderTarget1 :: struct #raw_union {
 IDWriteBitmapRenderTarget1_VTable :: struct {
 	using idwritebitmaprendertarget_vtable: IDWriteBitmapRenderTarget_VTable,
 	GetTextAntialiasMode: proc "system" (this: ^IDWriteBitmapRenderTarget1) -> DWRITE_TEXT_ANTIALIAS_MODE,
-	SetTextAntialiasMode: proc "system" (this: ^IDWriteBitmapRenderTarget1, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, _return: ^win32.HRESULT),
+	SetTextAntialiasMode: proc "system" (this: ^IDWriteBitmapRenderTarget1, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE) -> win32.HRESULT,
 }
 
 IDWriteColorGlyphRunEnumerator_UUID := &win32.IID{0xd31fbe17, 0xf157, 0x41a2, {0x8d, 0x24, 0xcb, 0x77, 0x9e, 0x05, 0x60, 0xe8}}
@@ -4660,8 +4660,8 @@ IDWriteColorGlyphRunEnumerator :: struct #raw_union {
 }
 IDWriteColorGlyphRunEnumerator_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	MoveNext: proc "system" (this: ^IDWriteColorGlyphRunEnumerator, hasRun: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetCurrentRun: proc "system" (this: ^IDWriteColorGlyphRunEnumerator, colorGlyphRun: ^^DWRITE_COLOR_GLYPH_RUN, _return: ^win32.HRESULT),
+	MoveNext: proc "system" (this: ^IDWriteColorGlyphRunEnumerator, hasRun: ^win32.BOOL) -> win32.HRESULT,
+	GetCurrentRun: proc "system" (this: ^IDWriteColorGlyphRunEnumerator, colorGlyphRun: ^^DWRITE_COLOR_GLYPH_RUN) -> win32.HRESULT,
 }
 
 IDWriteColorGlyphRunEnumerator1_UUID := &win32.IID{0x7c5f86da, 0xc7a1, 0x4f05, {0xb8, 0xe1, 0x55, 0xa1, 0x79, 0xfe, 0x5a, 0x35}}
@@ -4671,7 +4671,7 @@ IDWriteColorGlyphRunEnumerator1 :: struct #raw_union {
 }
 IDWriteColorGlyphRunEnumerator1_VTable :: struct {
 	using idwritecolorglyphrunenumerator_vtable: IDWriteColorGlyphRunEnumerator_VTable,
-	GetCurrentRun1: proc "system" (this: ^IDWriteColorGlyphRunEnumerator1, colorGlyphRun: ^^DWRITE_COLOR_GLYPH_RUN1, _return: ^win32.HRESULT),
+	GetCurrentRun1: proc "system" (this: ^IDWriteColorGlyphRunEnumerator1, colorGlyphRun: ^^DWRITE_COLOR_GLYPH_RUN1) -> win32.HRESULT,
 }
 
 IDWriteFactory_UUID := &win32.IID{0xb859ee5a, 0xd838, 0x4b5b, {0xa2, 0xe8, 0x1a, 0xdc, 0x7d, 0x93, 0xdb, 0x48}}
@@ -4681,27 +4681,27 @@ IDWriteFactory :: struct #raw_union {
 }
 IDWriteFactory_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetSystemFontCollection: proc "system" (this: ^IDWriteFactory, fontCollection: ^^IDWriteFontCollection, checkForUpdates: win32.BOOL, _return: ^win32.HRESULT),
-	CreateCustomFontCollection: proc "system" (this: ^IDWriteFactory, collectionLoader: ^IDWriteFontCollectionLoader, collectionKey: rawptr, collectionKeySize: u32, fontCollection: ^^IDWriteFontCollection, _return: ^win32.HRESULT),
-	RegisterFontCollectionLoader: proc "system" (this: ^IDWriteFactory, fontCollectionLoader: ^IDWriteFontCollectionLoader, _return: ^win32.HRESULT),
-	UnregisterFontCollectionLoader: proc "system" (this: ^IDWriteFactory, fontCollectionLoader: ^IDWriteFontCollectionLoader, _return: ^win32.HRESULT),
-	CreateFontFileReference: proc "system" (this: ^IDWriteFactory, filePath: ^win32.WCHAR, lastWriteTime: ^win32.FILETIME, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
-	CreateCustomFontFileReference: proc "system" (this: ^IDWriteFactory, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, fontFileLoader: ^IDWriteFontFileLoader, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
-	CreateFontFace: proc "system" (this: ^IDWriteFactory, fontFaceType: DWRITE_FONT_FACE_TYPE, numberOfFiles: u32, fontFiles: ^^IDWriteFontFile, faceIndex: u32, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ^^IDWriteFontFace, _return: ^win32.HRESULT),
-	CreateRenderingParams: proc "system" (this: ^IDWriteFactory, renderingParams: ^^IDWriteRenderingParams, _return: ^win32.HRESULT),
-	CreateMonitorRenderingParams: proc "system" (this: ^IDWriteFactory, monitor: win32.HMONITOR, renderingParams: ^^IDWriteRenderingParams, _return: ^win32.HRESULT),
-	CreateCustomRenderingParams: proc "system" (this: ^IDWriteFactory, gamma: f32, enhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ^^IDWriteRenderingParams, _return: ^win32.HRESULT),
-	RegisterFontFileLoader: proc "system" (this: ^IDWriteFactory, fontFileLoader: ^IDWriteFontFileLoader, _return: ^win32.HRESULT),
-	UnregisterFontFileLoader: proc "system" (this: ^IDWriteFactory, fontFileLoader: ^IDWriteFontFileLoader, _return: ^win32.HRESULT),
-	CreateTextFormat: proc "system" (this: ^IDWriteFactory, fontFamilyName: ^win32.WCHAR, fontCollection: ^IDWriteFontCollection, fontWeight: DWRITE_FONT_WEIGHT, fontStyle: DWRITE_FONT_STYLE, fontStretch: DWRITE_FONT_STRETCH, fontSize: f32, localeName: ^win32.WCHAR, textFormat: ^^IDWriteTextFormat, _return: ^win32.HRESULT),
-	CreateTypography: proc "system" (this: ^IDWriteFactory, typography: ^^IDWriteTypography, _return: ^win32.HRESULT),
-	GetGdiInterop: proc "system" (this: ^IDWriteFactory, gdiInterop: ^^IDWriteGdiInterop, _return: ^win32.HRESULT),
-	CreateTextLayout: proc "system" (this: ^IDWriteFactory, _string: ^win32.WCHAR, stringLength: u32, textFormat: ^IDWriteTextFormat, maxWidth: f32, maxHeight: f32, textLayout: ^^IDWriteTextLayout, _return: ^win32.HRESULT),
-	CreateGdiCompatibleTextLayout: proc "system" (this: ^IDWriteFactory, _string: ^win32.WCHAR, stringLength: u32, textFormat: ^IDWriteTextFormat, layoutWidth: f32, layoutHeight: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, textLayout: ^^IDWriteTextLayout, _return: ^win32.HRESULT),
-	CreateEllipsisTrimmingSign: proc "system" (this: ^IDWriteFactory, textFormat: ^IDWriteTextFormat, trimmingSign: ^^IDWriteInlineObject, _return: ^win32.HRESULT),
-	CreateTextAnalyzer: proc "system" (this: ^IDWriteFactory, textAnalyzer: ^^IDWriteTextAnalyzer, _return: ^win32.HRESULT),
-	CreateNumberSubstitution: proc "system" (this: ^IDWriteFactory, substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD, localeName: ^win32.WCHAR, ignoreUserOverride: win32.BOOL, numberSubstitution: ^^IDWriteNumberSubstitution, _return: ^win32.HRESULT),
-	CreateGlyphRunAnalysis: proc "system" (this: ^IDWriteFactory, glyphRun: ^DWRITE_GLYPH_RUN, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ^^IDWriteGlyphRunAnalysis, _return: ^win32.HRESULT),
+	GetSystemFontCollection: proc "system" (this: ^IDWriteFactory, fontCollection: ^^IDWriteFontCollection, checkForUpdates: win32.BOOL) -> win32.HRESULT,
+	CreateCustomFontCollection: proc "system" (this: ^IDWriteFactory, collectionLoader: ^IDWriteFontCollectionLoader, collectionKey: rawptr, collectionKeySize: u32, fontCollection: ^^IDWriteFontCollection) -> win32.HRESULT,
+	RegisterFontCollectionLoader: proc "system" (this: ^IDWriteFactory, fontCollectionLoader: ^IDWriteFontCollectionLoader) -> win32.HRESULT,
+	UnregisterFontCollectionLoader: proc "system" (this: ^IDWriteFactory, fontCollectionLoader: ^IDWriteFontCollectionLoader) -> win32.HRESULT,
+	CreateFontFileReference: proc "system" (this: ^IDWriteFactory, filePath: ^win32.WCHAR, lastWriteTime: ^win32.FILETIME, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
+	CreateCustomFontFileReference: proc "system" (this: ^IDWriteFactory, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, fontFileLoader: ^IDWriteFontFileLoader, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
+	CreateFontFace: proc "system" (this: ^IDWriteFactory, fontFaceType: DWRITE_FONT_FACE_TYPE, numberOfFiles: u32, fontFiles: ^^IDWriteFontFile, faceIndex: u32, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ^^IDWriteFontFace) -> win32.HRESULT,
+	CreateRenderingParams: proc "system" (this: ^IDWriteFactory, renderingParams: ^^IDWriteRenderingParams) -> win32.HRESULT,
+	CreateMonitorRenderingParams: proc "system" (this: ^IDWriteFactory, monitor: win32.HMONITOR, renderingParams: ^^IDWriteRenderingParams) -> win32.HRESULT,
+	CreateCustomRenderingParams: proc "system" (this: ^IDWriteFactory, gamma: f32, enhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ^^IDWriteRenderingParams) -> win32.HRESULT,
+	RegisterFontFileLoader: proc "system" (this: ^IDWriteFactory, fontFileLoader: ^IDWriteFontFileLoader) -> win32.HRESULT,
+	UnregisterFontFileLoader: proc "system" (this: ^IDWriteFactory, fontFileLoader: ^IDWriteFontFileLoader) -> win32.HRESULT,
+	CreateTextFormat: proc "system" (this: ^IDWriteFactory, fontFamilyName: ^win32.WCHAR, fontCollection: ^IDWriteFontCollection, fontWeight: DWRITE_FONT_WEIGHT, fontStyle: DWRITE_FONT_STYLE, fontStretch: DWRITE_FONT_STRETCH, fontSize: f32, localeName: ^win32.WCHAR, textFormat: ^^IDWriteTextFormat) -> win32.HRESULT,
+	CreateTypography: proc "system" (this: ^IDWriteFactory, typography: ^^IDWriteTypography) -> win32.HRESULT,
+	GetGdiInterop: proc "system" (this: ^IDWriteFactory, gdiInterop: ^^IDWriteGdiInterop) -> win32.HRESULT,
+	CreateTextLayout: proc "system" (this: ^IDWriteFactory, _string: ^win32.WCHAR, stringLength: u32, textFormat: ^IDWriteTextFormat, maxWidth: f32, maxHeight: f32, textLayout: ^^IDWriteTextLayout) -> win32.HRESULT,
+	CreateGdiCompatibleTextLayout: proc "system" (this: ^IDWriteFactory, _string: ^win32.WCHAR, stringLength: u32, textFormat: ^IDWriteTextFormat, layoutWidth: f32, layoutHeight: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, textLayout: ^^IDWriteTextLayout) -> win32.HRESULT,
+	CreateEllipsisTrimmingSign: proc "system" (this: ^IDWriteFactory, textFormat: ^IDWriteTextFormat, trimmingSign: ^^IDWriteInlineObject) -> win32.HRESULT,
+	CreateTextAnalyzer: proc "system" (this: ^IDWriteFactory, textAnalyzer: ^^IDWriteTextAnalyzer) -> win32.HRESULT,
+	CreateNumberSubstitution: proc "system" (this: ^IDWriteFactory, substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD, localeName: ^win32.WCHAR, ignoreUserOverride: win32.BOOL, numberSubstitution: ^^IDWriteNumberSubstitution) -> win32.HRESULT,
+	CreateGlyphRunAnalysis: proc "system" (this: ^IDWriteFactory, glyphRun: ^DWRITE_GLYPH_RUN, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ^^IDWriteGlyphRunAnalysis) -> win32.HRESULT,
 }
 
 IDWriteFactory1_UUID := &win32.IID{0x30572f99, 0xdac6, 0x41db, {0xa1, 0x6e, 0x04, 0x86, 0x30, 0x7e, 0x60, 0x6a}}
@@ -4711,8 +4711,8 @@ IDWriteFactory1 :: struct #raw_union {
 }
 IDWriteFactory1_VTable :: struct {
 	using idwritefactory_vtable: IDWriteFactory_VTable,
-	GetEudcFontCollection: proc "system" (this: ^IDWriteFactory1, fontCollection: ^^IDWriteFontCollection, checkForUpdates: win32.BOOL, _return: ^win32.HRESULT),
-	CreateCustomRenderingParams1: proc "system" (this: ^IDWriteFactory1, gamma: f32, enhancedContrast: f32, enhancedContrastGrayscale: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ^^IDWriteRenderingParams1, _return: ^win32.HRESULT),
+	GetEudcFontCollection: proc "system" (this: ^IDWriteFactory1, fontCollection: ^^IDWriteFontCollection, checkForUpdates: win32.BOOL) -> win32.HRESULT,
+	CreateCustomRenderingParams1: proc "system" (this: ^IDWriteFactory1, gamma: f32, enhancedContrast: f32, enhancedContrastGrayscale: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, renderingParams: ^^IDWriteRenderingParams1) -> win32.HRESULT,
 }
 
 IDWriteFactory2_UUID := &win32.IID{0x0439fc60, 0xca44, 0x4994, {0x8d, 0xee, 0x3a, 0x9a, 0xf7, 0xb7, 0x32, 0xec}}
@@ -4722,11 +4722,11 @@ IDWriteFactory2 :: struct #raw_union {
 }
 IDWriteFactory2_VTable :: struct {
 	using idwritefactory1_vtable: IDWriteFactory1_VTable,
-	GetSystemFontFallback: proc "system" (this: ^IDWriteFactory2, fontFallback: ^^IDWriteFontFallback, _return: ^win32.HRESULT),
-	CreateFontFallbackBuilder: proc "system" (this: ^IDWriteFactory2, fontFallbackBuilder: ^^IDWriteFontFallbackBuilder, _return: ^win32.HRESULT),
-	TranslateColorGlyphRun: proc "system" (this: ^IDWriteFactory2, baselineOriginX: f32, baselineOriginY: f32, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, measuringMode: DWRITE_MEASURING_MODE, worldToDeviceTransform: ^DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ^^IDWriteColorGlyphRunEnumerator, _return: ^win32.HRESULT),
-	CreateCustomRenderingParams2: proc "system" (this: ^IDWriteFactory2, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ^^IDWriteRenderingParams2, _return: ^win32.HRESULT),
-	CreateGlyphRunAnalysis1: proc "system" (this: ^IDWriteFactory2, glyphRun: ^DWRITE_GLYPH_RUN, transform: ^DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ^^IDWriteGlyphRunAnalysis, _return: ^win32.HRESULT),
+	GetSystemFontFallback: proc "system" (this: ^IDWriteFactory2, fontFallback: ^^IDWriteFontFallback) -> win32.HRESULT,
+	CreateFontFallbackBuilder: proc "system" (this: ^IDWriteFactory2, fontFallbackBuilder: ^^IDWriteFontFallbackBuilder) -> win32.HRESULT,
+	TranslateColorGlyphRun: proc "system" (this: ^IDWriteFactory2, baselineOriginX: f32, baselineOriginY: f32, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, measuringMode: DWRITE_MEASURING_MODE, worldToDeviceTransform: ^DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ^^IDWriteColorGlyphRunEnumerator) -> win32.HRESULT,
+	CreateCustomRenderingParams2: proc "system" (this: ^IDWriteFactory2, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ^^IDWriteRenderingParams2) -> win32.HRESULT,
+	CreateGlyphRunAnalysis1: proc "system" (this: ^IDWriteFactory2, glyphRun: ^DWRITE_GLYPH_RUN, transform: ^DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ^^IDWriteGlyphRunAnalysis) -> win32.HRESULT,
 }
 
 IDWriteFactory3_UUID := &win32.IID{0x9a1b41c3, 0xd3bb, 0x466a, {0x87, 0xfc, 0xfe, 0x67, 0x55, 0x6a, 0x3b, 0x65}}
@@ -4736,15 +4736,15 @@ IDWriteFactory3 :: struct #raw_union {
 }
 IDWriteFactory3_VTable :: struct {
 	using idwritefactory2_vtable: IDWriteFactory2_VTable,
-	CreateGlyphRunAnalysis2: proc "system" (this: ^IDWriteFactory3, glyphRun: ^DWRITE_GLYPH_RUN, transform: ^DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE1, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ^^IDWriteGlyphRunAnalysis, _return: ^win32.HRESULT),
-	CreateCustomRenderingParams3: proc "system" (this: ^IDWriteFactory3, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE1, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ^^IDWriteRenderingParams3, _return: ^win32.HRESULT),
-	CreateFontFaceReference: proc "system" (this: ^IDWriteFactory3, fontFile: ^IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
-	CreateFontFaceReference1: proc "system" (this: ^IDWriteFactory3, filePath: ^win32.WCHAR, lastWriteTime: ^win32.FILETIME, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
-	GetSystemFontSet: proc "system" (this: ^IDWriteFactory3, fontSet: ^^IDWriteFontSet, _return: ^win32.HRESULT),
-	CreateFontSetBuilder: proc "system" (this: ^IDWriteFactory3, fontSetBuilder: ^^IDWriteFontSetBuilder, _return: ^win32.HRESULT),
-	CreateFontCollectionFromFontSet: proc "system" (this: ^IDWriteFactory3, fontSet: ^IDWriteFontSet, fontCollection: ^^IDWriteFontCollection1, _return: ^win32.HRESULT),
-	GetSystemFontCollection1: proc "system" (this: ^IDWriteFactory3, includeDownloadableFonts: win32.BOOL, fontCollection: ^^IDWriteFontCollection1, checkForUpdates: win32.BOOL, _return: ^win32.HRESULT),
-	GetFontDownloadQueue: proc "system" (this: ^IDWriteFactory3, fontDownloadQueue: ^^IDWriteFontDownloadQueue, _return: ^win32.HRESULT),
+	CreateGlyphRunAnalysis2: proc "system" (this: ^IDWriteFactory3, glyphRun: ^DWRITE_GLYPH_RUN, transform: ^DWRITE_MATRIX, renderingMode: DWRITE_RENDERING_MODE1, measuringMode: DWRITE_MEASURING_MODE, gridFitMode: DWRITE_GRID_FIT_MODE, antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE, baselineOriginX: f32, baselineOriginY: f32, glyphRunAnalysis: ^^IDWriteGlyphRunAnalysis) -> win32.HRESULT,
+	CreateCustomRenderingParams3: proc "system" (this: ^IDWriteFactory3, gamma: f32, enhancedContrast: f32, grayscaleEnhancedContrast: f32, clearTypeLevel: f32, pixelGeometry: DWRITE_PIXEL_GEOMETRY, renderingMode: DWRITE_RENDERING_MODE1, gridFitMode: DWRITE_GRID_FIT_MODE, renderingParams: ^^IDWriteRenderingParams3) -> win32.HRESULT,
+	CreateFontFaceReference: proc "system" (this: ^IDWriteFactory3, fontFile: ^IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
+	CreateFontFaceReference1: proc "system" (this: ^IDWriteFactory3, filePath: ^win32.WCHAR, lastWriteTime: ^win32.FILETIME, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
+	GetSystemFontSet: proc "system" (this: ^IDWriteFactory3, fontSet: ^^IDWriteFontSet) -> win32.HRESULT,
+	CreateFontSetBuilder: proc "system" (this: ^IDWriteFactory3, fontSetBuilder: ^^IDWriteFontSetBuilder) -> win32.HRESULT,
+	CreateFontCollectionFromFontSet: proc "system" (this: ^IDWriteFactory3, fontSet: ^IDWriteFontSet, fontCollection: ^^IDWriteFontCollection1) -> win32.HRESULT,
+	GetSystemFontCollection1: proc "system" (this: ^IDWriteFactory3, includeDownloadableFonts: win32.BOOL, fontCollection: ^^IDWriteFontCollection1, checkForUpdates: win32.BOOL) -> win32.HRESULT,
+	GetFontDownloadQueue: proc "system" (this: ^IDWriteFactory3, fontDownloadQueue: ^^IDWriteFontDownloadQueue) -> win32.HRESULT,
 }
 
 IDWriteFactory4_UUID := &win32.IID{0x4b0b5bd3, 0x0797, 0x4549, {0x8a, 0xc5, 0xfe, 0x91, 0x5c, 0xc5, 0x38, 0x56}}
@@ -4754,9 +4754,9 @@ IDWriteFactory4 :: struct #raw_union {
 }
 IDWriteFactory4_VTable :: struct {
 	using idwritefactory3_vtable: IDWriteFactory3_VTable,
-	TranslateColorGlyphRun1: proc "system" (this: ^IDWriteFactory4, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS, measuringMode: DWRITE_MEASURING_MODE, worldAndDpiTransform: ^DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ^^IDWriteColorGlyphRunEnumerator1, _return: ^win32.HRESULT),
-	ComputeGlyphOrigins: proc "system" (this: ^IDWriteFactory4, glyphRun: ^DWRITE_GLYPH_RUN, baselineOrigin: D2D_POINT_2F, glyphOrigins: ^D2D_POINT_2F, _return: ^win32.HRESULT),
-	ComputeGlyphOrigins1: proc "system" (this: ^IDWriteFactory4, glyphRun: ^DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, baselineOrigin: D2D_POINT_2F, worldAndDpiTransform: ^DWRITE_MATRIX, glyphOrigins: ^D2D_POINT_2F, _return: ^win32.HRESULT),
+	TranslateColorGlyphRun1: proc "system" (this: ^IDWriteFactory4, baselineOrigin: D2D_POINT_2F, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS, measuringMode: DWRITE_MEASURING_MODE, worldAndDpiTransform: ^DWRITE_MATRIX, colorPaletteIndex: u32, colorLayers: ^^IDWriteColorGlyphRunEnumerator1) -> win32.HRESULT,
+	ComputeGlyphOrigins: proc "system" (this: ^IDWriteFactory4, glyphRun: ^DWRITE_GLYPH_RUN, baselineOrigin: D2D_POINT_2F, glyphOrigins: ^D2D_POINT_2F) -> win32.HRESULT,
+	ComputeGlyphOrigins1: proc "system" (this: ^IDWriteFactory4, glyphRun: ^DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, baselineOrigin: D2D_POINT_2F, worldAndDpiTransform: ^DWRITE_MATRIX, glyphOrigins: ^D2D_POINT_2F) -> win32.HRESULT,
 }
 
 IDWriteFactory5_UUID := &win32.IID{0x958db99a, 0xbe2a, 0x4f09, {0xaf, 0x7d, 0x65, 0x18, 0x98, 0x03, 0xd1, 0xd3}}
@@ -4766,11 +4766,11 @@ IDWriteFactory5 :: struct #raw_union {
 }
 IDWriteFactory5_VTable :: struct {
 	using idwritefactory4_vtable: IDWriteFactory4_VTable,
-	CreateFontSetBuilder1: proc "system" (this: ^IDWriteFactory5, fontSetBuilder: ^^IDWriteFontSetBuilder1, _return: ^win32.HRESULT),
-	CreateInMemoryFontFileLoader: proc "system" (this: ^IDWriteFactory5, newLoader: ^^IDWriteInMemoryFontFileLoader, _return: ^win32.HRESULT),
-	CreateHttpFontFileLoader: proc "system" (this: ^IDWriteFactory5, referrerUrl: ^win32.WCHAR, extraHeaders: ^win32.WCHAR, newLoader: ^^IDWriteRemoteFontFileLoader, _return: ^win32.HRESULT),
+	CreateFontSetBuilder1: proc "system" (this: ^IDWriteFactory5, fontSetBuilder: ^^IDWriteFontSetBuilder1) -> win32.HRESULT,
+	CreateInMemoryFontFileLoader: proc "system" (this: ^IDWriteFactory5, newLoader: ^^IDWriteInMemoryFontFileLoader) -> win32.HRESULT,
+	CreateHttpFontFileLoader: proc "system" (this: ^IDWriteFactory5, referrerUrl: ^win32.WCHAR, extraHeaders: ^win32.WCHAR, newLoader: ^^IDWriteRemoteFontFileLoader) -> win32.HRESULT,
 	AnalyzeContainerType: proc "system" (this: ^IDWriteFactory5, fileData: rawptr, fileDataSize: u32) -> DWRITE_CONTAINER_TYPE,
-	UnpackFontFile: proc "system" (this: ^IDWriteFactory5, containerType: DWRITE_CONTAINER_TYPE, fileData: rawptr, fileDataSize: u32, unpackedFontStream: ^^IDWriteFontFileStream, _return: ^win32.HRESULT),
+	UnpackFontFile: proc "system" (this: ^IDWriteFactory5, containerType: DWRITE_CONTAINER_TYPE, fileData: rawptr, fileDataSize: u32, unpackedFontStream: ^^IDWriteFontFileStream) -> win32.HRESULT,
 }
 
 IDWriteFactory6_UUID := &win32.IID{0xf3744d80, 0x21f7, 0x42eb, {0xb3, 0x5d, 0x99, 0x5b, 0xc7, 0x2f, 0xc2, 0x23}}
@@ -4780,13 +4780,13 @@ IDWriteFactory6 :: struct #raw_union {
 }
 IDWriteFactory6_VTable :: struct {
 	using idwritefactory5_vtable: IDWriteFactory5_VTable,
-	CreateFontFaceReference2: proc "system" (this: ^IDWriteFactory6, fontFile: ^IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ^^IDWriteFontFaceReference1, _return: ^win32.HRESULT),
-	CreateFontResource: proc "system" (this: ^IDWriteFactory6, fontFile: ^IDWriteFontFile, faceIndex: u32, fontResource: ^^IDWriteFontResource, _return: ^win32.HRESULT),
-	GetSystemFontSet1: proc "system" (this: ^IDWriteFactory6, includeDownloadableFonts: win32.BOOL, fontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
-	GetSystemFontCollection2: proc "system" (this: ^IDWriteFactory6, includeDownloadableFonts: win32.BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ^^IDWriteFontCollection2, _return: ^win32.HRESULT),
-	CreateFontCollectionFromFontSet1: proc "system" (this: ^IDWriteFactory6, fontSet: ^IDWriteFontSet, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ^^IDWriteFontCollection2, _return: ^win32.HRESULT),
-	CreateFontSetBuilder2: proc "system" (this: ^IDWriteFactory6, fontSetBuilder: ^^IDWriteFontSetBuilder2, _return: ^win32.HRESULT),
-	CreateTextFormat1: proc "system" (this: ^IDWriteFactory6, fontFamilyName: ^win32.WCHAR, fontCollection: ^IDWriteFontCollection, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontSize: f32, localeName: ^win32.WCHAR, textFormat: ^^IDWriteTextFormat3, _return: ^win32.HRESULT),
+	CreateFontFaceReference2: proc "system" (this: ^IDWriteFactory6, fontFile: ^IDWriteFontFile, faceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ^^IDWriteFontFaceReference1) -> win32.HRESULT,
+	CreateFontResource: proc "system" (this: ^IDWriteFactory6, fontFile: ^IDWriteFontFile, faceIndex: u32, fontResource: ^^IDWriteFontResource) -> win32.HRESULT,
+	GetSystemFontSet1: proc "system" (this: ^IDWriteFactory6, includeDownloadableFonts: win32.BOOL, fontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
+	GetSystemFontCollection2: proc "system" (this: ^IDWriteFactory6, includeDownloadableFonts: win32.BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ^^IDWriteFontCollection2) -> win32.HRESULT,
+	CreateFontCollectionFromFontSet1: proc "system" (this: ^IDWriteFactory6, fontSet: ^IDWriteFontSet, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ^^IDWriteFontCollection2) -> win32.HRESULT,
+	CreateFontSetBuilder2: proc "system" (this: ^IDWriteFactory6, fontSetBuilder: ^^IDWriteFontSetBuilder2) -> win32.HRESULT,
+	CreateTextFormat1: proc "system" (this: ^IDWriteFactory6, fontFamilyName: ^win32.WCHAR, fontCollection: ^IDWriteFontCollection, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontSize: f32, localeName: ^win32.WCHAR, textFormat: ^^IDWriteTextFormat3) -> win32.HRESULT,
 }
 
 IDWriteFactory7_UUID := &win32.IID{0x35d0e0b3, 0x9076, 0x4d2e, {0xa0, 0x16, 0xa9, 0x1b, 0x56, 0x8a, 0x06, 0xb4}}
@@ -4796,8 +4796,8 @@ IDWriteFactory7 :: struct #raw_union {
 }
 IDWriteFactory7_VTable :: struct {
 	using idwritefactory6_vtable: IDWriteFactory6_VTable,
-	GetSystemFontSet2: proc "system" (this: ^IDWriteFactory7, includeDownloadableFonts: win32.BOOL, fontSet: ^^IDWriteFontSet2, _return: ^win32.HRESULT),
-	GetSystemFontCollection3: proc "system" (this: ^IDWriteFactory7, includeDownloadableFonts: win32.BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ^^IDWriteFontCollection3, _return: ^win32.HRESULT),
+	GetSystemFontSet2: proc "system" (this: ^IDWriteFactory7, includeDownloadableFonts: win32.BOOL, fontSet: ^^IDWriteFontSet2) -> win32.HRESULT,
+	GetSystemFontCollection3: proc "system" (this: ^IDWriteFactory7, includeDownloadableFonts: win32.BOOL, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, fontCollection: ^^IDWriteFontCollection3) -> win32.HRESULT,
 }
 
 IDWriteFont_UUID := &win32.IID{0xacd16696, 0x8c14, 0x4f5d, {0x87, 0x7e, 0xfe, 0x3f, 0xc1, 0xd3, 0x27, 0x37}}
@@ -4807,17 +4807,17 @@ IDWriteFont :: struct #raw_union {
 }
 IDWriteFont_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetFontFamily: proc "system" (this: ^IDWriteFont, fontFamily: ^^IDWriteFontFamily, _return: ^win32.HRESULT),
+	GetFontFamily: proc "system" (this: ^IDWriteFont, fontFamily: ^^IDWriteFontFamily) -> win32.HRESULT,
 	GetWeight: proc "system" (this: ^IDWriteFont) -> DWRITE_FONT_WEIGHT,
 	GetStretch: proc "system" (this: ^IDWriteFont) -> DWRITE_FONT_STRETCH,
 	GetStyle: proc "system" (this: ^IDWriteFont) -> DWRITE_FONT_STYLE,
-	IsSymbolFont: proc "system" (this: ^IDWriteFont, _return: ^win32.BOOL),
-	GetFaceNames: proc "system" (this: ^IDWriteFont, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	GetInformationalStrings: proc "system" (this: ^IDWriteFont, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ^^IDWriteLocalizedStrings, exists: ^win32.BOOL, _return: ^win32.HRESULT),
+	IsSymbolFont: proc "system" (this: ^IDWriteFont) -> win32.BOOL,
+	GetFaceNames: proc "system" (this: ^IDWriteFont, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	GetInformationalStrings: proc "system" (this: ^IDWriteFont, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ^^IDWriteLocalizedStrings, exists: ^win32.BOOL) -> win32.HRESULT,
 	GetSimulations: proc "system" (this: ^IDWriteFont) -> DWRITE_FONT_SIMULATIONS,
 	GetMetrics: proc "system" (this: ^IDWriteFont, fontMetrics: ^DWRITE_FONT_METRICS),
-	HasCharacter: proc "system" (this: ^IDWriteFont, unicodeValue: u32, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	CreateFontFace: proc "system" (this: ^IDWriteFont, fontFace: ^^IDWriteFontFace, _return: ^win32.HRESULT),
+	HasCharacter: proc "system" (this: ^IDWriteFont, unicodeValue: u32, exists: ^win32.BOOL) -> win32.HRESULT,
+	CreateFontFace: proc "system" (this: ^IDWriteFont, fontFace: ^^IDWriteFontFace) -> win32.HRESULT,
 }
 
 IDWriteFont1_UUID := &win32.IID{0xacd16696, 0x8c14, 0x4f5d, {0x87, 0x7e, 0xfe, 0x3f, 0xc1, 0xd3, 0x27, 0x38}}
@@ -4829,8 +4829,8 @@ IDWriteFont1_VTable :: struct {
 	using idwritefont_vtable: IDWriteFont_VTable,
 	GetMetrics1: proc "system" (this: ^IDWriteFont1, fontMetrics: ^DWRITE_FONT_METRICS1),
 	GetPanose: proc "system" (this: ^IDWriteFont1, panose: ^DWRITE_PANOSE),
-	GetUnicodeRanges: proc "system" (this: ^IDWriteFont1, maxRangeCount: u32, unicodeRanges: ^DWRITE_UNICODE_RANGE, actualRangeCount: ^u32, _return: ^win32.HRESULT),
-	IsMonospacedFont: proc "system" (this: ^IDWriteFont1, _return: ^win32.BOOL),
+	GetUnicodeRanges: proc "system" (this: ^IDWriteFont1, maxRangeCount: u32, unicodeRanges: ^DWRITE_UNICODE_RANGE, actualRangeCount: ^u32) -> win32.HRESULT,
+	IsMonospacedFont: proc "system" (this: ^IDWriteFont1) -> win32.BOOL,
 }
 
 IDWriteFont2_UUID := &win32.IID{0x29748ed6, 0x8c9c, 0x4a6a, {0xbe, 0x0b, 0xd9, 0x12, 0xe8, 0x53, 0x89, 0x44}}
@@ -4840,7 +4840,7 @@ IDWriteFont2 :: struct #raw_union {
 }
 IDWriteFont2_VTable :: struct {
 	using idwritefont1_vtable: IDWriteFont1_VTable,
-	IsColorFont: proc "system" (this: ^IDWriteFont2, _return: ^win32.BOOL),
+	IsColorFont: proc "system" (this: ^IDWriteFont2) -> win32.BOOL,
 }
 
 IDWriteFont3_UUID := &win32.IID{0x29748ed6, 0x8c9c, 0x4a6a, {0xbe, 0x0b, 0xd9, 0x12, 0xe8, 0x53, 0x89, 0x44}}
@@ -4850,10 +4850,10 @@ IDWriteFont3 :: struct #raw_union {
 }
 IDWriteFont3_VTable :: struct {
 	using idwritefont2_vtable: IDWriteFont2_VTable,
-	CreateFontFace1: proc "system" (this: ^IDWriteFont3, fontFace: ^^IDWriteFontFace3, _return: ^win32.HRESULT),
-	Equals: proc "system" (this: ^IDWriteFont3, font: ^IDWriteFont, _return: ^win32.BOOL),
-	GetFontFaceReference: proc "system" (this: ^IDWriteFont3, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
-	HasCharacter1: proc "system" (this: ^IDWriteFont3, unicodeValue: u32, _return: ^win32.BOOL),
+	CreateFontFace1: proc "system" (this: ^IDWriteFont3, fontFace: ^^IDWriteFontFace3) -> win32.HRESULT,
+	Equals: proc "system" (this: ^IDWriteFont3, font: ^IDWriteFont) -> win32.BOOL,
+	GetFontFaceReference: proc "system" (this: ^IDWriteFont3, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
+	HasCharacter1: proc "system" (this: ^IDWriteFont3, unicodeValue: u32) -> win32.BOOL,
 	GetLocality: proc "system" (this: ^IDWriteFont3) -> DWRITE_LOCALITY,
 }
 
@@ -4865,9 +4865,9 @@ IDWriteFontCollection :: struct #raw_union {
 IDWriteFontCollection_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetFontFamilyCount: proc "system" (this: ^IDWriteFontCollection) -> u32,
-	GetFontFamily: proc "system" (this: ^IDWriteFontCollection, index: u32, fontFamily: ^^IDWriteFontFamily, _return: ^win32.HRESULT),
-	FindFamilyName: proc "system" (this: ^IDWriteFontCollection, familyName: ^win32.WCHAR, index: ^u32, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetFontFromFontFace: proc "system" (this: ^IDWriteFontCollection, fontFace: ^IDWriteFontFace, font: ^^IDWriteFont, _return: ^win32.HRESULT),
+	GetFontFamily: proc "system" (this: ^IDWriteFontCollection, index: u32, fontFamily: ^^IDWriteFontFamily) -> win32.HRESULT,
+	FindFamilyName: proc "system" (this: ^IDWriteFontCollection, familyName: ^win32.WCHAR, index: ^u32, exists: ^win32.BOOL) -> win32.HRESULT,
+	GetFontFromFontFace: proc "system" (this: ^IDWriteFontCollection, fontFace: ^IDWriteFontFace, font: ^^IDWriteFont) -> win32.HRESULT,
 }
 
 IDWriteFontCollection1_UUID := &win32.IID{0x53585141, 0xd9f8, 0x4095, {0x83, 0x21, 0xd7, 0x3c, 0xf6, 0xbd, 0x11, 0x6c}}
@@ -4877,8 +4877,8 @@ IDWriteFontCollection1 :: struct #raw_union {
 }
 IDWriteFontCollection1_VTable :: struct {
 	using idwritefontcollection_vtable: IDWriteFontCollection_VTable,
-	GetFontSet: proc "system" (this: ^IDWriteFontCollection1, fontSet: ^^IDWriteFontSet, _return: ^win32.HRESULT),
-	GetFontFamily1: proc "system" (this: ^IDWriteFontCollection1, index: u32, fontFamily: ^^IDWriteFontFamily1, _return: ^win32.HRESULT),
+	GetFontSet: proc "system" (this: ^IDWriteFontCollection1, fontSet: ^^IDWriteFontSet) -> win32.HRESULT,
+	GetFontFamily1: proc "system" (this: ^IDWriteFontCollection1, index: u32, fontFamily: ^^IDWriteFontFamily1) -> win32.HRESULT,
 }
 
 IDWriteFontCollection2_UUID := &win32.IID{0x514039c6, 0x4617, 0x4064, {0xbf, 0x8b, 0x92, 0xea, 0x83, 0xe5, 0x06, 0xe0}}
@@ -4888,10 +4888,10 @@ IDWriteFontCollection2 :: struct #raw_union {
 }
 IDWriteFontCollection2_VTable :: struct {
 	using idwritefontcollection1_vtable: IDWriteFontCollection1_VTable,
-	GetFontFamily2: proc "system" (this: ^IDWriteFontCollection2, index: u32, fontFamily: ^^IDWriteFontFamily2, _return: ^win32.HRESULT),
-	GetMatchingFonts: proc "system" (this: ^IDWriteFontCollection2, familyName: ^win32.WCHAR, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontList: ^^IDWriteFontList2, _return: ^win32.HRESULT),
+	GetFontFamily2: proc "system" (this: ^IDWriteFontCollection2, index: u32, fontFamily: ^^IDWriteFontFamily2) -> win32.HRESULT,
+	GetMatchingFonts: proc "system" (this: ^IDWriteFontCollection2, familyName: ^win32.WCHAR, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontList: ^^IDWriteFontList2) -> win32.HRESULT,
 	GetFontFamilyModel: proc "system" (this: ^IDWriteFontCollection2) -> DWRITE_FONT_FAMILY_MODEL,
-	GetFontSet1: proc "system" (this: ^IDWriteFontCollection2, fontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
+	GetFontSet1: proc "system" (this: ^IDWriteFontCollection2, fontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
 }
 
 IDWriteFontCollection3_UUID := &win32.IID{0xa4d055a6, 0xf9e3, 0x4e25, {0x93, 0xb7, 0x9e, 0x30, 0x9f, 0x3a, 0xf8, 0xe9}}
@@ -4901,7 +4901,7 @@ IDWriteFontCollection3 :: struct #raw_union {
 }
 IDWriteFontCollection3_VTable :: struct {
 	using idwritefontcollection2_vtable: IDWriteFontCollection2_VTable,
-	GetExpirationEvent: proc "system" (this: ^IDWriteFontCollection3, _return: ^win32.HANDLE),
+	GetExpirationEvent: proc "system" (this: ^IDWriteFontCollection3) -> win32.HANDLE,
 }
 
 IDWriteFontCollectionLoader_UUID := &win32.IID{0xcca920e4, 0x52f0, 0x492b, {0xbf, 0xa8, 0x29, 0xc7, 0x2e, 0xe0, 0xa4, 0x68}}
@@ -4911,7 +4911,7 @@ IDWriteFontCollectionLoader :: struct #raw_union {
 }
 IDWriteFontCollectionLoader_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	CreateEnumeratorFromKey: proc "system" (this: ^IDWriteFontCollectionLoader, factory: ^IDWriteFactory, collectionKey: rawptr, collectionKeySize: u32, fontFileEnumerator: ^^IDWriteFontFileEnumerator, _return: ^win32.HRESULT),
+	CreateEnumeratorFromKey: proc "system" (this: ^IDWriteFontCollectionLoader, factory: ^IDWriteFactory, collectionKey: rawptr, collectionKeySize: u32, fontFileEnumerator: ^^IDWriteFontFileEnumerator) -> win32.HRESULT,
 }
 
 IDWriteFontDownloadListener_UUID := &win32.IID{0xb06fe5b9, 0x43ec, 0x4393, {0x88, 0x1b, 0xdb, 0xe4, 0xdc, 0x72, 0xfd, 0xa7}}
@@ -4931,11 +4931,11 @@ IDWriteFontDownloadQueue :: struct #raw_union {
 }
 IDWriteFontDownloadQueue_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	AddListener: proc "system" (this: ^IDWriteFontDownloadQueue, listener: ^IDWriteFontDownloadListener, token: ^u32, _return: ^win32.HRESULT),
-	RemoveListener: proc "system" (this: ^IDWriteFontDownloadQueue, token: u32, _return: ^win32.HRESULT),
-	IsEmpty: proc "system" (this: ^IDWriteFontDownloadQueue, _return: ^win32.BOOL),
-	BeginDownload: proc "system" (this: ^IDWriteFontDownloadQueue, _context: ^win32.IUnknown, _return: ^win32.HRESULT),
-	CancelDownload: proc "system" (this: ^IDWriteFontDownloadQueue, _return: ^win32.HRESULT),
+	AddListener: proc "system" (this: ^IDWriteFontDownloadQueue, listener: ^IDWriteFontDownloadListener, token: ^u32) -> win32.HRESULT,
+	RemoveListener: proc "system" (this: ^IDWriteFontDownloadQueue, token: u32) -> win32.HRESULT,
+	IsEmpty: proc "system" (this: ^IDWriteFontDownloadQueue) -> win32.BOOL,
+	BeginDownload: proc "system" (this: ^IDWriteFontDownloadQueue, _context: ^win32.IUnknown) -> win32.HRESULT,
+	CancelDownload: proc "system" (this: ^IDWriteFontDownloadQueue) -> win32.HRESULT,
 	GetGenerationCount: proc "system" (this: ^IDWriteFontDownloadQueue) -> u64,
 }
 
@@ -4947,20 +4947,20 @@ IDWriteFontFace :: struct #raw_union {
 IDWriteFontFace_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetType: proc "system" (this: ^IDWriteFontFace) -> DWRITE_FONT_FACE_TYPE,
-	GetFiles: proc "system" (this: ^IDWriteFontFace, numberOfFiles: ^u32, fontFiles: ^^IDWriteFontFile, _return: ^win32.HRESULT),
+	GetFiles: proc "system" (this: ^IDWriteFontFace, numberOfFiles: ^u32, fontFiles: ^^IDWriteFontFile) -> win32.HRESULT,
 	GetIndex: proc "system" (this: ^IDWriteFontFace) -> u32,
 	GetSimulations: proc "system" (this: ^IDWriteFontFace) -> DWRITE_FONT_SIMULATIONS,
-	IsSymbolFont: proc "system" (this: ^IDWriteFontFace, _return: ^win32.BOOL),
+	IsSymbolFont: proc "system" (this: ^IDWriteFontFace) -> win32.BOOL,
 	GetMetrics: proc "system" (this: ^IDWriteFontFace, fontFaceMetrics: ^DWRITE_FONT_METRICS),
 	GetGlyphCount: proc "system" (this: ^IDWriteFontFace) -> u16,
-	GetDesignGlyphMetrics: proc "system" (this: ^IDWriteFontFace, glyphIndices: ^u16, glyphCount: u32, glyphMetrics: ^DWRITE_GLYPH_METRICS, isSideways: win32.BOOL, _return: ^win32.HRESULT),
-	GetGlyphIndices: proc "system" (this: ^IDWriteFontFace, codePoints: ^u32, codePointCount: u32, glyphIndices: ^u16, _return: ^win32.HRESULT),
-	TryGetFontTable: proc "system" (this: ^IDWriteFontFace, openTypeTableTag: u32, tableData: ^rawptr, tableSize: ^u32, tableContext: ^rawptr, exists: ^win32.BOOL, _return: ^win32.HRESULT),
+	GetDesignGlyphMetrics: proc "system" (this: ^IDWriteFontFace, glyphIndices: ^u16, glyphCount: u32, glyphMetrics: ^DWRITE_GLYPH_METRICS, isSideways: win32.BOOL) -> win32.HRESULT,
+	GetGlyphIndices: proc "system" (this: ^IDWriteFontFace, codePoints: ^u32, codePointCount: u32, glyphIndices: ^u16) -> win32.HRESULT,
+	TryGetFontTable: proc "system" (this: ^IDWriteFontFace, openTypeTableTag: u32, tableData: ^rawptr, tableSize: ^u32, tableContext: ^rawptr, exists: ^win32.BOOL) -> win32.HRESULT,
 	ReleaseFontTable: proc "system" (this: ^IDWriteFontFace, tableContext: rawptr),
-	GetGlyphRunOutline: proc "system" (this: ^IDWriteFontFace, emSize: f32, glyphIndices: ^u16, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, glyphCount: u32, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, geometrySink: ^ID2D1SimplifiedGeometrySink, _return: ^win32.HRESULT),
-	GetRecommendedRenderingMode: proc "system" (this: ^IDWriteFontFace, emSize: f32, pixelsPerDip: f32, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ^IDWriteRenderingParams, renderingMode: ^DWRITE_RENDERING_MODE, _return: ^win32.HRESULT),
-	GetGdiCompatibleMetrics: proc "system" (this: ^IDWriteFontFace, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, fontFaceMetrics: ^DWRITE_FONT_METRICS, _return: ^win32.HRESULT),
-	GetGdiCompatibleGlyphMetrics: proc "system" (this: ^IDWriteFontFace, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, glyphIndices: ^u16, glyphCount: u32, glyphMetrics: ^DWRITE_GLYPH_METRICS, isSideways: win32.BOOL, _return: ^win32.HRESULT),
+	GetGlyphRunOutline: proc "system" (this: ^IDWriteFontFace, emSize: f32, glyphIndices: ^u16, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, glyphCount: u32, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, geometrySink: ^ID2D1SimplifiedGeometrySink) -> win32.HRESULT,
+	GetRecommendedRenderingMode: proc "system" (this: ^IDWriteFontFace, emSize: f32, pixelsPerDip: f32, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ^IDWriteRenderingParams, renderingMode: ^DWRITE_RENDERING_MODE) -> win32.HRESULT,
+	GetGdiCompatibleMetrics: proc "system" (this: ^IDWriteFontFace, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, fontFaceMetrics: ^DWRITE_FONT_METRICS) -> win32.HRESULT,
+	GetGdiCompatibleGlyphMetrics: proc "system" (this: ^IDWriteFontFace, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, glyphIndices: ^u16, glyphCount: u32, glyphMetrics: ^DWRITE_GLYPH_METRICS, isSideways: win32.BOOL) -> win32.HRESULT,
 }
 
 IDWriteFontFace1_UUID := &win32.IID{0xa71efdb4, 0x9fdb, 0x4838, {0xad, 0x90, 0xcf, 0xc3, 0xbe, 0x8c, 0x3d, 0xaf}}
@@ -4971,17 +4971,17 @@ IDWriteFontFace1 :: struct #raw_union {
 IDWriteFontFace1_VTable :: struct {
 	using idwritefontface_vtable: IDWriteFontFace_VTable,
 	GetMetrics1: proc "system" (this: ^IDWriteFontFace1, fontMetrics: ^DWRITE_FONT_METRICS1),
-	GetGdiCompatibleMetrics1: proc "system" (this: ^IDWriteFontFace1, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, fontMetrics: ^DWRITE_FONT_METRICS1, _return: ^win32.HRESULT),
+	GetGdiCompatibleMetrics1: proc "system" (this: ^IDWriteFontFace1, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, fontMetrics: ^DWRITE_FONT_METRICS1) -> win32.HRESULT,
 	GetCaretMetrics: proc "system" (this: ^IDWriteFontFace1, caretMetrics: ^DWRITE_CARET_METRICS),
-	GetUnicodeRanges: proc "system" (this: ^IDWriteFontFace1, maxRangeCount: u32, unicodeRanges: ^DWRITE_UNICODE_RANGE, actualRangeCount: ^u32, _return: ^win32.HRESULT),
-	IsMonospacedFont: proc "system" (this: ^IDWriteFontFace1, _return: ^win32.BOOL),
-	GetDesignGlyphAdvances: proc "system" (this: ^IDWriteFontFace1, glyphCount: u32, glyphIndices: ^u16, glyphAdvances: ^i32, isSideways: win32.BOOL, _return: ^win32.HRESULT),
-	GetGdiCompatibleGlyphAdvances: proc "system" (this: ^IDWriteFontFace1, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, isSideways: win32.BOOL, glyphCount: u32, glyphIndices: ^u16, glyphAdvances: ^i32, _return: ^win32.HRESULT),
-	GetKerningPairAdjustments: proc "system" (this: ^IDWriteFontFace1, glyphCount: u32, glyphIndices: ^u16, glyphAdvanceAdjustments: ^i32, _return: ^win32.HRESULT),
-	HasKerningPairs: proc "system" (this: ^IDWriteFontFace1, _return: ^win32.BOOL),
-	GetRecommendedRenderingMode1: proc "system" (this: ^IDWriteFontFace1, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ^DWRITE_MATRIX, isSideways: win32.BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingMode: ^DWRITE_RENDERING_MODE, _return: ^win32.HRESULT),
-	GetVerticalGlyphVariants: proc "system" (this: ^IDWriteFontFace1, glyphCount: u32, nominalGlyphIndices: ^u16, verticalGlyphIndices: ^u16, _return: ^win32.HRESULT),
-	HasVerticalGlyphVariants: proc "system" (this: ^IDWriteFontFace1, _return: ^win32.BOOL),
+	GetUnicodeRanges: proc "system" (this: ^IDWriteFontFace1, maxRangeCount: u32, unicodeRanges: ^DWRITE_UNICODE_RANGE, actualRangeCount: ^u32) -> win32.HRESULT,
+	IsMonospacedFont: proc "system" (this: ^IDWriteFontFace1) -> win32.BOOL,
+	GetDesignGlyphAdvances: proc "system" (this: ^IDWriteFontFace1, glyphCount: u32, glyphIndices: ^u16, glyphAdvances: ^i32, isSideways: win32.BOOL) -> win32.HRESULT,
+	GetGdiCompatibleGlyphAdvances: proc "system" (this: ^IDWriteFontFace1, emSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, isSideways: win32.BOOL, glyphCount: u32, glyphIndices: ^u16, glyphAdvances: ^i32) -> win32.HRESULT,
+	GetKerningPairAdjustments: proc "system" (this: ^IDWriteFontFace1, glyphCount: u32, glyphIndices: ^u16, glyphAdvanceAdjustments: ^i32) -> win32.HRESULT,
+	HasKerningPairs: proc "system" (this: ^IDWriteFontFace1) -> win32.BOOL,
+	GetRecommendedRenderingMode1: proc "system" (this: ^IDWriteFontFace1, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ^DWRITE_MATRIX, isSideways: win32.BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingMode: ^DWRITE_RENDERING_MODE) -> win32.HRESULT,
+	GetVerticalGlyphVariants: proc "system" (this: ^IDWriteFontFace1, glyphCount: u32, nominalGlyphIndices: ^u16, verticalGlyphIndices: ^u16) -> win32.HRESULT,
+	HasVerticalGlyphVariants: proc "system" (this: ^IDWriteFontFace1) -> win32.BOOL,
 }
 
 IDWriteFontFace2_UUID := &win32.IID{0xd8b768ff, 0x64bc, 0x4e66, {0x98, 0x2b, 0xec, 0x8e, 0x87, 0xf6, 0x93, 0xf7}}
@@ -4991,11 +4991,11 @@ IDWriteFontFace2 :: struct #raw_union {
 }
 IDWriteFontFace2_VTable :: struct {
 	using idwritefontface1_vtable: IDWriteFontFace1_VTable,
-	IsColorFont: proc "system" (this: ^IDWriteFontFace2, _return: ^win32.BOOL),
+	IsColorFont: proc "system" (this: ^IDWriteFontFace2) -> win32.BOOL,
 	GetColorPaletteCount: proc "system" (this: ^IDWriteFontFace2) -> u32,
 	GetPaletteEntryCount: proc "system" (this: ^IDWriteFontFace2) -> u32,
-	GetPaletteEntries: proc "system" (this: ^IDWriteFontFace2, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: ^DWRITE_COLOR_F, _return: ^win32.HRESULT),
-	GetRecommendedRenderingMode2: proc "system" (this: ^IDWriteFontFace2, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ^DWRITE_MATRIX, isSideways: win32.BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ^IDWriteRenderingParams, renderingMode: ^DWRITE_RENDERING_MODE, gridFitMode: ^DWRITE_GRID_FIT_MODE, _return: ^win32.HRESULT),
+	GetPaletteEntries: proc "system" (this: ^IDWriteFontFace2, colorPaletteIndex: u32, firstEntryIndex: u32, entryCount: u32, paletteEntries: ^DWRITE_COLOR_F) -> win32.HRESULT,
+	GetRecommendedRenderingMode2: proc "system" (this: ^IDWriteFontFace2, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ^DWRITE_MATRIX, isSideways: win32.BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ^IDWriteRenderingParams, renderingMode: ^DWRITE_RENDERING_MODE, gridFitMode: ^DWRITE_GRID_FIT_MODE) -> win32.HRESULT,
 }
 
 IDWriteFontFace3_UUID := &win32.IID{0xd37d7598, 0x09be, 0x4222, {0xa2, 0x36, 0x20, 0x81, 0x34, 0x1c, 0xc1, 0xf2}}
@@ -5005,20 +5005,20 @@ IDWriteFontFace3 :: struct #raw_union {
 }
 IDWriteFontFace3_VTable :: struct {
 	using idwritefontface2_vtable: IDWriteFontFace2_VTable,
-	GetFontFaceReference: proc "system" (this: ^IDWriteFontFace3, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
+	GetFontFaceReference: proc "system" (this: ^IDWriteFontFace3, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
 	GetPanose: proc "system" (this: ^IDWriteFontFace3, panose: ^DWRITE_PANOSE),
 	GetWeight: proc "system" (this: ^IDWriteFontFace3) -> DWRITE_FONT_WEIGHT,
 	GetStretch: proc "system" (this: ^IDWriteFontFace3) -> DWRITE_FONT_STRETCH,
 	GetStyle: proc "system" (this: ^IDWriteFontFace3) -> DWRITE_FONT_STYLE,
-	GetFamilyNames: proc "system" (this: ^IDWriteFontFace3, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	GetFaceNames: proc "system" (this: ^IDWriteFontFace3, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	GetInformationalStrings: proc "system" (this: ^IDWriteFontFace3, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ^^IDWriteLocalizedStrings, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	HasCharacter: proc "system" (this: ^IDWriteFontFace3, unicodeValue: u32, _return: ^win32.BOOL),
-	GetRecommendedRenderingMode3: proc "system" (this: ^IDWriteFontFace3, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ^DWRITE_MATRIX, isSideways: win32.BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ^IDWriteRenderingParams, renderingMode: ^DWRITE_RENDERING_MODE1, gridFitMode: ^DWRITE_GRID_FIT_MODE, _return: ^win32.HRESULT),
-	IsCharacterLocal: proc "system" (this: ^IDWriteFontFace3, unicodeValue: u32, _return: ^win32.BOOL),
-	IsGlyphLocal: proc "system" (this: ^IDWriteFontFace3, glyphId: u16, _return: ^win32.BOOL),
-	AreCharactersLocal: proc "system" (this: ^IDWriteFontFace3, characters: ^win32.WCHAR, characterCount: u32, enqueueIfNotLocal: win32.BOOL, isLocal: ^win32.BOOL, _return: ^win32.HRESULT),
-	AreGlyphsLocal: proc "system" (this: ^IDWriteFontFace3, glyphIndices: ^u16, glyphCount: u32, enqueueIfNotLocal: win32.BOOL, isLocal: ^win32.BOOL, _return: ^win32.HRESULT),
+	GetFamilyNames: proc "system" (this: ^IDWriteFontFace3, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	GetFaceNames: proc "system" (this: ^IDWriteFontFace3, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	GetInformationalStrings: proc "system" (this: ^IDWriteFontFace3, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ^^IDWriteLocalizedStrings, exists: ^win32.BOOL) -> win32.HRESULT,
+	HasCharacter: proc "system" (this: ^IDWriteFontFace3, unicodeValue: u32) -> win32.BOOL,
+	GetRecommendedRenderingMode3: proc "system" (this: ^IDWriteFontFace3, fontEmSize: f32, dpiX: f32, dpiY: f32, transform: ^DWRITE_MATRIX, isSideways: win32.BOOL, outlineThreshold: DWRITE_OUTLINE_THRESHOLD, measuringMode: DWRITE_MEASURING_MODE, renderingParams: ^IDWriteRenderingParams, renderingMode: ^DWRITE_RENDERING_MODE1, gridFitMode: ^DWRITE_GRID_FIT_MODE) -> win32.HRESULT,
+	IsCharacterLocal: proc "system" (this: ^IDWriteFontFace3, unicodeValue: u32) -> win32.BOOL,
+	IsGlyphLocal: proc "system" (this: ^IDWriteFontFace3, glyphId: u16) -> win32.BOOL,
+	AreCharactersLocal: proc "system" (this: ^IDWriteFontFace3, characters: ^win32.WCHAR, characterCount: u32, enqueueIfNotLocal: win32.BOOL, isLocal: ^win32.BOOL) -> win32.HRESULT,
+	AreGlyphsLocal: proc "system" (this: ^IDWriteFontFace3, glyphIndices: ^u16, glyphCount: u32, enqueueIfNotLocal: win32.BOOL, isLocal: ^win32.BOOL) -> win32.HRESULT,
 }
 
 IDWriteFontFace4_UUID := &win32.IID{0x27f2a904, 0x4eb8, 0x441d, {0x96, 0x78, 0x05, 0x63, 0xf5, 0x3e, 0x3e, 0x2f}}
@@ -5028,9 +5028,9 @@ IDWriteFontFace4 :: struct #raw_union {
 }
 IDWriteFontFace4_VTable :: struct {
 	using idwritefontface3_vtable: IDWriteFontFace3_VTable,
-	GetGlyphImageFormats: proc "system" (this: ^IDWriteFontFace4, glyphId: u16, pixelsPerEmFirst: u32, pixelsPerEmLast: u32, glyphImageFormats: ^DWRITE_GLYPH_IMAGE_FORMATS, _return: ^win32.HRESULT),
+	GetGlyphImageFormats: proc "system" (this: ^IDWriteFontFace4, glyphId: u16, pixelsPerEmFirst: u32, pixelsPerEmLast: u32, glyphImageFormats: ^DWRITE_GLYPH_IMAGE_FORMATS) -> win32.HRESULT,
 	GetGlyphImageFormats1: proc "system" (this: ^IDWriteFontFace4) -> DWRITE_GLYPH_IMAGE_FORMATS,
-	GetGlyphImageData: proc "system" (this: ^IDWriteFontFace4, glyphId: u16, pixelsPerEm: u32, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphData: ^DWRITE_GLYPH_IMAGE_DATA, glyphDataContext: ^rawptr, _return: ^win32.HRESULT),
+	GetGlyphImageData: proc "system" (this: ^IDWriteFontFace4, glyphId: u16, pixelsPerEm: u32, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphData: ^DWRITE_GLYPH_IMAGE_DATA, glyphDataContext: ^rawptr) -> win32.HRESULT,
 	ReleaseGlyphImageData: proc "system" (this: ^IDWriteFontFace4, glyphDataContext: rawptr),
 }
 
@@ -5042,10 +5042,10 @@ IDWriteFontFace5 :: struct #raw_union {
 IDWriteFontFace5_VTable :: struct {
 	using idwritefontface4_vtable: IDWriteFontFace4_VTable,
 	GetFontAxisValueCount: proc "system" (this: ^IDWriteFontFace5) -> u32,
-	GetFontAxisValues: proc "system" (this: ^IDWriteFontFace5, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, _return: ^win32.HRESULT),
-	HasVariations: proc "system" (this: ^IDWriteFontFace5, _return: ^win32.BOOL),
-	GetFontResource: proc "system" (this: ^IDWriteFontFace5, fontResource: ^^IDWriteFontResource, _return: ^win32.HRESULT),
-	Equals: proc "system" (this: ^IDWriteFontFace5, fontFace: ^IDWriteFontFace, _return: ^win32.BOOL),
+	GetFontAxisValues: proc "system" (this: ^IDWriteFontFace5, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) -> win32.HRESULT,
+	HasVariations: proc "system" (this: ^IDWriteFontFace5) -> win32.BOOL,
+	GetFontResource: proc "system" (this: ^IDWriteFontFace5, fontResource: ^^IDWriteFontResource) -> win32.HRESULT,
+	Equals: proc "system" (this: ^IDWriteFontFace5, fontFace: ^IDWriteFontFace) -> win32.BOOL,
 }
 
 IDWriteFontFace6_UUID := &win32.IID{0xc4b1fe1b, 0x6e84, 0x47d5, {0xb5, 0x4c, 0xa5, 0x97, 0x98, 0x1b, 0x06, 0xad}}
@@ -5055,8 +5055,8 @@ IDWriteFontFace6 :: struct #raw_union {
 }
 IDWriteFontFace6_VTable :: struct {
 	using idwritefontface5_vtable: IDWriteFontFace5_VTable,
-	GetFamilyNames1: proc "system" (this: ^IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	GetFaceNames1: proc "system" (this: ^IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
+	GetFamilyNames1: proc "system" (this: ^IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	GetFaceNames1: proc "system" (this: ^IDWriteFontFace6, fontFamilyModel: DWRITE_FONT_FAMILY_MODEL, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
 }
 
 IDWriteFontFaceReference_UUID := &win32.IID{0x5e7fa7ca, 0xdde3, 0x424c, {0x89, 0xf0, 0x9f, 0xcd, 0x6f, 0xed, 0x58, 0xcd}}
@@ -5066,20 +5066,20 @@ IDWriteFontFaceReference :: struct #raw_union {
 }
 IDWriteFontFaceReference_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	CreateFontFace: proc "system" (this: ^IDWriteFontFaceReference, fontFace: ^^IDWriteFontFace3, _return: ^win32.HRESULT),
-	CreateFontFaceWithSimulations: proc "system" (this: ^IDWriteFontFaceReference, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ^^IDWriteFontFace3, _return: ^win32.HRESULT),
-	Equals: proc "system" (this: ^IDWriteFontFaceReference, fontFaceReference: ^IDWriteFontFaceReference, _return: ^win32.BOOL),
+	CreateFontFace: proc "system" (this: ^IDWriteFontFaceReference, fontFace: ^^IDWriteFontFace3) -> win32.HRESULT,
+	CreateFontFaceWithSimulations: proc "system" (this: ^IDWriteFontFaceReference, fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS, fontFace: ^^IDWriteFontFace3) -> win32.HRESULT,
+	Equals: proc "system" (this: ^IDWriteFontFaceReference, fontFaceReference: ^IDWriteFontFaceReference) -> win32.BOOL,
 	GetFontFaceIndex: proc "system" (this: ^IDWriteFontFaceReference) -> u32,
 	GetSimulations: proc "system" (this: ^IDWriteFontFaceReference) -> DWRITE_FONT_SIMULATIONS,
-	GetFontFile: proc "system" (this: ^IDWriteFontFaceReference, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
+	GetFontFile: proc "system" (this: ^IDWriteFontFaceReference, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
 	GetLocalFileSize: proc "system" (this: ^IDWriteFontFaceReference) -> u64,
 	GetFileSize: proc "system" (this: ^IDWriteFontFaceReference) -> u64,
-	GetFileTime: proc "system" (this: ^IDWriteFontFaceReference, lastWriteTime: ^win32.FILETIME, _return: ^win32.HRESULT),
+	GetFileTime: proc "system" (this: ^IDWriteFontFaceReference, lastWriteTime: ^win32.FILETIME) -> win32.HRESULT,
 	GetLocality: proc "system" (this: ^IDWriteFontFaceReference) -> DWRITE_LOCALITY,
-	EnqueueFontDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, _return: ^win32.HRESULT),
-	EnqueueCharacterDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, characters: ^win32.WCHAR, characterCount: u32, _return: ^win32.HRESULT),
-	EnqueueGlyphDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, glyphIndices: ^u16, glyphCount: u32, _return: ^win32.HRESULT),
-	EnqueueFileFragmentDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, fileOffset: u64, fragmentSize: u64, _return: ^win32.HRESULT),
+	EnqueueFontDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference) -> win32.HRESULT,
+	EnqueueCharacterDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, characters: ^win32.WCHAR, characterCount: u32) -> win32.HRESULT,
+	EnqueueGlyphDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, glyphIndices: ^u16, glyphCount: u32) -> win32.HRESULT,
+	EnqueueFileFragmentDownloadRequest: proc "system" (this: ^IDWriteFontFaceReference, fileOffset: u64, fragmentSize: u64) -> win32.HRESULT,
 }
 
 IDWriteFontFaceReference1_UUID := &win32.IID{0xc081fe77, 0x2fd1, 0x41ac, {0xa5, 0xa3, 0x34, 0x98, 0x3c, 0x4b, 0xa6, 0x1a}}
@@ -5089,9 +5089,9 @@ IDWriteFontFaceReference1 :: struct #raw_union {
 }
 IDWriteFontFaceReference1_VTable :: struct {
 	using idwritefontfacereference_vtable: IDWriteFontFaceReference_VTable,
-	CreateFontFace1: proc "system" (this: ^IDWriteFontFaceReference1, fontFace: ^^IDWriteFontFace5, _return: ^win32.HRESULT),
+	CreateFontFace1: proc "system" (this: ^IDWriteFontFaceReference1, fontFace: ^^IDWriteFontFace5) -> win32.HRESULT,
 	GetFontAxisValueCount: proc "system" (this: ^IDWriteFontFaceReference1) -> u32,
-	GetFontAxisValues: proc "system" (this: ^IDWriteFontFaceReference1, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, _return: ^win32.HRESULT),
+	GetFontAxisValues: proc "system" (this: ^IDWriteFontFaceReference1, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) -> win32.HRESULT,
 }
 
 IDWriteFontFallback_UUID := &win32.IID{0xefa008f9, 0xf7a1, 0x48bf, {0xb0, 0x5c, 0xf2, 0x24, 0x71, 0x3c, 0xc0, 0xff}}
@@ -5101,7 +5101,7 @@ IDWriteFontFallback :: struct #raw_union {
 }
 IDWriteFontFallback_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	MapCharacters: proc "system" (this: ^IDWriteFontFallback, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ^IDWriteFontCollection, baseFamilyName: ^win32.WCHAR, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ^u32, mappedFont: ^^IDWriteFont, scale: ^f32, _return: ^win32.HRESULT),
+	MapCharacters: proc "system" (this: ^IDWriteFontFallback, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ^IDWriteFontCollection, baseFamilyName: ^win32.WCHAR, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ^u32, mappedFont: ^^IDWriteFont, scale: ^f32) -> win32.HRESULT,
 }
 
 IDWriteFontFallback1_UUID := &win32.IID{0x2397599d, 0xdd0d, 0x4681, {0xbd, 0x6a, 0xf4, 0xf3, 0x1e, 0xaa, 0xde, 0x77}}
@@ -5111,7 +5111,7 @@ IDWriteFontFallback1 :: struct #raw_union {
 }
 IDWriteFontFallback1_VTable :: struct {
 	using idwritefontfallback_vtable: IDWriteFontFallback_VTable,
-	MapCharacters1: proc "system" (this: ^IDWriteFontFallback1, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ^IDWriteFontCollection, baseFamilyName: ^win32.WCHAR, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, mappedLength: ^u32, scale: ^f32, mappedFontFace: ^^IDWriteFontFace5, _return: ^win32.HRESULT),
+	MapCharacters1: proc "system" (this: ^IDWriteFontFallback1, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ^IDWriteFontCollection, baseFamilyName: ^win32.WCHAR, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, mappedLength: ^u32, scale: ^f32, mappedFontFace: ^^IDWriteFontFace5) -> win32.HRESULT,
 }
 
 IDWriteFontFallbackBuilder_UUID := &win32.IID{0xfd882d06, 0x8aba, 0x4fb8, {0xb8, 0x49, 0x8b, 0xe8, 0xb7, 0x3e, 0x14, 0xde}}
@@ -5121,9 +5121,9 @@ IDWriteFontFallbackBuilder :: struct #raw_union {
 }
 IDWriteFontFallbackBuilder_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	AddMapping: proc "system" (this: ^IDWriteFontFallbackBuilder, ranges: ^DWRITE_UNICODE_RANGE, rangesCount: u32, targetFamilyNames: ^^u16, targetFamilyNamesCount: u32, fontCollection: ^IDWriteFontCollection, localeName: ^win32.WCHAR, baseFamilyName: ^win32.WCHAR, scale: f32, _return: ^win32.HRESULT),
-	AddMappings: proc "system" (this: ^IDWriteFontFallbackBuilder, fontFallback: ^IDWriteFontFallback, _return: ^win32.HRESULT),
-	CreateFontFallback: proc "system" (this: ^IDWriteFontFallbackBuilder, fontFallback: ^^IDWriteFontFallback, _return: ^win32.HRESULT),
+	AddMapping: proc "system" (this: ^IDWriteFontFallbackBuilder, ranges: ^DWRITE_UNICODE_RANGE, rangesCount: u32, targetFamilyNames: ^^u16, targetFamilyNamesCount: u32, fontCollection: ^IDWriteFontCollection, localeName: ^win32.WCHAR, baseFamilyName: ^win32.WCHAR, scale: f32) -> win32.HRESULT,
+	AddMappings: proc "system" (this: ^IDWriteFontFallbackBuilder, fontFallback: ^IDWriteFontFallback) -> win32.HRESULT,
+	CreateFontFallback: proc "system" (this: ^IDWriteFontFallbackBuilder, fontFallback: ^^IDWriteFontFallback) -> win32.HRESULT,
 }
 
 IDWriteFontFamily_UUID := &win32.IID{0xda20d8ef, 0x812a, 0x4c43, {0x98, 0x02, 0x62, 0xec, 0x4a, 0xbd, 0x7a, 0xdd}}
@@ -5133,9 +5133,9 @@ IDWriteFontFamily :: struct #raw_union {
 }
 IDWriteFontFamily_VTable :: struct {
 	using idwritefontlist_vtable: IDWriteFontList_VTable,
-	GetFamilyNames: proc "system" (this: ^IDWriteFontFamily, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	GetFirstMatchingFont: proc "system" (this: ^IDWriteFontFamily, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFont: ^^IDWriteFont, _return: ^win32.HRESULT),
-	GetMatchingFonts: proc "system" (this: ^IDWriteFontFamily, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFonts: ^^IDWriteFontList, _return: ^win32.HRESULT),
+	GetFamilyNames: proc "system" (this: ^IDWriteFontFamily, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	GetFirstMatchingFont: proc "system" (this: ^IDWriteFontFamily, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFont: ^^IDWriteFont) -> win32.HRESULT,
+	GetMatchingFonts: proc "system" (this: ^IDWriteFontFamily, weight: DWRITE_FONT_WEIGHT, stretch: DWRITE_FONT_STRETCH, style: DWRITE_FONT_STYLE, matchingFonts: ^^IDWriteFontList) -> win32.HRESULT,
 }
 
 IDWriteFontFamily1_UUID := &win32.IID{0xda20d8ef, 0x812a, 0x4c43, {0x98, 0x02, 0x62, 0xec, 0x4a, 0xbd, 0x7a, 0xdf}}
@@ -5146,8 +5146,8 @@ IDWriteFontFamily1 :: struct #raw_union {
 IDWriteFontFamily1_VTable :: struct {
 	using idwritefontfamily_vtable: IDWriteFontFamily_VTable,
 	GetFontLocality: proc "system" (this: ^IDWriteFontFamily1, listIndex: u32) -> DWRITE_LOCALITY,
-	GetFont1: proc "system" (this: ^IDWriteFontFamily1, listIndex: u32, font: ^^IDWriteFont3, _return: ^win32.HRESULT),
-	GetFontFaceReference: proc "system" (this: ^IDWriteFontFamily1, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
+	GetFont1: proc "system" (this: ^IDWriteFontFamily1, listIndex: u32, font: ^^IDWriteFont3) -> win32.HRESULT,
+	GetFontFaceReference: proc "system" (this: ^IDWriteFontFamily1, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
 }
 
 IDWriteFontFamily2_UUID := &win32.IID{0x3ed49e77, 0xa398, 0x4261, {0xb9, 0xcf, 0xc1, 0x26, 0xc2, 0x13, 0x1e, 0xf3}}
@@ -5157,8 +5157,8 @@ IDWriteFontFamily2 :: struct #raw_union {
 }
 IDWriteFontFamily2_VTable :: struct {
 	using idwritefontfamily1_vtable: IDWriteFontFamily1_VTable,
-	GetMatchingFonts1: proc "system" (this: ^IDWriteFontFamily2, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ^^IDWriteFontList2, _return: ^win32.HRESULT),
-	GetFontSet: proc "system" (this: ^IDWriteFontFamily2, fontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
+	GetMatchingFonts1: proc "system" (this: ^IDWriteFontFamily2, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ^^IDWriteFontList2) -> win32.HRESULT,
+	GetFontSet: proc "system" (this: ^IDWriteFontFamily2, fontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
 }
 
 IDWriteFontFile_UUID := &win32.IID{0x739d886a, 0xcef5, 0x47dc, {0x87, 0x69, 0x1a, 0x8b, 0x41, 0xbe, 0xbb, 0xb0}}
@@ -5168,9 +5168,9 @@ IDWriteFontFile :: struct #raw_union {
 }
 IDWriteFontFile_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetReferenceKey: proc "system" (this: ^IDWriteFontFile, fontFileReferenceKey: ^rawptr, fontFileReferenceKeySize: ^u32, _return: ^win32.HRESULT),
-	GetLoader: proc "system" (this: ^IDWriteFontFile, fontFileLoader: ^^IDWriteFontFileLoader, _return: ^win32.HRESULT),
-	Analyze: proc "system" (this: ^IDWriteFontFile, isSupportedFontType: ^win32.BOOL, fontFileType: ^DWRITE_FONT_FILE_TYPE, fontFaceType: ^DWRITE_FONT_FACE_TYPE, numberOfFaces: ^u32, _return: ^win32.HRESULT),
+	GetReferenceKey: proc "system" (this: ^IDWriteFontFile, fontFileReferenceKey: ^rawptr, fontFileReferenceKeySize: ^u32) -> win32.HRESULT,
+	GetLoader: proc "system" (this: ^IDWriteFontFile, fontFileLoader: ^^IDWriteFontFileLoader) -> win32.HRESULT,
+	Analyze: proc "system" (this: ^IDWriteFontFile, isSupportedFontType: ^win32.BOOL, fontFileType: ^DWRITE_FONT_FILE_TYPE, fontFaceType: ^DWRITE_FONT_FACE_TYPE, numberOfFaces: ^u32) -> win32.HRESULT,
 }
 
 IDWriteFontFileEnumerator_UUID := &win32.IID{0x72755049, 0x5ff7, 0x435d, {0x83, 0x48, 0x4b, 0xe9, 0x7c, 0xfa, 0x6c, 0x7c}}
@@ -5180,8 +5180,8 @@ IDWriteFontFileEnumerator :: struct #raw_union {
 }
 IDWriteFontFileEnumerator_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	MoveNext: proc "system" (this: ^IDWriteFontFileEnumerator, hasCurrentFile: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetCurrentFontFile: proc "system" (this: ^IDWriteFontFileEnumerator, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
+	MoveNext: proc "system" (this: ^IDWriteFontFileEnumerator, hasCurrentFile: ^win32.BOOL) -> win32.HRESULT,
+	GetCurrentFontFile: proc "system" (this: ^IDWriteFontFileEnumerator, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
 }
 
 IDWriteFontFileLoader_UUID := &win32.IID{0x727cad4e, 0xd6af, 0x4c9e, {0x8a, 0x08, 0xd6, 0x95, 0xb1, 0x1c, 0xaa, 0x49}}
@@ -5191,7 +5191,7 @@ IDWriteFontFileLoader :: struct #raw_union {
 }
 IDWriteFontFileLoader_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	CreateStreamFromKey: proc "system" (this: ^IDWriteFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, fontFileStream: ^^IDWriteFontFileStream, _return: ^win32.HRESULT),
+	CreateStreamFromKey: proc "system" (this: ^IDWriteFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, fontFileStream: ^^IDWriteFontFileStream) -> win32.HRESULT,
 }
 
 IDWriteFontFileStream_UUID := &win32.IID{0x6d4865fe, 0x0ab8, 0x4d91, {0x8f, 0x62, 0x5d, 0xd6, 0xbe, 0x34, 0xa3, 0xe0}}
@@ -5201,10 +5201,10 @@ IDWriteFontFileStream :: struct #raw_union {
 }
 IDWriteFontFileStream_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	ReadFileFragment: proc "system" (this: ^IDWriteFontFileStream, fragmentStart: ^rawptr, fileOffset: u64, fragmentSize: u64, fragmentContext: ^rawptr, _return: ^win32.HRESULT),
+	ReadFileFragment: proc "system" (this: ^IDWriteFontFileStream, fragmentStart: ^rawptr, fileOffset: u64, fragmentSize: u64, fragmentContext: ^rawptr) -> win32.HRESULT,
 	ReleaseFileFragment: proc "system" (this: ^IDWriteFontFileStream, fragmentContext: rawptr),
-	GetFileSize: proc "system" (this: ^IDWriteFontFileStream, fileSize: ^u64, _return: ^win32.HRESULT),
-	GetLastWriteTime: proc "system" (this: ^IDWriteFontFileStream, lastWriteTime: ^u64, _return: ^win32.HRESULT),
+	GetFileSize: proc "system" (this: ^IDWriteFontFileStream, fileSize: ^u64) -> win32.HRESULT,
+	GetLastWriteTime: proc "system" (this: ^IDWriteFontFileStream, lastWriteTime: ^u64) -> win32.HRESULT,
 }
 
 IDWriteFontList_UUID := &win32.IID{0x1a0d8438, 0x1d97, 0x4ec1, {0xae, 0xf9, 0xa2, 0xfb, 0x86, 0xed, 0x6a, 0xcb}}
@@ -5214,9 +5214,9 @@ IDWriteFontList :: struct #raw_union {
 }
 IDWriteFontList_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetFontCollection: proc "system" (this: ^IDWriteFontList, fontCollection: ^^IDWriteFontCollection, _return: ^win32.HRESULT),
+	GetFontCollection: proc "system" (this: ^IDWriteFontList, fontCollection: ^^IDWriteFontCollection) -> win32.HRESULT,
 	GetFontCount: proc "system" (this: ^IDWriteFontList) -> u32,
-	GetFont: proc "system" (this: ^IDWriteFontList, index: u32, font: ^^IDWriteFont, _return: ^win32.HRESULT),
+	GetFont: proc "system" (this: ^IDWriteFontList, index: u32, font: ^^IDWriteFont) -> win32.HRESULT,
 }
 
 IDWriteFontList1_UUID := &win32.IID{0xda20d8ef, 0x812a, 0x4c43, {0x98, 0x02, 0x62, 0xec, 0x4a, 0xbd, 0x7a, 0xde}}
@@ -5227,8 +5227,8 @@ IDWriteFontList1 :: struct #raw_union {
 IDWriteFontList1_VTable :: struct {
 	using idwritefontlist_vtable: IDWriteFontList_VTable,
 	GetFontLocality: proc "system" (this: ^IDWriteFontList1, listIndex: u32) -> DWRITE_LOCALITY,
-	GetFont1: proc "system" (this: ^IDWriteFontList1, listIndex: u32, font: ^^IDWriteFont3, _return: ^win32.HRESULT),
-	GetFontFaceReference: proc "system" (this: ^IDWriteFontList1, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
+	GetFont1: proc "system" (this: ^IDWriteFontList1, listIndex: u32, font: ^^IDWriteFont3) -> win32.HRESULT,
+	GetFontFaceReference: proc "system" (this: ^IDWriteFontList1, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
 }
 
 IDWriteFontList2_UUID := &win32.IID{0xc0763a34, 0x77af, 0x445a, {0xb7, 0x35, 0x08, 0xc3, 0x7b, 0x0a, 0x5b, 0xf5}}
@@ -5238,7 +5238,7 @@ IDWriteFontList2 :: struct #raw_union {
 }
 IDWriteFontList2_VTable :: struct {
 	using idwritefontlist1_vtable: IDWriteFontList1_VTable,
-	GetFontSet: proc "system" (this: ^IDWriteFontList2, fontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
+	GetFontSet: proc "system" (this: ^IDWriteFontList2, fontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
 }
 
 IDWriteFontResource_UUID := &win32.IID{0x1f803a76, 0x6871, 0x48e8, {0x98, 0x7f, 0xb9, 0x75, 0x55, 0x1c, 0x50, 0xf2}}
@@ -5248,18 +5248,18 @@ IDWriteFontResource :: struct #raw_union {
 }
 IDWriteFontResource_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetFontFile: proc "system" (this: ^IDWriteFontResource, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
+	GetFontFile: proc "system" (this: ^IDWriteFontResource, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
 	GetFontFaceIndex: proc "system" (this: ^IDWriteFontResource) -> u32,
 	GetFontAxisCount: proc "system" (this: ^IDWriteFontResource) -> u32,
-	GetDefaultFontAxisValues: proc "system" (this: ^IDWriteFontResource, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, _return: ^win32.HRESULT),
-	GetFontAxisRanges: proc "system" (this: ^IDWriteFontResource, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, _return: ^win32.HRESULT),
+	GetDefaultFontAxisValues: proc "system" (this: ^IDWriteFontResource, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) -> win32.HRESULT,
+	GetFontAxisRanges: proc "system" (this: ^IDWriteFontResource, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32) -> win32.HRESULT,
 	GetFontAxisAttributes: proc "system" (this: ^IDWriteFontResource, axisIndex: u32) -> DWRITE_FONT_AXIS_ATTRIBUTES,
-	GetAxisNames: proc "system" (this: ^IDWriteFontResource, axisIndex: u32, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
+	GetAxisNames: proc "system" (this: ^IDWriteFontResource, axisIndex: u32, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
 	GetAxisValueNameCount: proc "system" (this: ^IDWriteFontResource, axisIndex: u32) -> u32,
-	GetAxisValueNames: proc "system" (this: ^IDWriteFontResource, axisIndex: u32, axisValueIndex: u32, fontAxisRange: ^DWRITE_FONT_AXIS_RANGE, names: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	HasVariations: proc "system" (this: ^IDWriteFontResource, _return: ^win32.BOOL),
-	CreateFontFace: proc "system" (this: ^IDWriteFontResource, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFace: ^^IDWriteFontFace5, _return: ^win32.HRESULT),
-	CreateFontFaceReference: proc "system" (this: ^IDWriteFontResource, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ^^IDWriteFontFaceReference1, _return: ^win32.HRESULT),
+	GetAxisValueNames: proc "system" (this: ^IDWriteFontResource, axisIndex: u32, axisValueIndex: u32, fontAxisRange: ^DWRITE_FONT_AXIS_RANGE, names: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	HasVariations: proc "system" (this: ^IDWriteFontResource) -> win32.BOOL,
+	CreateFontFace: proc "system" (this: ^IDWriteFontResource, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFace: ^^IDWriteFontFace5) -> win32.HRESULT,
+	CreateFontFaceReference: proc "system" (this: ^IDWriteFontResource, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontFaceReference: ^^IDWriteFontFaceReference1) -> win32.HRESULT,
 }
 
 IDWriteFontSet_UUID := &win32.IID{0x53585141, 0xd9f8, 0x4095, {0x83, 0x21, 0xd7, 0x3c, 0xf6, 0xbd, 0x11, 0x6b}}
@@ -5270,15 +5270,15 @@ IDWriteFontSet :: struct #raw_union {
 IDWriteFontSet_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetFontCount: proc "system" (this: ^IDWriteFontSet) -> u32,
-	GetFontFaceReference: proc "system" (this: ^IDWriteFontSet, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference, _return: ^win32.HRESULT),
-	FindFontFaceReference: proc "system" (this: ^IDWriteFontSet, fontFaceReference: ^IDWriteFontFaceReference, listIndex: ^u32, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	FindFontFace: proc "system" (this: ^IDWriteFontSet, fontFace: ^IDWriteFontFace, listIndex: ^u32, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetPropertyValues: proc "system" (this: ^IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, values: ^^IDWriteStringList, _return: ^win32.HRESULT),
-	GetPropertyValues1: proc "system" (this: ^IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, preferredLocaleNames: ^win32.WCHAR, values: ^^IDWriteStringList, _return: ^win32.HRESULT),
-	GetPropertyValues2: proc "system" (this: ^IDWriteFontSet, listIndex: u32, propertyId: DWRITE_FONT_PROPERTY_ID, exists: ^win32.BOOL, values: ^^IDWriteLocalizedStrings, _return: ^win32.HRESULT),
-	GetPropertyOccurrenceCount: proc "system" (this: ^IDWriteFontSet, property: ^DWRITE_FONT_PROPERTY, propertyOccurrenceCount: ^u32, _return: ^win32.HRESULT),
-	GetMatchingFonts: proc "system" (this: ^IDWriteFontSet, familyName: ^win32.WCHAR, fontWeight: DWRITE_FONT_WEIGHT, fontStretch: DWRITE_FONT_STRETCH, fontStyle: DWRITE_FONT_STYLE, filteredSet: ^^IDWriteFontSet, _return: ^win32.HRESULT),
-	GetMatchingFonts1: proc "system" (this: ^IDWriteFontSet, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, filteredSet: ^^IDWriteFontSet, _return: ^win32.HRESULT),
+	GetFontFaceReference: proc "system" (this: ^IDWriteFontSet, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference) -> win32.HRESULT,
+	FindFontFaceReference: proc "system" (this: ^IDWriteFontSet, fontFaceReference: ^IDWriteFontFaceReference, listIndex: ^u32, exists: ^win32.BOOL) -> win32.HRESULT,
+	FindFontFace: proc "system" (this: ^IDWriteFontSet, fontFace: ^IDWriteFontFace, listIndex: ^u32, exists: ^win32.BOOL) -> win32.HRESULT,
+	GetPropertyValues: proc "system" (this: ^IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, values: ^^IDWriteStringList) -> win32.HRESULT,
+	GetPropertyValues1: proc "system" (this: ^IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, preferredLocaleNames: ^win32.WCHAR, values: ^^IDWriteStringList) -> win32.HRESULT,
+	GetPropertyValues2: proc "system" (this: ^IDWriteFontSet, listIndex: u32, propertyId: DWRITE_FONT_PROPERTY_ID, exists: ^win32.BOOL, values: ^^IDWriteLocalizedStrings) -> win32.HRESULT,
+	GetPropertyOccurrenceCount: proc "system" (this: ^IDWriteFontSet, property: ^DWRITE_FONT_PROPERTY, propertyOccurrenceCount: ^u32) -> win32.HRESULT,
+	GetMatchingFonts: proc "system" (this: ^IDWriteFontSet, familyName: ^win32.WCHAR, fontWeight: DWRITE_FONT_WEIGHT, fontStretch: DWRITE_FONT_STRETCH, fontStyle: DWRITE_FONT_STYLE, filteredSet: ^^IDWriteFontSet) -> win32.HRESULT,
+	GetMatchingFonts1: proc "system" (this: ^IDWriteFontSet, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, filteredSet: ^^IDWriteFontSet) -> win32.HRESULT,
 }
 
 IDWriteFontSet1_UUID := &win32.IID{0x7e9fda85, 0x6c92, 0x4053, {0xbc, 0x47, 0x7a, 0xe3, 0x53, 0x0d, 0xb4, 0xd3}}
@@ -5288,18 +5288,18 @@ IDWriteFontSet1 :: struct #raw_union {
 }
 IDWriteFontSet1_VTable :: struct {
 	using idwritefontset_vtable: IDWriteFontSet_VTable,
-	GetMatchingFonts2: proc "system" (this: ^IDWriteFontSet1, fontProperty: ^DWRITE_FONT_PROPERTY, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
-	GetFirstFontResources: proc "system" (this: ^IDWriteFontSet1, filteredFontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
-	GetFilteredFonts: proc "system" (this: ^IDWriteFontSet1, indices: ^u32, indexCount: u32, filteredFontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
-	GetFilteredFonts1: proc "system" (this: ^IDWriteFontSet1, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: win32.BOOL, filteredFontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
-	GetFilteredFonts2: proc "system" (this: ^IDWriteFontSet1, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: win32.BOOL, filteredFontSet: ^^IDWriteFontSet1, _return: ^win32.HRESULT),
-	GetFilteredFontIndices: proc "system" (this: ^IDWriteFontSet1, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: win32.BOOL, indices: ^u32, maxIndexCount: u32, actualIndexCount: ^u32, _return: ^win32.HRESULT),
-	GetFilteredFontIndices1: proc "system" (this: ^IDWriteFontSet1, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: win32.BOOL, indices: ^u32, maxIndexCount: u32, actualIndexCount: ^u32, _return: ^win32.HRESULT),
-	GetFontAxisRanges: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ^u32, _return: ^win32.HRESULT),
-	GetFontAxisRanges1: proc "system" (this: ^IDWriteFontSet1, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ^u32, _return: ^win32.HRESULT),
-	GetFontFaceReference1: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference1, _return: ^win32.HRESULT),
-	CreateFontResource: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontResource: ^^IDWriteFontResource, _return: ^win32.HRESULT),
-	CreateFontFace: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontFace: ^^IDWriteFontFace5, _return: ^win32.HRESULT),
+	GetMatchingFonts2: proc "system" (this: ^IDWriteFontSet1, fontProperty: ^DWRITE_FONT_PROPERTY, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, matchingFonts: ^^IDWriteFontSet1) -> win32.HRESULT,
+	GetFirstFontResources: proc "system" (this: ^IDWriteFontSet1, filteredFontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
+	GetFilteredFonts: proc "system" (this: ^IDWriteFontSet1, indices: ^u32, indexCount: u32, filteredFontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
+	GetFilteredFonts1: proc "system" (this: ^IDWriteFontSet1, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: win32.BOOL, filteredFontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
+	GetFilteredFonts2: proc "system" (this: ^IDWriteFontSet1, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: win32.BOOL, filteredFontSet: ^^IDWriteFontSet1) -> win32.HRESULT,
+	GetFilteredFontIndices: proc "system" (this: ^IDWriteFontSet1, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, selectAnyRange: win32.BOOL, indices: ^u32, maxIndexCount: u32, actualIndexCount: ^u32) -> win32.HRESULT,
+	GetFilteredFontIndices1: proc "system" (this: ^IDWriteFontSet1, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, selectAnyProperty: win32.BOOL, indices: ^u32, maxIndexCount: u32, actualIndexCount: ^u32) -> win32.HRESULT,
+	GetFontAxisRanges: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ^u32) -> win32.HRESULT,
+	GetFontAxisRanges1: proc "system" (this: ^IDWriteFontSet1, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, maxFontAxisRangeCount: u32, actualFontAxisRangeCount: ^u32) -> win32.HRESULT,
+	GetFontFaceReference1: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontFaceReference: ^^IDWriteFontFaceReference1) -> win32.HRESULT,
+	CreateFontResource: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontResource: ^^IDWriteFontResource) -> win32.HRESULT,
+	CreateFontFace: proc "system" (this: ^IDWriteFontSet1, listIndex: u32, fontFace: ^^IDWriteFontFace5) -> win32.HRESULT,
 	GetFontLocality: proc "system" (this: ^IDWriteFontSet1, listIndex: u32) -> DWRITE_LOCALITY,
 }
 
@@ -5310,7 +5310,7 @@ IDWriteFontSet2 :: struct #raw_union {
 }
 IDWriteFontSet2_VTable :: struct {
 	using idwritefontset1_vtable: IDWriteFontSet1_VTable,
-	GetExpirationEvent: proc "system" (this: ^IDWriteFontSet2, _return: ^win32.HANDLE),
+	GetExpirationEvent: proc "system" (this: ^IDWriteFontSet2) -> win32.HANDLE,
 }
 
 IDWriteFontSet3_UUID := &win32.IID{0x7c073ef2, 0xa7f4, 0x4045, {0x8c, 0x32, 0x8a, 0xb8, 0xae, 0x64, 0x0f, 0x90}}
@@ -5322,7 +5322,7 @@ IDWriteFontSet3_VTable :: struct {
 	using idwritefontset2_vtable: IDWriteFontSet2_VTable,
 	GetFontSourceType: proc "system" (this: ^IDWriteFontSet3, fontIndex: u32) -> DWRITE_FONT_SOURCE_TYPE,
 	GetFontSourceNameLength: proc "system" (this: ^IDWriteFontSet3, listIndex: u32) -> u32,
-	GetFontSourceName: proc "system" (this: ^IDWriteFontSet3, listIndex: u32, stringBuffer: ^win32.WCHAR, stringBufferSize: u32, _return: ^win32.HRESULT),
+	GetFontSourceName: proc "system" (this: ^IDWriteFontSet3, listIndex: u32, stringBuffer: ^win32.WCHAR, stringBufferSize: u32) -> win32.HRESULT,
 }
 
 IDWriteFontSet4_UUID := &win32.IID{0xeec175fc, 0xbea9, 0x4c86, {0x8b, 0x53, 0xcc, 0xbd, 0xd7, 0xdf, 0x0c, 0x82}}
@@ -5333,7 +5333,7 @@ IDWriteFontSet4 :: struct #raw_union {
 IDWriteFontSet4_VTable :: struct {
 	using idwritefontset3_vtable: IDWriteFontSet3_VTable,
 	ConvertWeightStretchStyleToFontAxisValues: proc "system" (this: ^IDWriteFontSet4, inputAxisValues: ^DWRITE_FONT_AXIS_VALUE, inputAxisCount: u32, fontWeight: DWRITE_FONT_WEIGHT, fontStretch: DWRITE_FONT_STRETCH, fontStyle: DWRITE_FONT_STYLE, fontSize: f32, outputAxisValues: ^DWRITE_FONT_AXIS_VALUE) -> u32,
-	GetMatchingFonts3: proc "system" (this: ^IDWriteFontSet4, familyName: ^win32.WCHAR, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, allowedSimulations: DWRITE_FONT_SIMULATIONS, matchingFonts: ^^IDWriteFontSet4, _return: ^win32.HRESULT),
+	GetMatchingFonts3: proc "system" (this: ^IDWriteFontSet4, familyName: ^win32.WCHAR, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, allowedSimulations: DWRITE_FONT_SIMULATIONS, matchingFonts: ^^IDWriteFontSet4) -> win32.HRESULT,
 }
 
 IDWriteFontSetBuilder_UUID := &win32.IID{0x2f642afe, 0x9c68, 0x4f40, {0xb8, 0xbe, 0x45, 0x74, 0x01, 0xaf, 0xcb, 0x3d}}
@@ -5343,10 +5343,10 @@ IDWriteFontSetBuilder :: struct #raw_union {
 }
 IDWriteFontSetBuilder_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	AddFontFaceReference: proc "system" (this: ^IDWriteFontSetBuilder, fontFaceReference: ^IDWriteFontFaceReference, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, _return: ^win32.HRESULT),
-	AddFontFaceReference1: proc "system" (this: ^IDWriteFontSetBuilder, fontFaceReference: ^IDWriteFontFaceReference, _return: ^win32.HRESULT),
-	AddFontSet: proc "system" (this: ^IDWriteFontSetBuilder, fontSet: ^IDWriteFontSet, _return: ^win32.HRESULT),
-	CreateFontSet: proc "system" (this: ^IDWriteFontSetBuilder, fontSet: ^^IDWriteFontSet, _return: ^win32.HRESULT),
+	AddFontFaceReference: proc "system" (this: ^IDWriteFontSetBuilder, fontFaceReference: ^IDWriteFontFaceReference, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32) -> win32.HRESULT,
+	AddFontFaceReference1: proc "system" (this: ^IDWriteFontSetBuilder, fontFaceReference: ^IDWriteFontFaceReference) -> win32.HRESULT,
+	AddFontSet: proc "system" (this: ^IDWriteFontSetBuilder, fontSet: ^IDWriteFontSet) -> win32.HRESULT,
+	CreateFontSet: proc "system" (this: ^IDWriteFontSetBuilder, fontSet: ^^IDWriteFontSet) -> win32.HRESULT,
 }
 
 IDWriteFontSetBuilder1_UUID := &win32.IID{0x3ff7715f, 0x3cdc, 0x4dc6, {0x9b, 0x72, 0xec, 0x56, 0x21, 0xdc, 0xca, 0xfd}}
@@ -5356,7 +5356,7 @@ IDWriteFontSetBuilder1 :: struct #raw_union {
 }
 IDWriteFontSetBuilder1_VTable :: struct {
 	using idwritefontsetbuilder_vtable: IDWriteFontSetBuilder_VTable,
-	AddFontFile: proc "system" (this: ^IDWriteFontSetBuilder1, fontFile: ^IDWriteFontFile, _return: ^win32.HRESULT),
+	AddFontFile: proc "system" (this: ^IDWriteFontSetBuilder1, fontFile: ^IDWriteFontFile) -> win32.HRESULT,
 }
 
 IDWriteFontSetBuilder2_UUID := &win32.IID{0xee5ba612, 0xb131, 0x463c, {0x8f, 0x4f, 0x31, 0x89, 0xb9, 0x40, 0x1e, 0x45}}
@@ -5366,8 +5366,8 @@ IDWriteFontSetBuilder2 :: struct #raw_union {
 }
 IDWriteFontSetBuilder2_VTable :: struct {
 	using idwritefontsetbuilder1_vtable: IDWriteFontSetBuilder1_VTable,
-	AddFont: proc "system" (this: ^IDWriteFontSetBuilder2, fontFile: ^IDWriteFontFile, fontFaceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32, _return: ^win32.HRESULT),
-	AddFontFile1: proc "system" (this: ^IDWriteFontSetBuilder2, filePath: ^win32.WCHAR, _return: ^win32.HRESULT),
+	AddFont: proc "system" (this: ^IDWriteFontSetBuilder2, fontFile: ^IDWriteFontFile, fontFaceIndex: u32, fontSimulations: DWRITE_FONT_SIMULATIONS, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, fontAxisRanges: ^DWRITE_FONT_AXIS_RANGE, fontAxisRangeCount: u32, properties: ^DWRITE_FONT_PROPERTY, propertyCount: u32) -> win32.HRESULT,
+	AddFontFile1: proc "system" (this: ^IDWriteFontSetBuilder2, filePath: ^win32.WCHAR) -> win32.HRESULT,
 }
 
 IDWriteGdiInterop_UUID := &win32.IID{0x1edd9491, 0x9853, 0x4299, {0x89, 0x8f, 0x64, 0x32, 0x98, 0x3b, 0x6f, 0x3a}}
@@ -5377,11 +5377,11 @@ IDWriteGdiInterop :: struct #raw_union {
 }
 IDWriteGdiInterop_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	CreateFontFromLOGFONT: proc "system" (this: ^IDWriteGdiInterop, logFont: ^win32.LOGFONTW, font: ^^IDWriteFont, _return: ^win32.HRESULT),
-	ConvertFontToLOGFONT: proc "system" (this: ^IDWriteGdiInterop, font: ^IDWriteFont, logFont: ^win32.LOGFONTW, isSystemFont: ^win32.BOOL, _return: ^win32.HRESULT),
-	ConvertFontFaceToLOGFONT: proc "system" (this: ^IDWriteGdiInterop, font: ^IDWriteFontFace, logFont: ^win32.LOGFONTW, _return: ^win32.HRESULT),
-	CreateFontFaceFromHdc: proc "system" (this: ^IDWriteGdiInterop, hdc: win32.HDC, fontFace: ^^IDWriteFontFace, _return: ^win32.HRESULT),
-	CreateBitmapRenderTarget: proc "system" (this: ^IDWriteGdiInterop, hdc: win32.HDC, width: u32, height: u32, renderTarget: ^^IDWriteBitmapRenderTarget, _return: ^win32.HRESULT),
+	CreateFontFromLOGFONT: proc "system" (this: ^IDWriteGdiInterop, logFont: ^win32.LOGFONTW, font: ^^IDWriteFont) -> win32.HRESULT,
+	ConvertFontToLOGFONT: proc "system" (this: ^IDWriteGdiInterop, font: ^IDWriteFont, logFont: ^win32.LOGFONTW, isSystemFont: ^win32.BOOL) -> win32.HRESULT,
+	ConvertFontFaceToLOGFONT: proc "system" (this: ^IDWriteGdiInterop, font: ^IDWriteFontFace, logFont: ^win32.LOGFONTW) -> win32.HRESULT,
+	CreateFontFaceFromHdc: proc "system" (this: ^IDWriteGdiInterop, hdc: win32.HDC, fontFace: ^^IDWriteFontFace) -> win32.HRESULT,
+	CreateBitmapRenderTarget: proc "system" (this: ^IDWriteGdiInterop, hdc: win32.HDC, width: u32, height: u32, renderTarget: ^^IDWriteBitmapRenderTarget) -> win32.HRESULT,
 }
 
 IDWriteGdiInterop1_UUID := &win32.IID{0x4556be70, 0x3abd, 0x4f70, {0x90, 0xbe, 0x42, 0x17, 0x80, 0xa6, 0xf5, 0x15}}
@@ -5391,10 +5391,10 @@ IDWriteGdiInterop1 :: struct #raw_union {
 }
 IDWriteGdiInterop1_VTable :: struct {
 	using idwritegdiinterop_vtable: IDWriteGdiInterop_VTable,
-	CreateFontFromLOGFONT1: proc "system" (this: ^IDWriteGdiInterop1, logFont: ^win32.LOGFONTW, fontCollection: ^IDWriteFontCollection, font: ^^IDWriteFont, _return: ^win32.HRESULT),
-	GetFontSignature: proc "system" (this: ^IDWriteGdiInterop1, fontFace: ^IDWriteFontFace, fontSignature: ^FONTSIGNATURE, _return: ^win32.HRESULT),
-	GetFontSignature1: proc "system" (this: ^IDWriteGdiInterop1, font: ^IDWriteFont, fontSignature: ^FONTSIGNATURE, _return: ^win32.HRESULT),
-	GetMatchingFontsByLOGFONT: proc "system" (this: ^IDWriteGdiInterop1, logFont: ^LOGFONTA, fontSet: ^IDWriteFontSet, filteredSet: ^^IDWriteFontSet, _return: ^win32.HRESULT),
+	CreateFontFromLOGFONT1: proc "system" (this: ^IDWriteGdiInterop1, logFont: ^win32.LOGFONTW, fontCollection: ^IDWriteFontCollection, font: ^^IDWriteFont) -> win32.HRESULT,
+	GetFontSignature: proc "system" (this: ^IDWriteGdiInterop1, fontFace: ^IDWriteFontFace, fontSignature: ^FONTSIGNATURE) -> win32.HRESULT,
+	GetFontSignature1: proc "system" (this: ^IDWriteGdiInterop1, font: ^IDWriteFont, fontSignature: ^FONTSIGNATURE) -> win32.HRESULT,
+	GetMatchingFontsByLOGFONT: proc "system" (this: ^IDWriteGdiInterop1, logFont: ^LOGFONTA, fontSet: ^IDWriteFontSet, filteredSet: ^^IDWriteFontSet) -> win32.HRESULT,
 }
 
 IDWriteGlyphRunAnalysis_UUID := &win32.IID{0x7d97dbf7, 0xe085, 0x42d4, {0x81, 0xe3, 0x6a, 0x88, 0x3b, 0xde, 0xd1, 0x18}}
@@ -5404,9 +5404,9 @@ IDWriteGlyphRunAnalysis :: struct #raw_union {
 }
 IDWriteGlyphRunAnalysis_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetAlphaTextureBounds: proc "system" (this: ^IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ^win32.RECT, _return: ^win32.HRESULT),
-	CreateAlphaTexture: proc "system" (this: ^IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ^win32.RECT, alphaValues: ^u8, bufferSize: u32, _return: ^win32.HRESULT),
-	GetAlphaBlendParams: proc "system" (this: ^IDWriteGlyphRunAnalysis, renderingParams: ^IDWriteRenderingParams, blendGamma: ^f32, blendEnhancedContrast: ^f32, blendClearTypeLevel: ^f32, _return: ^win32.HRESULT),
+	GetAlphaTextureBounds: proc "system" (this: ^IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ^win32.RECT) -> win32.HRESULT,
+	CreateAlphaTexture: proc "system" (this: ^IDWriteGlyphRunAnalysis, textureType: DWRITE_TEXTURE_TYPE, textureBounds: ^win32.RECT, alphaValues: ^u8, bufferSize: u32) -> win32.HRESULT,
+	GetAlphaBlendParams: proc "system" (this: ^IDWriteGlyphRunAnalysis, renderingParams: ^IDWriteRenderingParams, blendGamma: ^f32, blendEnhancedContrast: ^f32, blendClearTypeLevel: ^f32) -> win32.HRESULT,
 }
 
 IDWriteInlineObject_UUID := &win32.IID{0x8339fde3, 0x106f, 0x47ab, {0x83, 0x73, 0x1c, 0x62, 0x95, 0xeb, 0x10, 0xb3}}
@@ -5416,10 +5416,10 @@ IDWriteInlineObject :: struct #raw_union {
 }
 IDWriteInlineObject_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	Draw: proc "system" (this: ^IDWriteInlineObject, clientDrawingContext: rawptr, renderer: ^IDWriteTextRenderer, originX: f32, originY: f32, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	GetMetrics: proc "system" (this: ^IDWriteInlineObject, metrics: ^DWRITE_INLINE_OBJECT_METRICS, _return: ^win32.HRESULT),
-	GetOverhangMetrics: proc "system" (this: ^IDWriteInlineObject, overhangs: ^DWRITE_OVERHANG_METRICS, _return: ^win32.HRESULT),
-	GetBreakConditions: proc "system" (this: ^IDWriteInlineObject, breakConditionBefore: ^DWRITE_BREAK_CONDITION, breakConditionAfter: ^DWRITE_BREAK_CONDITION, _return: ^win32.HRESULT),
+	Draw: proc "system" (this: ^IDWriteInlineObject, clientDrawingContext: rawptr, renderer: ^IDWriteTextRenderer, originX: f32, originY: f32, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	GetMetrics: proc "system" (this: ^IDWriteInlineObject, metrics: ^DWRITE_INLINE_OBJECT_METRICS) -> win32.HRESULT,
+	GetOverhangMetrics: proc "system" (this: ^IDWriteInlineObject, overhangs: ^DWRITE_OVERHANG_METRICS) -> win32.HRESULT,
+	GetBreakConditions: proc "system" (this: ^IDWriteInlineObject, breakConditionBefore: ^DWRITE_BREAK_CONDITION, breakConditionAfter: ^DWRITE_BREAK_CONDITION) -> win32.HRESULT,
 }
 
 IDWriteInMemoryFontFileLoader_UUID := &win32.IID{0xdc102f47, 0xa12d, 0x4b1c, {0x82, 0x2d, 0x9e, 0x11, 0x7e, 0x33, 0x04, 0x3f}}
@@ -5429,7 +5429,7 @@ IDWriteInMemoryFontFileLoader :: struct #raw_union {
 }
 IDWriteInMemoryFontFileLoader_VTable :: struct {
 	using idwritefontfileloader_vtable: IDWriteFontFileLoader_VTable,
-	CreateInMemoryFontFileReference: proc "system" (this: ^IDWriteInMemoryFontFileLoader, factory: ^IDWriteFactory, fontData: rawptr, fontDataSize: u32, ownerObject: ^win32.IUnknown, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
+	CreateInMemoryFontFileReference: proc "system" (this: ^IDWriteInMemoryFontFileLoader, factory: ^IDWriteFactory, fontData: rawptr, fontDataSize: u32, ownerObject: ^win32.IUnknown, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
 	GetFileCount: proc "system" (this: ^IDWriteInMemoryFontFileLoader) -> u32,
 }
 
@@ -5440,9 +5440,9 @@ IDWriteLocalFontFileLoader :: struct #raw_union {
 }
 IDWriteLocalFontFileLoader_VTable :: struct {
 	using idwritefontfileloader_vtable: IDWriteFontFileLoader_VTable,
-	GetFilePathLengthFromKey: proc "system" (this: ^IDWriteLocalFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, filePathLength: ^u32, _return: ^win32.HRESULT),
-	GetFilePathFromKey: proc "system" (this: ^IDWriteLocalFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, filePath: ^win32.WCHAR, filePathSize: u32, _return: ^win32.HRESULT),
-	GetLastWriteTimeFromKey: proc "system" (this: ^IDWriteLocalFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, lastWriteTime: ^win32.FILETIME, _return: ^win32.HRESULT),
+	GetFilePathLengthFromKey: proc "system" (this: ^IDWriteLocalFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, filePathLength: ^u32) -> win32.HRESULT,
+	GetFilePathFromKey: proc "system" (this: ^IDWriteLocalFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, filePath: ^win32.WCHAR, filePathSize: u32) -> win32.HRESULT,
+	GetLastWriteTimeFromKey: proc "system" (this: ^IDWriteLocalFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, lastWriteTime: ^win32.FILETIME) -> win32.HRESULT,
 }
 
 IDWriteLocalizedStrings_UUID := &win32.IID{0x08256209, 0x099a, 0x4b34, {0xb8, 0x6d, 0xc2, 0x2b, 0x11, 0x0e, 0x77, 0x71}}
@@ -5453,11 +5453,11 @@ IDWriteLocalizedStrings :: struct #raw_union {
 IDWriteLocalizedStrings_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetCount: proc "system" (this: ^IDWriteLocalizedStrings) -> u32,
-	FindLocaleName: proc "system" (this: ^IDWriteLocalizedStrings, localeName: ^win32.WCHAR, index: ^u32, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetLocaleNameLength: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, length: ^u32, _return: ^win32.HRESULT),
-	GetLocaleName: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, localeName: ^win32.WCHAR, size: u32, _return: ^win32.HRESULT),
-	GetStringLength: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, length: ^u32, _return: ^win32.HRESULT),
-	GetString: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, stringBuffer: ^win32.WCHAR, size: u32, _return: ^win32.HRESULT),
+	FindLocaleName: proc "system" (this: ^IDWriteLocalizedStrings, localeName: ^win32.WCHAR, index: ^u32, exists: ^win32.BOOL) -> win32.HRESULT,
+	GetLocaleNameLength: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, length: ^u32) -> win32.HRESULT,
+	GetLocaleName: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, localeName: ^win32.WCHAR, size: u32) -> win32.HRESULT,
+	GetStringLength: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, length: ^u32) -> win32.HRESULT,
+	GetString: proc "system" (this: ^IDWriteLocalizedStrings, index: u32, stringBuffer: ^win32.WCHAR, size: u32) -> win32.HRESULT,
 }
 
 IDWriteNumberSubstitution_UUID := &win32.IID{0x14885cc9, 0xbab0, 0x4f90, {0xb6, 0xed, 0x5c, 0x36, 0x6a, 0x2c, 0xd0, 0x3d}}
@@ -5476,9 +5476,9 @@ IDWritePixelSnapping :: struct #raw_union {
 }
 IDWritePixelSnapping_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	IsPixelSnappingDisabled: proc "system" (this: ^IDWritePixelSnapping, clientDrawingContext: rawptr, isDisabled: ^win32.BOOL, _return: ^win32.HRESULT),
-	GetCurrentTransform: proc "system" (this: ^IDWritePixelSnapping, clientDrawingContext: rawptr, transform: ^DWRITE_MATRIX, _return: ^win32.HRESULT),
-	GetPixelsPerDip: proc "system" (this: ^IDWritePixelSnapping, clientDrawingContext: rawptr, pixelsPerDip: ^f32, _return: ^win32.HRESULT),
+	IsPixelSnappingDisabled: proc "system" (this: ^IDWritePixelSnapping, clientDrawingContext: rawptr, isDisabled: ^win32.BOOL) -> win32.HRESULT,
+	GetCurrentTransform: proc "system" (this: ^IDWritePixelSnapping, clientDrawingContext: rawptr, transform: ^DWRITE_MATRIX) -> win32.HRESULT,
+	GetPixelsPerDip: proc "system" (this: ^IDWritePixelSnapping, clientDrawingContext: rawptr, pixelsPerDip: ^f32) -> win32.HRESULT,
 }
 
 IDWriteRemoteFontFileLoader_UUID := &win32.IID{0x68648c83, 0x6ede, 0x46c0, {0xab, 0x46, 0x20, 0x08, 0x3a, 0x88, 0x7f, 0xde}}
@@ -5488,9 +5488,9 @@ IDWriteRemoteFontFileLoader :: struct #raw_union {
 }
 IDWriteRemoteFontFileLoader_VTable :: struct {
 	using idwritefontfileloader_vtable: IDWriteFontFileLoader_VTable,
-	CreateRemoteStreamFromKey: proc "system" (this: ^IDWriteRemoteFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, fontFileStream: ^^IDWriteRemoteFontFileStream, _return: ^win32.HRESULT),
-	GetLocalityFromKey: proc "system" (this: ^IDWriteRemoteFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, locality: ^DWRITE_LOCALITY, _return: ^win32.HRESULT),
-	CreateFontFileReferenceFromUrl: proc "system" (this: ^IDWriteRemoteFontFileLoader, factory: ^IDWriteFactory, baseUrl: ^win32.WCHAR, fontFileUrl: ^win32.WCHAR, fontFile: ^^IDWriteFontFile, _return: ^win32.HRESULT),
+	CreateRemoteStreamFromKey: proc "system" (this: ^IDWriteRemoteFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, fontFileStream: ^^IDWriteRemoteFontFileStream) -> win32.HRESULT,
+	GetLocalityFromKey: proc "system" (this: ^IDWriteRemoteFontFileLoader, fontFileReferenceKey: rawptr, fontFileReferenceKeySize: u32, locality: ^DWRITE_LOCALITY) -> win32.HRESULT,
+	CreateFontFileReferenceFromUrl: proc "system" (this: ^IDWriteRemoteFontFileLoader, factory: ^IDWriteFactory, baseUrl: ^win32.WCHAR, fontFileUrl: ^win32.WCHAR, fontFile: ^^IDWriteFontFile) -> win32.HRESULT,
 }
 
 IDWriteRemoteFontFileStream_UUID := &win32.IID{0x4db3757a, 0x2c72, 0x4ed9, {0xb2, 0xb6, 0x1a, 0xba, 0xbe, 0x1a, 0xff, 0x9c}}
@@ -5500,10 +5500,10 @@ IDWriteRemoteFontFileStream :: struct #raw_union {
 }
 IDWriteRemoteFontFileStream_VTable :: struct {
 	using idwritefontfilestream_vtable: IDWriteFontFileStream_VTable,
-	GetLocalFileSize: proc "system" (this: ^IDWriteRemoteFontFileStream, localFileSize: ^u64, _return: ^win32.HRESULT),
-	GetFileFragmentLocality: proc "system" (this: ^IDWriteRemoteFontFileStream, fileOffset: u64, fragmentSize: u64, isLocal: ^win32.BOOL, partialSize: ^u64, _return: ^win32.HRESULT),
+	GetLocalFileSize: proc "system" (this: ^IDWriteRemoteFontFileStream, localFileSize: ^u64) -> win32.HRESULT,
+	GetFileFragmentLocality: proc "system" (this: ^IDWriteRemoteFontFileStream, fileOffset: u64, fragmentSize: u64, isLocal: ^win32.BOOL, partialSize: ^u64) -> win32.HRESULT,
 	GetLocality: proc "system" (this: ^IDWriteRemoteFontFileStream) -> DWRITE_LOCALITY,
-	BeginDownload: proc "system" (this: ^IDWriteRemoteFontFileStream, downloadOperationID: ^win32.GUID, fileFragments: ^DWRITE_FILE_FRAGMENT, fragmentCount: u32, asyncResult: ^^IDWriteAsyncResult, _return: ^win32.HRESULT),
+	BeginDownload: proc "system" (this: ^IDWriteRemoteFontFileStream, downloadOperationID: ^win32.GUID, fileFragments: ^DWRITE_FILE_FRAGMENT, fragmentCount: u32, asyncResult: ^^IDWriteAsyncResult) -> win32.HRESULT,
 }
 
 IDWriteRenderingParams_UUID := &win32.IID{0x2f0da53a, 0x2add, 0x47cd, {0x82, 0xee, 0xd9, 0xec, 0x34, 0x68, 0x8e, 0x75}}
@@ -5558,10 +5558,10 @@ IDWriteStringList :: struct #raw_union {
 IDWriteStringList_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
 	GetCount: proc "system" (this: ^IDWriteStringList) -> u32,
-	GetLocaleNameLength: proc "system" (this: ^IDWriteStringList, listIndex: u32, length: ^u32, _return: ^win32.HRESULT),
-	GetLocaleName: proc "system" (this: ^IDWriteStringList, listIndex: u32, localeName: ^win32.WCHAR, size: u32, _return: ^win32.HRESULT),
-	GetStringLength: proc "system" (this: ^IDWriteStringList, listIndex: u32, length: ^u32, _return: ^win32.HRESULT),
-	GetString: proc "system" (this: ^IDWriteStringList, listIndex: u32, stringBuffer: ^win32.WCHAR, stringBufferSize: u32, _return: ^win32.HRESULT),
+	GetLocaleNameLength: proc "system" (this: ^IDWriteStringList, listIndex: u32, length: ^u32) -> win32.HRESULT,
+	GetLocaleName: proc "system" (this: ^IDWriteStringList, listIndex: u32, localeName: ^win32.WCHAR, size: u32) -> win32.HRESULT,
+	GetStringLength: proc "system" (this: ^IDWriteStringList, listIndex: u32, length: ^u32) -> win32.HRESULT,
+	GetString: proc "system" (this: ^IDWriteStringList, listIndex: u32, stringBuffer: ^win32.WCHAR, stringBufferSize: u32) -> win32.HRESULT,
 }
 
 IDWriteTextAnalysisSink_UUID := &win32.IID{0x5810cd44, 0x0ca0, 0x4701, {0xb3, 0xfa, 0xbe, 0xc5, 0x18, 0x2a, 0xe4, 0xf6}}
@@ -5571,10 +5571,10 @@ IDWriteTextAnalysisSink :: struct #raw_union {
 }
 IDWriteTextAnalysisSink_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	SetScriptAnalysis: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, _return: ^win32.HRESULT),
-	SetLineBreakpoints: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, lineBreakpoints: ^DWRITE_LINE_BREAKPOINT, _return: ^win32.HRESULT),
-	SetBidiLevel: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, explicitLevel: u8, resolvedLevel: u8, _return: ^win32.HRESULT),
-	SetNumberSubstitution: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, numberSubstitution: ^IDWriteNumberSubstitution, _return: ^win32.HRESULT),
+	SetScriptAnalysis: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS) -> win32.HRESULT,
+	SetLineBreakpoints: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, lineBreakpoints: ^DWRITE_LINE_BREAKPOINT) -> win32.HRESULT,
+	SetBidiLevel: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, explicitLevel: u8, resolvedLevel: u8) -> win32.HRESULT,
+	SetNumberSubstitution: proc "system" (this: ^IDWriteTextAnalysisSink, textPosition: u32, textLength: u32, numberSubstitution: ^IDWriteNumberSubstitution) -> win32.HRESULT,
 }
 
 IDWriteTextAnalysisSink1_UUID := &win32.IID{0xb0d941a0, 0x85e7, 0x4d8b, {0x9f, 0xd3, 0x5c, 0xed, 0x99, 0x34, 0x48, 0x2a}}
@@ -5584,7 +5584,7 @@ IDWriteTextAnalysisSink1 :: struct #raw_union {
 }
 IDWriteTextAnalysisSink1_VTable :: struct {
 	using idwritetextanalysissink_vtable: IDWriteTextAnalysisSink_VTable,
-	SetGlyphOrientation: proc "system" (this: ^IDWriteTextAnalysisSink1, textPosition: u32, textLength: u32, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, adjustedBidiLevel: u8, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, _return: ^win32.HRESULT),
+	SetGlyphOrientation: proc "system" (this: ^IDWriteTextAnalysisSink1, textPosition: u32, textLength: u32, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, adjustedBidiLevel: u8, isSideways: win32.BOOL, isRightToLeft: win32.BOOL) -> win32.HRESULT,
 }
 
 IDWriteTextAnalysisSource_UUID := &win32.IID{0x688e1a58, 0x5094, 0x47c8, {0xad, 0xc8, 0xfb, 0xce, 0xa6, 0x0a, 0xe9, 0x2b}}
@@ -5594,11 +5594,11 @@ IDWriteTextAnalysisSource :: struct #raw_union {
 }
 IDWriteTextAnalysisSource_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	GetTextAtPosition: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textString: ^^u16, textLength: ^u32, _return: ^win32.HRESULT),
-	GetTextBeforePosition: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textString: ^^u16, textLength: ^u32, _return: ^win32.HRESULT),
+	GetTextAtPosition: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textString: ^^u16, textLength: ^u32) -> win32.HRESULT,
+	GetTextBeforePosition: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textString: ^^u16, textLength: ^u32) -> win32.HRESULT,
 	GetParagraphReadingDirection: proc "system" (this: ^IDWriteTextAnalysisSource) -> DWRITE_READING_DIRECTION,
-	GetLocaleName: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: ^u32, localeName: ^^u16, _return: ^win32.HRESULT),
-	GetNumberSubstitution: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: ^u32, numberSubstitution: ^^IDWriteNumberSubstitution, _return: ^win32.HRESULT),
+	GetLocaleName: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: ^u32, localeName: ^^u16) -> win32.HRESULT,
+	GetNumberSubstitution: proc "system" (this: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: ^u32, numberSubstitution: ^^IDWriteNumberSubstitution) -> win32.HRESULT,
 }
 
 IDWriteTextAnalysisSource1_UUID := &win32.IID{0x639cfad8, 0x0fb4, 0x4b21, {0xa5, 0x8a, 0x06, 0x79, 0x20, 0x12, 0x00, 0x09}}
@@ -5608,7 +5608,7 @@ IDWriteTextAnalysisSource1 :: struct #raw_union {
 }
 IDWriteTextAnalysisSource1_VTable :: struct {
 	using idwritetextanalysissource_vtable: IDWriteTextAnalysisSource_VTable,
-	GetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextAnalysisSource1, textPosition: u32, textLength: ^u32, glyphOrientation: ^DWRITE_VERTICAL_GLYPH_ORIENTATION, bidiLevel: ^u8, _return: ^win32.HRESULT),
+	GetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextAnalysisSource1, textPosition: u32, textLength: ^u32, glyphOrientation: ^DWRITE_VERTICAL_GLYPH_ORIENTATION, bidiLevel: ^u8) -> win32.HRESULT,
 }
 
 IDWriteTextAnalyzer_UUID := &win32.IID{0xb7e6163e, 0x7f46, 0x43b4, {0x84, 0xb3, 0xe4, 0xe6, 0x24, 0x9c, 0x36, 0x5d}}
@@ -5618,13 +5618,13 @@ IDWriteTextAnalyzer :: struct #raw_union {
 }
 IDWriteTextAnalyzer_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	AnalyzeScript: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink, _return: ^win32.HRESULT),
-	AnalyzeBidi: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink, _return: ^win32.HRESULT),
-	AnalyzeNumberSubstitution: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink, _return: ^win32.HRESULT),
-	AnalyzeLineBreakpoints: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink, _return: ^win32.HRESULT),
-	GetGlyphs: proc "system" (this: ^IDWriteTextAnalyzer, textString: ^win32.WCHAR, textLength: u32, fontFace: ^IDWriteFontFace, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, numberSubstitution: ^IDWriteNumberSubstitution, features: ^^DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ^u32, featureRanges: u32, maxGlyphCount: u32, clusterMap: ^u16, textProps: ^DWRITE_SHAPING_TEXT_PROPERTIES, glyphIndices: ^u16, glyphProps: ^DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ^u32, _return: ^win32.HRESULT),
-	GetGlyphPlacements: proc "system" (this: ^IDWriteTextAnalyzer, textString: ^win32.WCHAR, clusterMap: ^u16, textProps: ^DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: ^u16, glyphProps: ^DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ^IDWriteFontFace, fontEmSize: f32, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, features: ^^DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ^u32, featureRanges: u32, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, _return: ^win32.HRESULT),
-	GetGdiCompatibleGlyphPlacements: proc "system" (this: ^IDWriteTextAnalyzer, textString: ^win32.WCHAR, clusterMap: ^u16, textProps: ^DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: ^u16, glyphProps: ^DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ^IDWriteFontFace, fontEmSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, features: ^^DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ^u32, featureRanges: u32, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, _return: ^win32.HRESULT),
+	AnalyzeScript: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink) -> win32.HRESULT,
+	AnalyzeBidi: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink) -> win32.HRESULT,
+	AnalyzeNumberSubstitution: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink) -> win32.HRESULT,
+	AnalyzeLineBreakpoints: proc "system" (this: ^IDWriteTextAnalyzer, analysisSource: ^IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink) -> win32.HRESULT,
+	GetGlyphs: proc "system" (this: ^IDWriteTextAnalyzer, textString: ^win32.WCHAR, textLength: u32, fontFace: ^IDWriteFontFace, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, numberSubstitution: ^IDWriteNumberSubstitution, features: ^^DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ^u32, featureRanges: u32, maxGlyphCount: u32, clusterMap: ^u16, textProps: ^DWRITE_SHAPING_TEXT_PROPERTIES, glyphIndices: ^u16, glyphProps: ^DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ^u32) -> win32.HRESULT,
+	GetGlyphPlacements: proc "system" (this: ^IDWriteTextAnalyzer, textString: ^win32.WCHAR, clusterMap: ^u16, textProps: ^DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: ^u16, glyphProps: ^DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ^IDWriteFontFace, fontEmSize: f32, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, features: ^^DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ^u32, featureRanges: u32, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET) -> win32.HRESULT,
+	GetGdiCompatibleGlyphPlacements: proc "system" (this: ^IDWriteTextAnalyzer, textString: ^win32.WCHAR, clusterMap: ^u16, textProps: ^DWRITE_SHAPING_TEXT_PROPERTIES, textLength: u32, glyphIndices: ^u16, glyphProps: ^DWRITE_SHAPING_GLYPH_PROPERTIES, glyphCount: u32, fontFace: ^IDWriteFontFace, fontEmSize: f32, pixelsPerDip: f32, transform: ^DWRITE_MATRIX, useGdiNatural: win32.BOOL, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, scriptAnalysis: ^DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, features: ^^DWRITE_TYPOGRAPHIC_FEATURES, featureRangeLengths: ^u32, featureRanges: u32, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET) -> win32.HRESULT,
 }
 
 IDWriteTextAnalyzer1_UUID := &win32.IID{0x80dad800, 0xe21f, 0x4e83, {0x96, 0xce, 0xbf, 0xcc, 0xe5, 0x00, 0xdb, 0x7c}}
@@ -5634,15 +5634,15 @@ IDWriteTextAnalyzer1 :: struct #raw_union {
 }
 IDWriteTextAnalyzer1_VTable :: struct {
 	using idwritetextanalyzer_vtable: IDWriteTextAnalyzer_VTable,
-	ApplyCharacterSpacing: proc "system" (this: ^IDWriteTextAnalyzer1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textLength: u32, glyphCount: u32, clusterMap: ^u16, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, glyphProperties: ^DWRITE_SHAPING_GLYPH_PROPERTIES, modifiedGlyphAdvances: ^f32, modifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET, _return: ^win32.HRESULT),
-	GetBaseline: proc "system" (this: ^IDWriteTextAnalyzer1, fontFace: ^IDWriteFontFace, baseline: DWRITE_BASELINE, isVertical: win32.BOOL, isSimulationAllowed: win32.BOOL, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, baselineCoordinate: ^i32, exists: ^win32.BOOL, _return: ^win32.HRESULT),
-	AnalyzeVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextAnalyzer1, analysisSource: ^IDWriteTextAnalysisSource1, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink1, _return: ^win32.HRESULT),
-	GetGlyphOrientationTransform: proc "system" (this: ^IDWriteTextAnalyzer1, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: win32.BOOL, transform: ^DWRITE_MATRIX, _return: ^win32.HRESULT),
-	GetScriptProperties: proc "system" (this: ^IDWriteTextAnalyzer1, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, scriptProperties: ^DWRITE_SCRIPT_PROPERTIES, _return: ^win32.HRESULT),
-	GetTextComplexity: proc "system" (this: ^IDWriteTextAnalyzer1, textString: ^win32.WCHAR, textLength: u32, fontFace: ^IDWriteFontFace, isTextSimple: ^win32.BOOL, textLengthRead: ^u32, glyphIndices: ^u16, _return: ^win32.HRESULT),
-	GetJustificationOpportunities: proc "system" (this: ^IDWriteTextAnalyzer1, fontFace: ^IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, textString: ^win32.WCHAR, clusterMap: ^u16, glyphProperties: ^DWRITE_SHAPING_GLYPH_PROPERTIES, justificationOpportunities: ^DWRITE_JUSTIFICATION_OPPORTUNITY, _return: ^win32.HRESULT),
-	JustifyGlyphAdvances: proc "system" (this: ^IDWriteTextAnalyzer1, lineWidth: f32, glyphCount: u32, justificationOpportunities: ^DWRITE_JUSTIFICATION_OPPORTUNITY, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, justifiedGlyphAdvances: ^f32, justifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET, _return: ^win32.HRESULT),
-	GetJustifiedGlyphs: proc "system" (this: ^IDWriteTextAnalyzer1, fontFace: ^IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, maxGlyphCount: u32, clusterMap: ^u16, glyphIndices: ^u16, glyphAdvances: ^f32, justifiedGlyphAdvances: ^f32, justifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET, glyphProperties: ^DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ^u32, modifiedClusterMap: ^u16, modifiedGlyphIndices: ^u16, modifiedGlyphAdvances: ^f32, modifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET, _return: ^win32.HRESULT),
+	ApplyCharacterSpacing: proc "system" (this: ^IDWriteTextAnalyzer1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textLength: u32, glyphCount: u32, clusterMap: ^u16, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, glyphProperties: ^DWRITE_SHAPING_GLYPH_PROPERTIES, modifiedGlyphAdvances: ^f32, modifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET) -> win32.HRESULT,
+	GetBaseline: proc "system" (this: ^IDWriteTextAnalyzer1, fontFace: ^IDWriteFontFace, baseline: DWRITE_BASELINE, isVertical: win32.BOOL, isSimulationAllowed: win32.BOOL, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, baselineCoordinate: ^i32, exists: ^win32.BOOL) -> win32.HRESULT,
+	AnalyzeVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextAnalyzer1, analysisSource: ^IDWriteTextAnalysisSource1, textPosition: u32, textLength: u32, analysisSink: ^IDWriteTextAnalysisSink1) -> win32.HRESULT,
+	GetGlyphOrientationTransform: proc "system" (this: ^IDWriteTextAnalyzer1, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: win32.BOOL, transform: ^DWRITE_MATRIX) -> win32.HRESULT,
+	GetScriptProperties: proc "system" (this: ^IDWriteTextAnalyzer1, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, scriptProperties: ^DWRITE_SCRIPT_PROPERTIES) -> win32.HRESULT,
+	GetTextComplexity: proc "system" (this: ^IDWriteTextAnalyzer1, textString: ^win32.WCHAR, textLength: u32, fontFace: ^IDWriteFontFace, isTextSimple: ^win32.BOOL, textLengthRead: ^u32, glyphIndices: ^u16) -> win32.HRESULT,
+	GetJustificationOpportunities: proc "system" (this: ^IDWriteTextAnalyzer1, fontFace: ^IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, textString: ^win32.WCHAR, clusterMap: ^u16, glyphProperties: ^DWRITE_SHAPING_GLYPH_PROPERTIES, justificationOpportunities: ^DWRITE_JUSTIFICATION_OPPORTUNITY) -> win32.HRESULT,
+	JustifyGlyphAdvances: proc "system" (this: ^IDWriteTextAnalyzer1, lineWidth: f32, glyphCount: u32, justificationOpportunities: ^DWRITE_JUSTIFICATION_OPPORTUNITY, glyphAdvances: ^f32, glyphOffsets: ^DWRITE_GLYPH_OFFSET, justifiedGlyphAdvances: ^f32, justifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET) -> win32.HRESULT,
+	GetJustifiedGlyphs: proc "system" (this: ^IDWriteTextAnalyzer1, fontFace: ^IDWriteFontFace, fontEmSize: f32, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, textLength: u32, glyphCount: u32, maxGlyphCount: u32, clusterMap: ^u16, glyphIndices: ^u16, glyphAdvances: ^f32, justifiedGlyphAdvances: ^f32, justifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET, glyphProperties: ^DWRITE_SHAPING_GLYPH_PROPERTIES, actualGlyphCount: ^u32, modifiedClusterMap: ^u16, modifiedGlyphIndices: ^u16, modifiedGlyphAdvances: ^f32, modifiedGlyphOffsets: ^DWRITE_GLYPH_OFFSET) -> win32.HRESULT,
 }
 
 IDWriteTextAnalyzer2_UUID := &win32.IID{0x553a9ff3, 0x5693, 0x4df7, {0xb5, 0x2b, 0x74, 0x80, 0x6f, 0x7f, 0x2e, 0xb9}}
@@ -5652,9 +5652,9 @@ IDWriteTextAnalyzer2 :: struct #raw_union {
 }
 IDWriteTextAnalyzer2_VTable :: struct {
 	using idwritetextanalyzer1_vtable: IDWriteTextAnalyzer1_VTable,
-	GetGlyphOrientationTransform1: proc "system" (this: ^IDWriteTextAnalyzer2, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: win32.BOOL, originX: f32, originY: f32, transform: ^DWRITE_MATRIX, _return: ^win32.HRESULT),
-	GetTypographicFeatures: proc "system" (this: ^IDWriteTextAnalyzer2, fontFace: ^IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, maxTagCount: u32, actualTagCount: ^u32, tags: ^DWRITE_FONT_FEATURE_TAG, _return: ^win32.HRESULT),
-	CheckTypographicFeature: proc "system" (this: ^IDWriteTextAnalyzer2, fontFace: ^IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, featureTag: DWRITE_FONT_FEATURE_TAG, glyphCount: u32, glyphIndices: ^u16, featureApplies: ^u8, _return: ^win32.HRESULT),
+	GetGlyphOrientationTransform1: proc "system" (this: ^IDWriteTextAnalyzer2, glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, isSideways: win32.BOOL, originX: f32, originY: f32, transform: ^DWRITE_MATRIX) -> win32.HRESULT,
+	GetTypographicFeatures: proc "system" (this: ^IDWriteTextAnalyzer2, fontFace: ^IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, maxTagCount: u32, actualTagCount: ^u32, tags: ^DWRITE_FONT_FEATURE_TAG) -> win32.HRESULT,
+	CheckTypographicFeature: proc "system" (this: ^IDWriteTextAnalyzer2, fontFace: ^IDWriteFontFace, scriptAnalysis: DWRITE_SCRIPT_ANALYSIS, localeName: ^win32.WCHAR, featureTag: DWRITE_FONT_FEATURE_TAG, glyphCount: u32, glyphIndices: ^u16, featureApplies: ^u8) -> win32.HRESULT,
 }
 
 IDWriteTextFormat_UUID := &win32.IID{0x9c906818, 0x31d7, 0x4fd3, {0xa1, 0x51, 0x7c, 0x5e, 0x22, 0x5d, 0xb5, 0x5a}}
@@ -5664,31 +5664,31 @@ IDWriteTextFormat :: struct #raw_union {
 }
 IDWriteTextFormat_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	SetTextAlignment: proc "system" (this: ^IDWriteTextFormat, textAlignment: DWRITE_TEXT_ALIGNMENT, _return: ^win32.HRESULT),
-	SetParagraphAlignment: proc "system" (this: ^IDWriteTextFormat, paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT, _return: ^win32.HRESULT),
-	SetWordWrapping: proc "system" (this: ^IDWriteTextFormat, wordWrapping: DWRITE_WORD_WRAPPING, _return: ^win32.HRESULT),
-	SetReadingDirection: proc "system" (this: ^IDWriteTextFormat, readingDirection: DWRITE_READING_DIRECTION, _return: ^win32.HRESULT),
-	SetFlowDirection: proc "system" (this: ^IDWriteTextFormat, flowDirection: DWRITE_FLOW_DIRECTION, _return: ^win32.HRESULT),
-	SetIncrementalTabStop: proc "system" (this: ^IDWriteTextFormat, incrementalTabStop: f32, _return: ^win32.HRESULT),
-	SetTrimming: proc "system" (this: ^IDWriteTextFormat, trimmingOptions: ^DWRITE_TRIMMING, trimmingSign: ^IDWriteInlineObject, _return: ^win32.HRESULT),
-	SetLineSpacing: proc "system" (this: ^IDWriteTextFormat, lineSpacingMethod: DWRITE_LINE_SPACING_METHOD, lineSpacing: f32, baseline: f32, _return: ^win32.HRESULT),
+	SetTextAlignment: proc "system" (this: ^IDWriteTextFormat, textAlignment: DWRITE_TEXT_ALIGNMENT) -> win32.HRESULT,
+	SetParagraphAlignment: proc "system" (this: ^IDWriteTextFormat, paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT) -> win32.HRESULT,
+	SetWordWrapping: proc "system" (this: ^IDWriteTextFormat, wordWrapping: DWRITE_WORD_WRAPPING) -> win32.HRESULT,
+	SetReadingDirection: proc "system" (this: ^IDWriteTextFormat, readingDirection: DWRITE_READING_DIRECTION) -> win32.HRESULT,
+	SetFlowDirection: proc "system" (this: ^IDWriteTextFormat, flowDirection: DWRITE_FLOW_DIRECTION) -> win32.HRESULT,
+	SetIncrementalTabStop: proc "system" (this: ^IDWriteTextFormat, incrementalTabStop: f32) -> win32.HRESULT,
+	SetTrimming: proc "system" (this: ^IDWriteTextFormat, trimmingOptions: ^DWRITE_TRIMMING, trimmingSign: ^IDWriteInlineObject) -> win32.HRESULT,
+	SetLineSpacing: proc "system" (this: ^IDWriteTextFormat, lineSpacingMethod: DWRITE_LINE_SPACING_METHOD, lineSpacing: f32, baseline: f32) -> win32.HRESULT,
 	GetTextAlignment: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_TEXT_ALIGNMENT,
 	GetParagraphAlignment: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_PARAGRAPH_ALIGNMENT,
 	GetWordWrapping: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_WORD_WRAPPING,
 	GetReadingDirection: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_READING_DIRECTION,
 	GetFlowDirection: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_FLOW_DIRECTION,
 	GetIncrementalTabStop: proc "system" (this: ^IDWriteTextFormat) -> f32,
-	GetTrimming: proc "system" (this: ^IDWriteTextFormat, trimmingOptions: ^DWRITE_TRIMMING, trimmingSign: ^^IDWriteInlineObject, _return: ^win32.HRESULT),
-	GetLineSpacing: proc "system" (this: ^IDWriteTextFormat, lineSpacingMethod: ^DWRITE_LINE_SPACING_METHOD, lineSpacing: ^f32, baseline: ^f32, _return: ^win32.HRESULT),
-	GetFontCollection: proc "system" (this: ^IDWriteTextFormat, fontCollection: ^^IDWriteFontCollection, _return: ^win32.HRESULT),
+	GetTrimming: proc "system" (this: ^IDWriteTextFormat, trimmingOptions: ^DWRITE_TRIMMING, trimmingSign: ^^IDWriteInlineObject) -> win32.HRESULT,
+	GetLineSpacing: proc "system" (this: ^IDWriteTextFormat, lineSpacingMethod: ^DWRITE_LINE_SPACING_METHOD, lineSpacing: ^f32, baseline: ^f32) -> win32.HRESULT,
+	GetFontCollection: proc "system" (this: ^IDWriteTextFormat, fontCollection: ^^IDWriteFontCollection) -> win32.HRESULT,
 	GetFontFamilyNameLength: proc "system" (this: ^IDWriteTextFormat) -> u32,
-	GetFontFamilyName: proc "system" (this: ^IDWriteTextFormat, fontFamilyName: ^win32.WCHAR, nameSize: u32, _return: ^win32.HRESULT),
+	GetFontFamilyName: proc "system" (this: ^IDWriteTextFormat, fontFamilyName: ^win32.WCHAR, nameSize: u32) -> win32.HRESULT,
 	GetFontWeight: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_FONT_WEIGHT,
 	GetFontStyle: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_FONT_STYLE,
 	GetFontStretch: proc "system" (this: ^IDWriteTextFormat) -> DWRITE_FONT_STRETCH,
 	GetFontSize: proc "system" (this: ^IDWriteTextFormat) -> f32,
 	GetLocaleNameLength: proc "system" (this: ^IDWriteTextFormat) -> u32,
-	GetLocaleName: proc "system" (this: ^IDWriteTextFormat, localeName: ^win32.WCHAR, nameSize: u32, _return: ^win32.HRESULT),
+	GetLocaleName: proc "system" (this: ^IDWriteTextFormat, localeName: ^win32.WCHAR, nameSize: u32) -> win32.HRESULT,
 }
 
 IDWriteTextFormat1_UUID := &win32.IID{0x5f174b49, 0x0d8b, 0x4cfb, {0x8b, 0xca, 0xf1, 0xcc, 0xe9, 0xd0, 0x6c, 0x67}}
@@ -5698,14 +5698,14 @@ IDWriteTextFormat1 :: struct #raw_union {
 }
 IDWriteTextFormat1_VTable :: struct {
 	using idwritetextformat_vtable: IDWriteTextFormat_VTable,
-	SetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextFormat1, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION, _return: ^win32.HRESULT),
+	SetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextFormat1, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) -> win32.HRESULT,
 	GetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextFormat1) -> DWRITE_VERTICAL_GLYPH_ORIENTATION,
-	SetLastLineWrapping: proc "system" (this: ^IDWriteTextFormat1, isLastLineWrappingEnabled: win32.BOOL, _return: ^win32.HRESULT),
-	GetLastLineWrapping: proc "system" (this: ^IDWriteTextFormat1, _return: ^win32.BOOL),
-	SetOpticalAlignment: proc "system" (this: ^IDWriteTextFormat1, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT, _return: ^win32.HRESULT),
+	SetLastLineWrapping: proc "system" (this: ^IDWriteTextFormat1, isLastLineWrappingEnabled: win32.BOOL) -> win32.HRESULT,
+	GetLastLineWrapping: proc "system" (this: ^IDWriteTextFormat1) -> win32.BOOL,
+	SetOpticalAlignment: proc "system" (this: ^IDWriteTextFormat1, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT) -> win32.HRESULT,
 	GetOpticalAlignment: proc "system" (this: ^IDWriteTextFormat1) -> DWRITE_OPTICAL_ALIGNMENT,
-	SetFontFallback: proc "system" (this: ^IDWriteTextFormat1, fontFallback: ^IDWriteFontFallback, _return: ^win32.HRESULT),
-	GetFontFallback: proc "system" (this: ^IDWriteTextFormat1, fontFallback: ^^IDWriteFontFallback, _return: ^win32.HRESULT),
+	SetFontFallback: proc "system" (this: ^IDWriteTextFormat1, fontFallback: ^IDWriteFontFallback) -> win32.HRESULT,
+	GetFontFallback: proc "system" (this: ^IDWriteTextFormat1, fontFallback: ^^IDWriteFontFallback) -> win32.HRESULT,
 }
 
 IDWriteTextFormat2_UUID := &win32.IID{0xf67e0edd, 0x9e3d, 0x4ecc, {0x8c, 0x32, 0x41, 0x83, 0x25, 0x3d, 0xfe, 0x70}}
@@ -5715,8 +5715,8 @@ IDWriteTextFormat2 :: struct #raw_union {
 }
 IDWriteTextFormat2_VTable :: struct {
 	using idwritetextformat1_vtable: IDWriteTextFormat1_VTable,
-	SetLineSpacing1: proc "system" (this: ^IDWriteTextFormat2, lineSpacingOptions: ^DWRITE_LINE_SPACING, _return: ^win32.HRESULT),
-	GetLineSpacing1: proc "system" (this: ^IDWriteTextFormat2, lineSpacingOptions: ^DWRITE_LINE_SPACING, _return: ^win32.HRESULT),
+	SetLineSpacing1: proc "system" (this: ^IDWriteTextFormat2, lineSpacingOptions: ^DWRITE_LINE_SPACING) -> win32.HRESULT,
+	GetLineSpacing1: proc "system" (this: ^IDWriteTextFormat2, lineSpacingOptions: ^DWRITE_LINE_SPACING) -> win32.HRESULT,
 }
 
 IDWriteTextFormat3_UUID := &win32.IID{0x6d3b5641, 0xe550, 0x430d, {0xa8, 0x5b, 0xb7, 0xbf, 0x48, 0xa9, 0x34, 0x27}}
@@ -5726,11 +5726,11 @@ IDWriteTextFormat3 :: struct #raw_union {
 }
 IDWriteTextFormat3_VTable :: struct {
 	using idwritetextformat2_vtable: IDWriteTextFormat2_VTable,
-	SetFontAxisValues: proc "system" (this: ^IDWriteTextFormat3, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, _return: ^win32.HRESULT),
+	SetFontAxisValues: proc "system" (this: ^IDWriteTextFormat3, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) -> win32.HRESULT,
 	GetFontAxisValueCount: proc "system" (this: ^IDWriteTextFormat3) -> u32,
-	GetFontAxisValues: proc "system" (this: ^IDWriteTextFormat3, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, _return: ^win32.HRESULT),
+	GetFontAxisValues: proc "system" (this: ^IDWriteTextFormat3, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32) -> win32.HRESULT,
 	GetAutomaticFontAxes: proc "system" (this: ^IDWriteTextFormat3) -> DWRITE_AUTOMATIC_FONT_AXES,
-	SetAutomaticFontAxes: proc "system" (this: ^IDWriteTextFormat3, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES, _return: ^win32.HRESULT),
+	SetAutomaticFontAxes: proc "system" (this: ^IDWriteTextFormat3, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES) -> win32.HRESULT,
 }
 
 IDWriteTextLayout_UUID := &win32.IID{0x53737037, 0x6d14, 0x410b, {0x9b, 0xfe, 0x0b, 0x18, 0x2b, 0xb7, 0x09, 0x61}}
@@ -5740,45 +5740,45 @@ IDWriteTextLayout :: struct #raw_union {
 }
 IDWriteTextLayout_VTable :: struct {
 	using idwritetextformat_vtable: IDWriteTextFormat_VTable,
-	SetMaxWidth: proc "system" (this: ^IDWriteTextLayout, maxWidth: f32, _return: ^win32.HRESULT),
-	SetMaxHeight: proc "system" (this: ^IDWriteTextLayout, maxHeight: f32, _return: ^win32.HRESULT),
-	SetFontCollection: proc "system" (this: ^IDWriteTextLayout, fontCollection: ^IDWriteFontCollection, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetFontFamilyName: proc "system" (this: ^IDWriteTextLayout, fontFamilyName: ^win32.WCHAR, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetFontWeight: proc "system" (this: ^IDWriteTextLayout, fontWeight: DWRITE_FONT_WEIGHT, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetFontStyle: proc "system" (this: ^IDWriteTextLayout, fontStyle: DWRITE_FONT_STYLE, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetFontStretch: proc "system" (this: ^IDWriteTextLayout, fontStretch: DWRITE_FONT_STRETCH, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetFontSize: proc "system" (this: ^IDWriteTextLayout, fontSize: f32, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetUnderline: proc "system" (this: ^IDWriteTextLayout, hasUnderline: win32.BOOL, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetStrikethrough: proc "system" (this: ^IDWriteTextLayout, hasStrikethrough: win32.BOOL, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetDrawingEffect: proc "system" (this: ^IDWriteTextLayout, drawingEffect: ^win32.IUnknown, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetInlineObject: proc "system" (this: ^IDWriteTextLayout, inlineObject: ^IDWriteInlineObject, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetTypography: proc "system" (this: ^IDWriteTextLayout, typography: ^IDWriteTypography, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetLocaleName: proc "system" (this: ^IDWriteTextLayout, localeName: ^win32.WCHAR, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
+	SetMaxWidth: proc "system" (this: ^IDWriteTextLayout, maxWidth: f32) -> win32.HRESULT,
+	SetMaxHeight: proc "system" (this: ^IDWriteTextLayout, maxHeight: f32) -> win32.HRESULT,
+	SetFontCollection: proc "system" (this: ^IDWriteTextLayout, fontCollection: ^IDWriteFontCollection, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetFontFamilyName: proc "system" (this: ^IDWriteTextLayout, fontFamilyName: ^win32.WCHAR, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetFontWeight: proc "system" (this: ^IDWriteTextLayout, fontWeight: DWRITE_FONT_WEIGHT, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetFontStyle: proc "system" (this: ^IDWriteTextLayout, fontStyle: DWRITE_FONT_STYLE, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetFontStretch: proc "system" (this: ^IDWriteTextLayout, fontStretch: DWRITE_FONT_STRETCH, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetFontSize: proc "system" (this: ^IDWriteTextLayout, fontSize: f32, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetUnderline: proc "system" (this: ^IDWriteTextLayout, hasUnderline: win32.BOOL, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetStrikethrough: proc "system" (this: ^IDWriteTextLayout, hasStrikethrough: win32.BOOL, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetDrawingEffect: proc "system" (this: ^IDWriteTextLayout, drawingEffect: ^win32.IUnknown, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetInlineObject: proc "system" (this: ^IDWriteTextLayout, inlineObject: ^IDWriteInlineObject, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetTypography: proc "system" (this: ^IDWriteTextLayout, typography: ^IDWriteTypography, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetLocaleName: proc "system" (this: ^IDWriteTextLayout, localeName: ^win32.WCHAR, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
 	GetMaxWidth: proc "system" (this: ^IDWriteTextLayout) -> f32,
 	GetMaxHeight: proc "system" (this: ^IDWriteTextLayout) -> f32,
-	GetFontCollection1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontCollection: ^^IDWriteFontCollection, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetFontFamilyNameLength1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, nameLength: ^u32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetFontFamilyName1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontFamilyName: ^win32.WCHAR, nameSize: u32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetFontWeight1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontWeight: ^DWRITE_FONT_WEIGHT, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetFontStyle1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontStyle: ^DWRITE_FONT_STYLE, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetFontStretch1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontStretch: ^DWRITE_FONT_STRETCH, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetFontSize1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontSize: ^f32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetUnderline: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, hasUnderline: ^win32.BOOL, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetStrikethrough: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, hasStrikethrough: ^win32.BOOL, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetDrawingEffect: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, drawingEffect: ^^win32.IUnknown, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetInlineObject: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, inlineObject: ^^IDWriteInlineObject, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetTypography: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, typography: ^^IDWriteTypography, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetLocaleNameLength1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, nameLength: ^u32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetLocaleName1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, localeName: ^win32.WCHAR, nameSize: u32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	Draw: proc "system" (this: ^IDWriteTextLayout, clientDrawingContext: rawptr, renderer: ^IDWriteTextRenderer, originX: f32, originY: f32, _return: ^win32.HRESULT),
-	GetLineMetrics: proc "system" (this: ^IDWriteTextLayout, lineMetrics: ^DWRITE_LINE_METRICS, maxLineCount: u32, actualLineCount: ^u32, _return: ^win32.HRESULT),
-	GetMetrics: proc "system" (this: ^IDWriteTextLayout, textMetrics: ^DWRITE_TEXT_METRICS, _return: ^win32.HRESULT),
-	GetOverhangMetrics: proc "system" (this: ^IDWriteTextLayout, overhangs: ^DWRITE_OVERHANG_METRICS, _return: ^win32.HRESULT),
-	GetClusterMetrics: proc "system" (this: ^IDWriteTextLayout, clusterMetrics: ^DWRITE_CLUSTER_METRICS, maxClusterCount: u32, actualClusterCount: ^u32, _return: ^win32.HRESULT),
-	DetermineMinWidth: proc "system" (this: ^IDWriteTextLayout, minWidth: ^f32, _return: ^win32.HRESULT),
-	HitTestPoint: proc "system" (this: ^IDWriteTextLayout, pointX: f32, pointY: f32, isTrailingHit: ^win32.BOOL, isInside: ^win32.BOOL, hitTestMetrics: ^DWRITE_HIT_TEST_METRICS, _return: ^win32.HRESULT),
-	HitTestTextPosition: proc "system" (this: ^IDWriteTextLayout, textPosition: u32, isTrailingHit: win32.BOOL, pointX: ^f32, pointY: ^f32, hitTestMetrics: ^DWRITE_HIT_TEST_METRICS, _return: ^win32.HRESULT),
-	HitTestTextRange: proc "system" (this: ^IDWriteTextLayout, textPosition: u32, textLength: u32, originX: f32, originY: f32, hitTestMetrics: ^DWRITE_HIT_TEST_METRICS, maxHitTestMetricsCount: u32, actualHitTestMetricsCount: ^u32, _return: ^win32.HRESULT),
+	GetFontCollection1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontCollection: ^^IDWriteFontCollection, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetFontFamilyNameLength1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, nameLength: ^u32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetFontFamilyName1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontFamilyName: ^win32.WCHAR, nameSize: u32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetFontWeight1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontWeight: ^DWRITE_FONT_WEIGHT, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetFontStyle1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontStyle: ^DWRITE_FONT_STYLE, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetFontStretch1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontStretch: ^DWRITE_FONT_STRETCH, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetFontSize1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, fontSize: ^f32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetUnderline: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, hasUnderline: ^win32.BOOL, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetStrikethrough: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, hasStrikethrough: ^win32.BOOL, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetDrawingEffect: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, drawingEffect: ^^win32.IUnknown, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetInlineObject: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, inlineObject: ^^IDWriteInlineObject, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetTypography: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, typography: ^^IDWriteTypography, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetLocaleNameLength1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, nameLength: ^u32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetLocaleName1: proc "system" (this: ^IDWriteTextLayout, currentPosition: u32, localeName: ^win32.WCHAR, nameSize: u32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	Draw: proc "system" (this: ^IDWriteTextLayout, clientDrawingContext: rawptr, renderer: ^IDWriteTextRenderer, originX: f32, originY: f32) -> win32.HRESULT,
+	GetLineMetrics: proc "system" (this: ^IDWriteTextLayout, lineMetrics: ^DWRITE_LINE_METRICS, maxLineCount: u32, actualLineCount: ^u32) -> win32.HRESULT,
+	GetMetrics: proc "system" (this: ^IDWriteTextLayout, textMetrics: ^DWRITE_TEXT_METRICS) -> win32.HRESULT,
+	GetOverhangMetrics: proc "system" (this: ^IDWriteTextLayout, overhangs: ^DWRITE_OVERHANG_METRICS) -> win32.HRESULT,
+	GetClusterMetrics: proc "system" (this: ^IDWriteTextLayout, clusterMetrics: ^DWRITE_CLUSTER_METRICS, maxClusterCount: u32, actualClusterCount: ^u32) -> win32.HRESULT,
+	DetermineMinWidth: proc "system" (this: ^IDWriteTextLayout, minWidth: ^f32) -> win32.HRESULT,
+	HitTestPoint: proc "system" (this: ^IDWriteTextLayout, pointX: f32, pointY: f32, isTrailingHit: ^win32.BOOL, isInside: ^win32.BOOL, hitTestMetrics: ^DWRITE_HIT_TEST_METRICS) -> win32.HRESULT,
+	HitTestTextPosition: proc "system" (this: ^IDWriteTextLayout, textPosition: u32, isTrailingHit: win32.BOOL, pointX: ^f32, pointY: ^f32, hitTestMetrics: ^DWRITE_HIT_TEST_METRICS) -> win32.HRESULT,
+	HitTestTextRange: proc "system" (this: ^IDWriteTextLayout, textPosition: u32, textLength: u32, originX: f32, originY: f32, hitTestMetrics: ^DWRITE_HIT_TEST_METRICS, maxHitTestMetricsCount: u32, actualHitTestMetricsCount: ^u32) -> win32.HRESULT,
 }
 
 IDWriteTextLayout1_UUID := &win32.IID{0x9064d822, 0x80a7, 0x465c, {0xa9, 0x86, 0xdf, 0x65, 0xf7, 0x8b, 0x8f, 0xeb}}
@@ -5788,10 +5788,10 @@ IDWriteTextLayout1 :: struct #raw_union {
 }
 IDWriteTextLayout1_VTable :: struct {
 	using idwritetextlayout_vtable: IDWriteTextLayout_VTable,
-	SetPairKerning: proc "system" (this: ^IDWriteTextLayout1, isPairKerningEnabled: win32.BOOL, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetPairKerning: proc "system" (this: ^IDWriteTextLayout1, currentPosition: u32, isPairKerningEnabled: ^win32.BOOL, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	SetCharacterSpacing: proc "system" (this: ^IDWriteTextLayout1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
-	GetCharacterSpacing: proc "system" (this: ^IDWriteTextLayout1, currentPosition: u32, leadingSpacing: ^f32, trailingSpacing: ^f32, minimumAdvanceWidth: ^f32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
+	SetPairKerning: proc "system" (this: ^IDWriteTextLayout1, isPairKerningEnabled: win32.BOOL, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetPairKerning: proc "system" (this: ^IDWriteTextLayout1, currentPosition: u32, isPairKerningEnabled: ^win32.BOOL, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	SetCharacterSpacing: proc "system" (this: ^IDWriteTextLayout1, leadingSpacing: f32, trailingSpacing: f32, minimumAdvanceWidth: f32, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
+	GetCharacterSpacing: proc "system" (this: ^IDWriteTextLayout1, currentPosition: u32, leadingSpacing: ^f32, trailingSpacing: ^f32, minimumAdvanceWidth: ^f32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
 }
 
 IDWriteTextLayout2_UUID := &win32.IID{0x1093c18f, 0x8d5e, 0x43f0, {0xb0, 0x64, 0x09, 0x17, 0x31, 0x1b, 0x52, 0x5e}}
@@ -5801,15 +5801,15 @@ IDWriteTextLayout2 :: struct #raw_union {
 }
 IDWriteTextLayout2_VTable :: struct {
 	using idwritetextlayout1_vtable: IDWriteTextLayout1_VTable,
-	GetMetrics1: proc "system" (this: ^IDWriteTextLayout2, textMetrics: ^DWRITE_TEXT_METRICS1, _return: ^win32.HRESULT),
-	SetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextLayout2, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION, _return: ^win32.HRESULT),
+	GetMetrics1: proc "system" (this: ^IDWriteTextLayout2, textMetrics: ^DWRITE_TEXT_METRICS1) -> win32.HRESULT,
+	SetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextLayout2, glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION) -> win32.HRESULT,
 	GetVerticalGlyphOrientation: proc "system" (this: ^IDWriteTextLayout2) -> DWRITE_VERTICAL_GLYPH_ORIENTATION,
-	SetLastLineWrapping: proc "system" (this: ^IDWriteTextLayout2, isLastLineWrappingEnabled: win32.BOOL, _return: ^win32.HRESULT),
-	GetLastLineWrapping: proc "system" (this: ^IDWriteTextLayout2, _return: ^win32.BOOL),
-	SetOpticalAlignment: proc "system" (this: ^IDWriteTextLayout2, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT, _return: ^win32.HRESULT),
+	SetLastLineWrapping: proc "system" (this: ^IDWriteTextLayout2, isLastLineWrappingEnabled: win32.BOOL) -> win32.HRESULT,
+	GetLastLineWrapping: proc "system" (this: ^IDWriteTextLayout2) -> win32.BOOL,
+	SetOpticalAlignment: proc "system" (this: ^IDWriteTextLayout2, opticalAlignment: DWRITE_OPTICAL_ALIGNMENT) -> win32.HRESULT,
 	GetOpticalAlignment: proc "system" (this: ^IDWriteTextLayout2) -> DWRITE_OPTICAL_ALIGNMENT,
-	SetFontFallback: proc "system" (this: ^IDWriteTextLayout2, fontFallback: ^IDWriteFontFallback, _return: ^win32.HRESULT),
-	GetFontFallback: proc "system" (this: ^IDWriteTextLayout2, fontFallback: ^^IDWriteFontFallback, _return: ^win32.HRESULT),
+	SetFontFallback: proc "system" (this: ^IDWriteTextLayout2, fontFallback: ^IDWriteFontFallback) -> win32.HRESULT,
+	GetFontFallback: proc "system" (this: ^IDWriteTextLayout2, fontFallback: ^^IDWriteFontFallback) -> win32.HRESULT,
 }
 
 IDWriteTextLayout3_UUID := &win32.IID{0x07ddcd52, 0x020e, 0x4de8, {0xac, 0x33, 0x6c, 0x95, 0x3d, 0x83, 0xf9, 0x2d}}
@@ -5819,10 +5819,10 @@ IDWriteTextLayout3 :: struct #raw_union {
 }
 IDWriteTextLayout3_VTable :: struct {
 	using idwritetextlayout2_vtable: IDWriteTextLayout2_VTable,
-	InvalidateLayout: proc "system" (this: ^IDWriteTextLayout3, _return: ^win32.HRESULT),
-	SetLineSpacing1: proc "system" (this: ^IDWriteTextLayout3, lineSpacingOptions: ^DWRITE_LINE_SPACING, _return: ^win32.HRESULT),
-	GetLineSpacing1: proc "system" (this: ^IDWriteTextLayout3, lineSpacingOptions: ^DWRITE_LINE_SPACING, _return: ^win32.HRESULT),
-	GetLineMetrics1: proc "system" (this: ^IDWriteTextLayout3, lineMetrics: ^DWRITE_LINE_METRICS1, maxLineCount: u32, actualLineCount: ^u32, _return: ^win32.HRESULT),
+	InvalidateLayout: proc "system" (this: ^IDWriteTextLayout3) -> win32.HRESULT,
+	SetLineSpacing1: proc "system" (this: ^IDWriteTextLayout3, lineSpacingOptions: ^DWRITE_LINE_SPACING) -> win32.HRESULT,
+	GetLineSpacing1: proc "system" (this: ^IDWriteTextLayout3, lineSpacingOptions: ^DWRITE_LINE_SPACING) -> win32.HRESULT,
+	GetLineMetrics1: proc "system" (this: ^IDWriteTextLayout3, lineMetrics: ^DWRITE_LINE_METRICS1, maxLineCount: u32, actualLineCount: ^u32) -> win32.HRESULT,
 }
 
 IDWriteTextLayout4_UUID := &win32.IID{0x05a9bf42, 0x223f, 0x4441, {0xb5, 0xfb, 0x82, 0x63, 0x68, 0x5f, 0x55, 0xe9}}
@@ -5832,11 +5832,11 @@ IDWriteTextLayout4 :: struct #raw_union {
 }
 IDWriteTextLayout4_VTable :: struct {
 	using idwritetextlayout3_vtable: IDWriteTextLayout3_VTable,
-	SetFontAxisValues: proc "system" (this: ^IDWriteTextLayout4, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
+	SetFontAxisValues: proc "system" (this: ^IDWriteTextLayout4, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: DWRITE_TEXT_RANGE) -> win32.HRESULT,
 	GetFontAxisValueCount: proc "system" (this: ^IDWriteTextLayout4, currentPosition: u32) -> u32,
-	GetFontAxisValues: proc "system" (this: ^IDWriteTextLayout4, currentPosition: u32, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: ^DWRITE_TEXT_RANGE, _return: ^win32.HRESULT),
+	GetFontAxisValues: proc "system" (this: ^IDWriteTextLayout4, currentPosition: u32, fontAxisValues: ^DWRITE_FONT_AXIS_VALUE, fontAxisValueCount: u32, textRange: ^DWRITE_TEXT_RANGE) -> win32.HRESULT,
 	GetAutomaticFontAxes: proc "system" (this: ^IDWriteTextLayout4) -> DWRITE_AUTOMATIC_FONT_AXES,
-	SetAutomaticFontAxes: proc "system" (this: ^IDWriteTextLayout4, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES, _return: ^win32.HRESULT),
+	SetAutomaticFontAxes: proc "system" (this: ^IDWriteTextLayout4, automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES) -> win32.HRESULT,
 }
 
 IDWriteTextRenderer_UUID := &win32.IID{0xef8a8135, 0x5cc6, 0x45fe, {0x88, 0x25, 0xc5, 0xa0, 0x72, 0x4e, 0xb8, 0x19}}
@@ -5846,10 +5846,10 @@ IDWriteTextRenderer :: struct #raw_union {
 }
 IDWriteTextRenderer_VTable :: struct {
 	using idwritepixelsnapping_vtable: IDWritePixelSnapping_VTable,
-	DrawGlyphRun: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	DrawUnderline: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, underline: ^DWRITE_UNDERLINE, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	DrawStrikethrough: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, strikethrough: ^DWRITE_STRIKETHROUGH, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	DrawInlineObject: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, originX: f32, originY: f32, inlineObject: ^IDWriteInlineObject, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
+	DrawGlyphRun: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	DrawUnderline: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, underline: ^DWRITE_UNDERLINE, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	DrawStrikethrough: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, strikethrough: ^DWRITE_STRIKETHROUGH, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	DrawInlineObject: proc "system" (this: ^IDWriteTextRenderer, clientDrawingContext: rawptr, originX: f32, originY: f32, inlineObject: ^IDWriteInlineObject, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
 }
 
 IDWriteTextRenderer1_UUID := &win32.IID{0xd3e0e934, 0x22a0, 0x427e, {0xaa, 0xe4, 0x7d, 0x95, 0x74, 0xb5, 0x9d, 0xb1}}
@@ -5859,10 +5859,10 @@ IDWriteTextRenderer1 :: struct #raw_union {
 }
 IDWriteTextRenderer1_VTable :: struct {
 	using idwritetextrenderer_vtable: IDWriteTextRenderer_VTable,
-	DrawGlyphRun1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	DrawUnderline1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, underline: ^DWRITE_UNDERLINE, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	DrawStrikethrough1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, strikethrough: ^DWRITE_STRIKETHROUGH, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
-	DrawInlineObject1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, originX: f32, originY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, inlineObject: ^IDWriteInlineObject, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, clientDrawingEffect: ^win32.IUnknown, _return: ^win32.HRESULT),
+	DrawGlyphRun1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, measuringMode: DWRITE_MEASURING_MODE, glyphRun: ^DWRITE_GLYPH_RUN, glyphRunDescription: ^DWRITE_GLYPH_RUN_DESCRIPTION, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	DrawUnderline1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, underline: ^DWRITE_UNDERLINE, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	DrawStrikethrough1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, baselineOriginX: f32, baselineOriginY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, strikethrough: ^DWRITE_STRIKETHROUGH, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
+	DrawInlineObject1: proc "system" (this: ^IDWriteTextRenderer1, clientDrawingContext: rawptr, originX: f32, originY: f32, orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE, inlineObject: ^IDWriteInlineObject, isSideways: win32.BOOL, isRightToLeft: win32.BOOL, clientDrawingEffect: ^win32.IUnknown) -> win32.HRESULT,
 }
 
 IDWriteTypography_UUID := &win32.IID{0x55f1112b, 0x1dc2, 0x4b3c, {0x95, 0x41, 0xf4, 0x68, 0x94, 0xed, 0x85, 0xb6}}
@@ -5872,7 +5872,7 @@ IDWriteTypography :: struct #raw_union {
 }
 IDWriteTypography_VTable :: struct {
 	using iunknown_vtable: win32.IUnknown_VTable,
-	AddFontFeature: proc "system" (this: ^IDWriteTypography, fontFeature: DWRITE_FONT_FEATURE, _return: ^win32.HRESULT),
+	AddFontFeature: proc "system" (this: ^IDWriteTypography, fontFeature: DWRITE_FONT_FEATURE) -> win32.HRESULT,
 	GetFontFeatureCount: proc "system" (this: ^IDWriteTypography) -> u32,
-	GetFontFeature: proc "system" (this: ^IDWriteTypography, fontFeatureIndex: u32, fontFeature: ^DWRITE_FONT_FEATURE, _return: ^win32.HRESULT),
+	GetFontFeature: proc "system" (this: ^IDWriteTypography, fontFeatureIndex: u32, fontFeature: ^DWRITE_FONT_FEATURE) -> win32.HRESULT,
 }

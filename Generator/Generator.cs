@@ -162,7 +162,7 @@ class Program {
     // See https://blog.airesoft.co.uk/2014/12/direct2d-scene-of-the-accident/
     bool IsReturnTypeFixNeeded(TypeReference retType) {
         var retTypeStr = GetSimpleType(retType);
-        return retTypeStr != "HRESULT" && retTypeStr != "HANDLE" && retTypeStr != "HDC" && retTypeStr != "HWND" && retTypeStr != "BOOL"
+        return retTypeStr != "win32.HRESULT" && retTypeStr != "win32.HANDLE" && retTypeStr != "win32.HDC" && retTypeStr != "win32.HWND" && retTypeStr != "win32.BOOL"
                && retType.IsValueType && !retType.IsPrimitive && !retType.Resolve().IsEnum;
     }
 
@@ -388,8 +388,9 @@ IPrintDocumentPackageTarget :: struct { #subtype parent: win32.IUnknown }");
 
                     string returnType = GetSimpleType(method.ReturnType);
                     if (IsReturnTypeFixNeeded(method.ReturnType)) {
+                        Debug.Assert(method.Parameters.Count == 0); // Note (mhs): I'm not sure if this is strictly speaking needed, or if it is more of a sanity check and if it fails then we go and re-check that the codegen for other functions which need this fixup also is right...
                         file.Write($", _return: ^{returnType})");
-                        // Technically these functions return the '_return' pointer back, but we don't need that.
+                        // Technically these functions also pass '_return' as their return value. But we don't need that, so we don't bother specifying a retunr type.
                     } else {
                         file.Write(")");
                         if (returnType != "") {
